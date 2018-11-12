@@ -9,7 +9,12 @@
     <link rel="stylesheet" type="text/css" href="content/css/site.css" /> 
     <script src="content/js/jquery-3.3.1.min.js" ></script>
     <script src="content/js/bootstrap.min.js"></script>
+    <script src="content/js/library.js"></script>
     <script src="content/js/main.js"></script>
+    <script src="content/js/predict_chan.js"></script>
+    <script src="content/js/predict_le.js"></script>
+    <script src="content/js/predict_tachbiet.js"></script>
+    <script src="content/js/predict_lientiep.js"></script>
 </head>
 <body>
     <div id="maincontent">
@@ -19,7 +24,7 @@
                     <label>Dự đoán</label>
                     <button id="btnExact">Trùng</button>
                     <button id="btnFail">Ngược</button>
-                    <button id="btnClear">Xóa kết quả dự đoan</button>
+                    <button id="btnClear">Làm lại</button>
                 </div>
                 <div class="clear-top"></div>
                 <div class="row" id="lst_ket_qua" style="margin-top: 20px;">
@@ -27,170 +32,108 @@
                 </div>
                 <div class="row" style="margin-top: 10px;">
                     <div class="col-md-5">
-                        <label>Dự đoán theo 3 kết quả gần nhất</label>
+                        <label>Khung theo 3 kết quả gần nhất</label>
+                        <div class="row">
+                            <div class="col-md-12" id="result_predict_continuous"></div>                   
+                       </div>
                     </div>
                     <div class="col-md-7">
                         <label name="money_predict_continuous">Số tiền :</label>
                     </div>
                 </div>
-                <div class="row">
-                     <div class="col-md-12" id="result_predict_continuous"></div>                   
-                </div>
+                
                 <div class="clear-top"></div>
                 <div class="row" id="lst_ket_qua_chan" style="margin-top: 20px;">
 
                 </div>
                 <div class="row" style="margin-top:10px;">
                     <div class="col-md-5">
-                        <label>Dự đoán theo 3 kết quả chẵn gần nhất</label>
+                        <label>Khung theo 3 kết quả chẵn gần nhất</label>
+                        <div class="row">
+                            <div class="col-md-12" id="result_predict_chan"></div>
+                        </div>
                     </div>
                     <div class="col-md-7">
                         <label name="money_predict_chan">Số tiền :</label>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-12" id="result_predict_chan"></div>
-                </div>
+                
                 <div class="clear-top"></div>
                 <div class="row" id="lst_ket_qua_le" style="margin-top: 20px;">
-
                 </div>
                 <div class="row" style="margin-top:10px;">
                     <div class="col-md-5">
-                        <label>Dự đoán theo 3 kết quả lẻ gần nhất</label>
+                        <label>Khung theo 3 kết quả lẻ gần nhất</label>
+                        <div class="row">
+                            <div class="col-md-12" id="result_predict_le"></div>
+                        </div>
                     </div>
                     <div class="col-md-7">
                         <label name="money_predict_le">Số tiền :</label>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-12" id="result_predict_le"></div>
-                </div>
+                
                 <div class="clear-top"></div>
                 <div class="row" id="lst_ket_qua_cap_doi_mot" style="margin-top: 20px;">
 
                 </div>
                 <div class="row" style="margin-top:10px;">
                     <div class="col-md-5">
-                        <label>Dự đoán theo 3 kết quả cặp từng đôi một gần nhất</label>
+                        <label>Khung theo 3 kết quả cặp từng đôi một gần nhất</label>
+                        <div class="row">
+                            <div class="col-md-12" id="result_predict_cap_doi_mot"></div>
+                        </div>
                     </div>
                     <div class="col-md-7">
                         <label name="money_predict_cap_doi_mot">Số tiền :</label>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-12" id="result_predict_cap_doi_mot"></div>
-                </div>
+                
                 <div class="clear-top"></div>
                 <div class="row" id="lst_ket_qua_cap_lien_tiep" style="margin-top: 20px;">
 
                 </div>
                 <div class="row" style="margin-top:10px;">
                     <div class="col-md-5">
-                        <label>Dự đoán theo 3 kết quả cặp liên tiếp gần nhất</label>
+                        <label>Khung theo 3 kết quả cặp liên tiếp gần nhất</label>
+                        <div class="row">
+                            <div class="col-md-12" id="result_predict_cap_lien_tiep"></div>
+                        </div>
                     </div>
                     <div class="col-md-7">
                         <label name="money_predict_cap_lien_tiep">Số tiền :</label>
                     </div>
                 </div>
+                <div class="clear-top"></div>
                 <div class="row">
-                    <div class="col-md-12" id="result_predict_cap_lien_tiep"></div>
+                    <label>Kết quả</label>
                 </div>
-
+                <div class="row">
+                     <div class="col-md-2">
+                        <label>N :</label>
+                     </div>   
+                     <div class="col-md-10">
+                        <label id="totalN">0</label>
+                     </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <label>T :</label>
+                     </div>   
+                     <div class="col-md-10">
+                        <label id="totalT">0</label>
+                     </div>
+                </div>
+                <div class="row">
+                        <div class="col-md-2">
+                            <label>Chênh lệch :</label>
+                         </div>   
+                         <div class="col-md-10">
+                            <label id="totalCompare">0</label>
+                         </div>
+                    </div>
             </div>
         </div>
-        <!--<div class="row">
-            <div class="col-md-4">
-                <div class="row">
-                    <label>Mẫu dự đoán </label>
-                </div>
-                <div class="clear-top"></div>
-                <div class="row" name="predict-t-t-t">
-                    <div class="dudoan-small trung"></div>
-                    <div class="dudoan-small trung"></div>
-                    <div class="dudoan-small trung"></div>
-                    <label name="detail-predict-t-t-t"></label>
-                </div>
-                <div class="row" name="result-predict-t-t-t" style="margin-top: 10px;">
-                    
-                </div>
-                <div class="clear-top"></div>
-                <div class="row">
-                    <div class="dudoan-small trung"></div>
-                    <div class="dudoan-small trung"></div>
-                    <div class="dudoan-small truot"></div>
-                    <label name="detail-predict-t-t-f"></label>
-                </div>
-                <div class="row" style="margin-top: 10px;" name="result-predict-t-t-f">
-                        
-                </div>
-                <div class="clear-top"></div>
-                <div class="row">
-                    <div class="dudoan-small trung"></div>
-                    <div class="dudoan-small truot"></div>
-                    <div class="dudoan-small trung"></div>
-                    <label name="detail-predict-t-f-t"></label>
-                </div>
-                <div class="row" style="margin-top: 10px;" name="result-predict-t-f-t">
-                        
-                </div>
-
-                <div class="clear-top"></div>
-                <div class="row">
-                    <div class="dudoan-small trung"></div>
-                    <div class="dudoan-small truot"></div>
-                    <div class="dudoan-small truot"></div>
-                    <label name="detail-predict-t-f-f"></label>
-                </div>
-                <div class="row" style="margin-top: 10px;" name="result-predict-t-f-f">
-                        
-                </div>
-
-                <div class="clear-top"></div>
-                <div class="row" name="predict-f-t-t">
-                    <div class="dudoan-small truot"></div>
-                    <div class="dudoan-small trung"></div>
-                    <div class="dudoan-small trung"></div>
-                    <label name="detail-predict-f-t-t"></label>
-                </div>
-                <div class="row" name="result-predict-f-t-t" style="margin-top: 10px;">
-                    
-                </div>
-                <div class="clear-top"></div>
-                <div class="row">
-                    <div class="dudoan-small truot"></div>
-                    <div class="dudoan-small trung"></div>
-                    <div class="dudoan-small truot"></div>
-                    <label name="detail-predict-f-t-f"></label>
-                </div>
-                <div class="row" name="result-predict-f-t-f" style="margin-top: 10px;">
-                        
-                </div>
-                <div class="clear-top"></div>
-                <div class="row">
-                    <div class="dudoan-small truot"></div>
-                    <div class="dudoan-small truot"></div>
-                    <div class="dudoan-small trung"></div>
-                    <label name="detail-predict-f-f-t"></label>
-                </div>
-                <div class="row" style="margin-top: 10px;" name="result-predict-f-f-t">
-                        
-                </div>
-
-                <div class="clear-top"></div>
-                <div class="row">
-                    <div class="dudoan-small truot"></div>
-                    <div class="dudoan-small truot"></div>
-                    <div class="dudoan-small truot"></div>
-                    <label name="detail-predict-f-f-f"></label>
-                </div>
-                <div class="row" style="margin-top: 10px;" name="result-predict-f-f-f">
-                        
-                </div>
-            </div>
-
-
-        </div>-->
     </div>
 </body>
 </html>

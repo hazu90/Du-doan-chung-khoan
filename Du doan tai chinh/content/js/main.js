@@ -1,9 +1,9 @@
 var global_key = {
     key_du_doan: 'all_du_doan',
-    key_du_doan_chan: 'all_du_doan_chan',
-    key_du_doan_le: 'all_du_doan_le',
-    key_du_doan_chan_le_lien_tiep: 'all_du_doan_chan_le_lien_tiep',
-    key_du_doan_chan_le_tach_biet :'all_du_doan_chan_le_tach_biet',
+    key_du_doan_chan: 'chan_all_du_doan',
+    key_du_doan_le: 'le_all_du_doan',
+    key_du_doan_chan_le_lien_tiep: 'lien_tiep_all_du_doan',
+    key_du_doan_chan_le_tach_biet :'tach_biet_all_du_doan',
     money :[1.05,3.21,7.64,16.74,35.41,74,153,315],
     curr_predict_continous:'curr_predict_continous',
     curr_index_continous : 'curr_index_continous',
@@ -13,8 +13,9 @@ $(document).ready(function(){
     $('#btnExact').off('click').on('click',btnExact_Click);
     $('#btnFail').off('click').on('click',btnFail_Click);      
     $('#btnClear').off('click').on('click',function(){
-        localStorage.setItem('all_du_doan',JSON.stringify([]));
-        $('#lst_ket_qua').html('');
+        localStorage.clear();
+        init_data();
+        init_page();
     });
     // Lấy ra danh sách các dự đoán từ trước của người dùng
     var obj= localStorage.getItem(global_key.key_du_doan);
@@ -29,29 +30,10 @@ $(document).ready(function(){
         }
     }
 
-    localStorage.setItem('predict-t-t-t', JSON.stringify([false, false, false, false, false, false, false, false]));
-    localStorage.setItem('predict-t-t-f', JSON.stringify([false, true, false, false, false, true, false, true]));
-    localStorage.setItem('predict-t-f-t', JSON.stringify([true, false, true, false, true, false, true, false]));
-    localStorage.setItem('predict-f-t-t', JSON.stringify([false, false, false, false, false, false, false, false]));
-    localStorage.setItem('predict-f-t-f', JSON.stringify([false, true, false, true, false, true, false, true]));
-    localStorage.setItem('predict-f-f-t', JSON.stringify([false, false, false, false, false, false, false, false]));
+    init_data();
 
-    localStorage.setItem('ext-predict-t-t-f', JSON.stringify([false, true, false, true, false, true, false, true]));
-    localStorage.setItem('ext-predict-t-f-t', JSON.stringify([true, false, true, false, true, false, true, false]));
-    localStorage.setItem('ext-predict-t-f-f', JSON.stringify([false, false, true, true, false, false, true, true]));
-    localStorage.setItem('ext-predict-f-t-t', JSON.stringify([false, false, false, false, false, false, false, false]));
-    localStorage.setItem('ext-predict-f-t-f', JSON.stringify([false, true, false, true, false, true, false, true]));
-    localStorage.setItem('ext-predict-f-f-t', JSON.stringify([true, false, true, false, true, false, true, false]));
+    init_page();
 
-
-    set_default_sample_html('predict-t-t-t');
-    set_default_sample_html('predict-t-t-f');
-    set_default_sample_html('predict-t-f-t');
-    set_default_sample_html('predict-t-f-f');
-    set_default_sample_html('predict-f-t-t');
-    set_default_sample_html('predict-f-t-f');
-    set_default_sample_html('predict-f-f-t');
-    set_default_sample_html('predict-f-f-f');
     $('.predict-choosen-canclick div[name=arrow_up]').each(function(){
         $(this).off('click').on('click',function(){
              var key = $(this).data('localstoragekey');
@@ -75,6 +57,43 @@ $(document).ready(function(){
     });    
 
 });
+
+function init_data(){
+    localStorage.setItem('predict-t-t-t', JSON.stringify([false, false, false, false, false, false, false, false]));
+    localStorage.setItem('predict-t-t-f', JSON.stringify([false, true, false, false, false, true, false, true]));
+    localStorage.setItem('predict-t-f-t', JSON.stringify([true, false, true, false, true, false, true, false]));
+    localStorage.setItem('predict-f-t-t', JSON.stringify([false, false, false, false, false, false, false, false]));
+    localStorage.setItem('predict-f-t-f', JSON.stringify([false, true, false, true, false, true, false, true]));
+    localStorage.setItem('predict-f-f-t', JSON.stringify([false, false, false, false, false, false, false, false]));
+
+    localStorage.setItem('ext-predict-t-t-f', JSON.stringify([false, true, false, true, false, true, false, true]));
+    localStorage.setItem('ext-predict-t-f-t', JSON.stringify([true, false, true, false, true, false, true, false]));
+    localStorage.setItem('ext-predict-t-f-f', JSON.stringify([false, false, true, true, false, false, true, true]));
+    localStorage.setItem('ext-predict-f-t-t', JSON.stringify([false, false, false, false, false, false, false, false]));
+    localStorage.setItem('ext-predict-f-t-f', JSON.stringify([false, true, false, true, false, true, false, true]));
+    localStorage.setItem('ext-predict-f-f-t', JSON.stringify([true, false, true, false, true, false, true, false]));
+
+    localStorage.setItem('total_N',0);
+    localStorage.setItem('total_T',0);
+} 
+
+function init_page(){
+    $('#lst_ket_qua').html('');
+    $('#result_predict_continuous').html('');
+    $('label[name=money_predict_continuous]').html('Số tiền :');
+    $('#lst_ket_qua_chan').html('');
+    $('#result_predict_chan').html('');
+    $('label[name=money_predict_chan]').html('Số tiền :');
+    $('#lst_ket_qua_le').html('');
+    $('#result_predict_le').html('');
+    $('label[name=money_predict_le]').html('Số tiền :');
+    $('#lst_ket_qua_cap_doi_mot').html('');
+    $('#result_predict_cap_doi_mot').html('');
+    $('label[name=money_predict_cap_doi_mot]').html('Số tiền :');
+    $('#lst_ket_qua_cap_lien_tiep').html('');
+    $('#result_predict_cap_lien_tiep').html('');
+    $('label[name=money_predict_cap_lien_tiep]').html('Số tiền :');
+}
 
 function show_sample_detail(key){
     var obj_sample = localStorage.getItem(key);
@@ -161,7 +180,11 @@ function btnExact_Click(){
     predict_from_continue_result();
     append_trung_or_truot_remain();
     append_local_storage_trung_or_truot_remain();
-    
+    predict_chan.predict_next_step_series();
+    predict_le.predict_next_step_series();
+    predict_lien_tiep.predict_next_step_series();
+    predict_tach_biet.predict_next_step_series();
+    general_lib.show_total();
 };
 
 function btnFail_Click(){
@@ -170,6 +193,11 @@ function btnFail_Click(){
     predict_from_continue_result();
     append_trung_or_truot_remain();
     append_local_storage_trung_or_truot_remain();
+    predict_chan.predict_next_step_series();
+    predict_le.predict_next_step_series();
+    predict_lien_tiep.predict_next_step_series();
+    predict_tach_biet.predict_next_step_series();
+    general_lib.show_total();
 };
 
 function append_trung_or_truot(is_trung){
@@ -361,8 +389,8 @@ function predict_from_continue_result(){
     else{
         if(obj_before_du_doan != null){
             arr_before_du_doan = JSON.parse(obj_before_du_doan);
-            if(arr_before_du_doan.length > index_before_du_doan+1){
-                if(arr_before_du_doan[index_before_du_doan +1] != arr_du_doan[arr_du_doan.length -1]){
+            if(arr_before_du_doan.length > index_before_du_doan){
+                if(arr_before_du_doan[index_before_du_doan ] != arr_du_doan[arr_du_doan.length -1]){
                     is_repeat_du_doan = false;
                 }    
             }
@@ -448,4 +476,5 @@ function show_predict_result_in_array(arr_predict,suggest_chose){
     }
     $('#result_predict_continuous').html(html_predict);
     $('label[name=money_predict_continuous]').html('Số tiền : ' +type_money + global_key.money[suggest_chose]);
+    general_lib.calc_total(type_money,global_key.money[suggest_chose]);
 }
