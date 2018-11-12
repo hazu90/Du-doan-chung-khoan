@@ -1,5 +1,9 @@
 var global_key = {
-    key_du_doan : 'all_du_doan',
+    key_du_doan: 'all_du_doan',
+    key_du_doan_chan: 'all_du_doan_chan',
+    key_du_doan_le: 'all_du_doan_le',
+    key_du_doan_chan_le_lien_tiep: 'all_du_doan_chan_le_lien_tiep',
+    key_du_doan_chan_le_tach_biet :'all_du_doan_chan_le_tach_biet',
     money :[1.05,3.21,7.64,16.74,35.41,74,153,315],
     curr_predict_continous:'curr_predict_continous',
     curr_index_continous : 'curr_index_continous',
@@ -24,6 +28,22 @@ $(document).ready(function(){
             append_trung_or_truot(arr_du_doan[index]);
         }
     }
+
+    localStorage.setItem('predict-t-t-t', JSON.stringify([false, false, false, false, false, false, false, false]));
+    localStorage.setItem('predict-t-t-f', JSON.stringify([false, true, false, false, false, true, false, true]));
+    localStorage.setItem('predict-t-f-t', JSON.stringify([true, false, true, false, true, false, true, false]));
+    localStorage.setItem('predict-f-t-t', JSON.stringify([false, false, false, false, false, false, false, false]));
+    localStorage.setItem('predict-f-t-f', JSON.stringify([false, true, false, true, false, true, false, true]));
+    localStorage.setItem('predict-f-f-t', JSON.stringify([false, false, false, false, false, false, false, false]));
+
+    localStorage.setItem('ext-predict-t-t-f', JSON.stringify([false, true, false, true, false, true, false, true]));
+    localStorage.setItem('ext-predict-t-f-t', JSON.stringify([true, false, true, false, true, false, true, false]));
+    localStorage.setItem('ext-predict-t-f-f', JSON.stringify([false, false, true, true, false, false, true, true]));
+    localStorage.setItem('ext-predict-f-t-t', JSON.stringify([false, false, false, false, false, false, false, false]));
+    localStorage.setItem('ext-predict-f-t-f', JSON.stringify([false, true, false, true, false, true, false, true]));
+    localStorage.setItem('ext-predict-f-f-t', JSON.stringify([true, false, true, false, true, false, true, false]));
+
+
     set_default_sample_html('predict-t-t-t');
     set_default_sample_html('predict-t-t-f');
     set_default_sample_html('predict-t-f-t');
@@ -139,12 +159,17 @@ function btnExact_Click(){
     append_trung_or_truot(true);
     append_local_storage_trung_or_truot(true);
     predict_from_continue_result();
+    append_trung_or_truot_remain();
+    append_local_storage_trung_or_truot_remain();
+    
 };
 
 function btnFail_Click(){
     append_trung_or_truot(false);
     append_local_storage_trung_or_truot(false);
     predict_from_continue_result();
+    append_trung_or_truot_remain();
+    append_local_storage_trung_or_truot_remain();
 };
 
 function append_trung_or_truot(is_trung){
@@ -157,6 +182,54 @@ function append_trung_or_truot(is_trung){
         $('#lst_ket_qua').append(html_truot);    
     } 
 }
+function append_trung_or_truot_remain() {
+    var html_trung = '<div class="dudoan trung">T</div>';
+    var html_truot = '<div class="dudoan truot">N</div>';
+    var obj = localStorage.getItem('all_du_doan');
+    var arr_du_doan = [];
+    if (obj != null) {
+        arr_du_doan = JSON.parse(obj);
+    }
+
+    var lgt_du_doan = arr_du_doan.length;
+    if (lgt_du_doan > 0) {
+        if (lgt_du_doan % 2 == 0) {
+            if (arr_du_doan[lgt_du_doan - 1]) {
+                $('#lst_ket_qua_chan').append(html_trung);
+            }
+            else {
+                $('#lst_ket_qua_chan').append(html_truot);
+            }
+        }
+        else {
+            if (arr_du_doan[lgt_du_doan - 1]) {
+                $('#lst_ket_qua_le').append(html_trung);
+            }
+            else {
+                $('#lst_ket_qua_le').append(html_truot);
+            }
+        }
+    }
+    if (lgt_du_doan >= 2) {
+        if (lgt_du_doan % 2 == 0) {
+            if (arr_du_doan[lgt_du_doan - 1] == arr_du_doan[lgt_du_doan - 2]) {
+                $('#lst_ket_qua_cap_doi_mot').append(html_trung);
+            }
+            else {
+                $('#lst_ket_qua_cap_doi_mot').append(html_truot);
+            }
+        }
+
+        if (arr_du_doan[lgt_du_doan - 1] == arr_du_doan[lgt_du_doan - 2]) {
+            $('#lst_ket_qua_cap_lien_tiep').append(html_trung);
+        }
+        else {
+            $('#lst_ket_qua_cap_lien_tiep').append(html_truot);
+        }
+    }
+
+}
+
 function append_local_storage_trung_or_truot(is_trung){
     var obj= localStorage.getItem('all_du_doan');
     var arr_du_doan =[];
@@ -165,6 +238,51 @@ function append_local_storage_trung_or_truot(is_trung){
     }    
     arr_du_doan.push(is_trung);
     localStorage.setItem('all_du_doan',JSON.stringify(arr_du_doan) );    
+}
+
+function append_local_storage_trung_or_truot_remain() {
+    var obj = localStorage.getItem('all_du_doan');
+    var arr_du_doan = [];
+    if (obj != null) {
+        arr_du_doan = JSON.parse(obj);
+    }
+
+    var lgt_du_doan = arr_du_doan.length;
+    if (lgt_du_doan > 0) {
+        if (lgt_du_doan % 2 == 0) {
+            push_item_into_array_local_storage(global_key.key_du_doan_chan, arr_du_doan[lgt_du_doan - 1]);
+        }
+        else {
+            push_item_into_array_local_storage(global_key.key_du_doan_le, arr_du_doan[lgt_du_doan - 1]);
+        }
+    }
+    if (lgt_du_doan >= 2) {
+        if (lgt_du_doan % 2 == 0) {
+            if (arr_du_doan[lgt_du_doan - 1] == arr_du_doan[lgt_du_doan - 2]) {
+                push_item_into_array_local_storage(global_key.key_du_doan_chan_le_tach_biet, true);
+            }
+            else {
+                push_item_into_array_local_storage(global_key.key_du_doan_chan_le_tach_biet, false);
+            }
+        }
+
+        if (arr_du_doan[lgt_du_doan - 1] == arr_du_doan[lgt_du_doan - 2]) {
+            push_item_into_array_local_storage(global_key.key_du_doan_chan_le_lien_tiep, true);
+        }
+        else {
+            push_item_into_array_local_storage(global_key.key_du_doan_chan_le_lien_tiep, false);
+        }
+    }
+}
+
+function push_item_into_array_local_storage(key, item) {
+    var obj_item = localStorage.getItem(key);
+    var arr_item = [];
+    if (obj_item != null) {
+        arr_item = JSON.parse(obj_item);
+    }
+    arr_item.push(item);
+    localStorage.setItem(key, JSON.stringify(arr_item));
 }
 
 function predict_from_continue_result(){
@@ -176,12 +294,16 @@ function predict_from_continue_result(){
     if(arr_du_doan.length <3){
         return;
     }
-    var curr_3_before_continous = global_key.curr_3_before_continous;
+    var curr_3_before_continous = localStorage.getItem(global_key.curr_3_before_continous) ;
     // Lấy ra kết quả đã dự đoán trước đó
     var obj_before_du_doan = localStorage.getItem(global_key.curr_predict_continous);
     var index_before_du_doan = localStorage.getItem(global_key.curr_index_continous);
-    if(index_before_du_doan == null) index_before_du_doan =0;
-    else index_before_du_doan = parseInt(index_before_du_doan);
+    if (index_before_du_doan == null) {
+        index_before_du_doan = 0;
+    }
+    else {
+        index_before_du_doan = parseInt(index_before_du_doan);
+    } 
     var arr_before_du_doan =[];
     var is_repeat_du_doan = true;
     if(curr_3_before_continous =='predict-t-f-f'){
@@ -194,15 +316,17 @@ function predict_from_continue_result(){
         }
     }
     else if(curr_3_before_continous == 'predict-t-f-f-t'){
-        if(arr_du_doan[arr_du_doan.length -1] == true){
-            show_predict_result_in_array([true,false,false,false,false,false,false,false],1);
-            localStorage.setItem(global_key.curr_predict_continous,JSON.stringify([true,false,false,false,false,false,false,false]) );
+        if (arr_du_doan[arr_du_doan.length - 1] == true) {
+            var arr_predict_special = [true, false, false, false, false, false, false, false];
+            show_predict_result_in_array(arr_predict_special, 1);
+            localStorage.setItem(global_key.curr_predict_continous, JSON.stringify(arr_predict_special) );
             localStorage.setItem(global_key.curr_index_continous,1);
             localStorage.setItem(global_key.curr_3_before_continous,'predict-t-f-f-t-t');
         }
-        else{
-            show_predict_result_in_array([false,false,true,false,true,false,true,false],1);
-            localStorage.setItem(global_key.curr_predict_continous,JSON.stringify([false,false,true,false,true,false,true,false]) );
+        else {
+            var arr_predict_special = [false, false, true, false, true, false, true, false];
+            show_predict_result_in_array(arr_predict_special, 1);
+            localStorage.setItem(global_key.curr_predict_continous, JSON.stringify(arr_predict_special) );
             localStorage.setItem(global_key.curr_index_continous,1);
             localStorage.setItem(global_key.curr_3_before_continous,'predict-t-f-f-t-f');
         }
@@ -218,15 +342,17 @@ function predict_from_continue_result(){
         }
     }
     else if(curr_3_before_continous == 'predict-f-f-f-t'){
-        if(arr_du_doan[arr_du_doan.length -1] == true){
-            show_predict_result_in_array([true,false,false,false,false,false,false,false],1);
-            localStorage.setItem(global_key.curr_predict_continous,JSON.stringify([true,false,false,false,false,false,false,false]) );
+        if (arr_du_doan[arr_du_doan.length - 1] == true) {
+            var arr_predict_special = [true, false, false, false, false, false, false, false];
+            show_predict_result_in_array(arr_predict_special, 1);
+            localStorage.setItem(global_key.curr_predict_continous, JSON.stringify(arr_predict_special));
             localStorage.setItem(global_key.curr_index_continous,1);
             localStorage.setItem(global_key.curr_3_before_continous,'predict-f-f-f-t-t');
         }
-        else{
-            show_predict_result_in_array([false,false,true,false,true,false,true,false],1);
-            localStorage.setItem(global_key.curr_predict_continous,JSON.stringify([false,false,true,false,true,false,true,false]) );
+        else {
+            var arr_predict_special = [false, false, true, false, true, false, true, false];
+            show_predict_result_in_array(arr_predict_special, 1);
+            localStorage.setItem(global_key.curr_predict_continous, JSON.stringify(arr_predict_special) );
             localStorage.setItem(global_key.curr_index_continous,1);
             localStorage.setItem(global_key.curr_3_before_continous,'predict-f-f-f-t-f');
         }
@@ -242,10 +368,11 @@ function predict_from_continue_result(){
             }
         }
     }
-    
+
+    // Lấy ra 3 kết quả gần nhất
+    var key = 'predict';
+
     if(is_repeat_du_doan){
-        // Lấy ra 3 kết quả gần nhất
-        var key ='predict';
         key += arr_du_doan[arr_du_doan.length -3] == true ? '-t' : '-f';
         key += arr_du_doan[arr_du_doan.length -2] == true ? '-t' : '-f';
         key += arr_du_doan[arr_du_doan.length -1] == true ? '-t' : '-f';
@@ -255,102 +382,28 @@ function predict_from_continue_result(){
         var type_money ='';
         if(key == 'predict-t-f-f'){
             arr_predict.push(false);
-            html_predict += '<div class="predict-choosen">';
-            html_predict += '   <div class="arrow-up"></div>';
-            html_predict += '<label style="border-bottom: 2px solid red;">N1</label>';
-            html_predict += '</div>';
-
-            type_money = 'N'
         }
         else if(key == 'predict-f-f-f'){
             arr_predict.push(false);
-            html_predict += '<div class="predict-choosen">';
-            html_predict += '   <div class="arrow-up"></div>';
-            html_predict += '<label style="border-bottom: 2px solid red;">N1</label>';
-            html_predict += '</div>';
-
-            type_money = 'N';
         }
         else{
             // Lấy ra kết quả dự đoán
             var obj_predict = localStorage.getItem(key);
-                    
             if(obj_predict != null){
                 arr_predict = JSON.parse(obj_predict);
             }
-
-            for(var index =0;index < arr_predict.length;index++){
-                if(arr_predict[index]){
-                    html_predict += '<div class="predict-choosen">';
-                    html_predict += '   <div class="arrow-up"></div>';
-                    if(index ==0){
-                        type_money ='T';
-                        html_predict += '<label style="border-bottom: 2px solid red;">T'+(index+1)+'</label>';
-                    }
-                    else{
-                        html_predict += '   T'+(index+1);
-                    }
-                    
-                    html_predict += '</div>';
-                }
-                else{
-                    html_predict += '<div class="predict-choosen">';
-                    html_predict += '   <div class="arrow-down"></div>';
-                    if(index ==0){
-                        type_money ='N';
-                        html_predict += '<label style="border-bottom: 2px solid red;">N'+(index+1)+'</label>';
-                    }
-                    else{
-                        html_predict += '   N'+(index+1);
-                    }
-                    
-                    html_predict += '</div>';
-                }
-            }
         }
-        
-        $('#result_predict_continuous').html(html_predict);
-        $('label[name=money_predict_continuous]').html('Số tiền : '+ type_money + global_key.money[0]);
 
-
+        show_predict_result_in_array(arr_predict, 0);
         localStorage.setItem(global_key.curr_predict_continous,JSON.stringify(arr_predict) );
-        localStorage.setItem(global_key.curr_index_continous,0);
+        localStorage.setItem(global_key.curr_index_continous, 0);
+        localStorage.setItem(global_key.curr_3_before_continous, key);
 
     }
     else{
-        // Lấy ra 3 kết quả gần nhất
-        var html_predict = '';
+        // Tăng lên 1 mức đầu tư
         index_before_du_doan = index_before_du_doan+1;
-        for(var index =0;index < arr_before_du_doan.length;index++){
-            if(arr_before_du_doan[index]){
-                html_predict += '<div class="predict-choosen">';
-                html_predict += '   <div class="arrow-up"></div>';
-                if(index ==index_before_du_doan){
-                    html_predict += '<label style="border-bottom: 2px solid red;">T'+(index+1)+'</label>';
-                }
-                else{
-                    html_predict += '   T'+(index+1);
-                }
-                
-                html_predict += '</div>';
-            }
-            else{
-                html_predict += '<div class="predict-choosen">';
-                html_predict += '   <div class="arrow-down"></div>';
-                if(index ==index_before_du_doan){
-                    html_predict += '<label style="border-bottom: 2px solid red;">N'+(index+1)+'</label>';
-                }
-                else{
-                    html_predict += '   N'+(index+1);
-                }
-                
-                html_predict += '</div>';
-            }
-        }
-        $('#result_predict_continuous').html(html_predict);
-        $('label[name=money_predict_continuous]').html('Số tiền : ' + global_key.money[index_before_du_doan]);
-
-
+        show_predict_result_in_array(arr_before_du_doan, index_before_du_doan);
         localStorage.setItem(global_key.curr_predict_continous,JSON.stringify(arr_before_du_doan) );
         localStorage.setItem(global_key.curr_index_continous,index_before_du_doan);
     }
@@ -363,12 +416,14 @@ function show_predict_result_in_array(arr_predict,suggest_chose){
         return;
     }
 
+    var type_money = '';
     var html_predict='';
     for(var index =0;index < arr_predict.length;index++){
         if(arr_predict[index]){
             html_predict += '<div class="predict-choosen">';
             html_predict += '   <div class="arrow-up"></div>';
-            if(index ==suggest_chose){
+            if (index == suggest_chose) {
+                type_money = 'T';
                 html_predict += '<label style="border-bottom: 2px solid red;">T'+(index+1)+'</label>';
             }
             else{
@@ -380,7 +435,8 @@ function show_predict_result_in_array(arr_predict,suggest_chose){
         else{
             html_predict += '<div class="predict-choosen">';
             html_predict += '   <div class="arrow-down"></div>';
-            if(index ==suggest_chose){
+            if (index == suggest_chose) {
+                type_money = 'N';
                 html_predict += '<label style="border-bottom: 2px solid red;">N'+(index+1)+'</label>';
             }
             else{
@@ -391,5 +447,5 @@ function show_predict_result_in_array(arr_predict,suggest_chose){
         }
     }
     $('#result_predict_continuous').html(html_predict);
-    $('label[name=money_predict_continuous]').html('Số tiền : ' + global_key.money[suggest_chose]);
+    $('label[name=money_predict_continuous]').html('Số tiền : ' +type_money + global_key.money[suggest_chose]);
 }
