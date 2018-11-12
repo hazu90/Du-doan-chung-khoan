@@ -1,0 +1,74 @@
+#maincontent{
+    margin-left: 15px;
+    margin-right: 15px;
+}
+.row{
+    margin-left: 0px !important;
+}
+.dudoan{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    float: left;
+    margin-left: 2px;
+    margin-right: 1px;
+    margin-top: 3px;
+    color: white;
+    text-align: center;
+}
+.dudoan-small{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    float: left;
+    margin-left: 1px;
+    margin-right: 1px;
+    margin-top: 3px;
+}
+.trung{
+    background-color: green;
+}
+.truot{
+    background-color: red;
+}
+
+.arrow-up {
+    width: 0; 
+    height: 0; 
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid green;
+}
+.arrow-down {
+    width: 0; 
+    height: 0; 
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid red;
+}
+.predict-choosen{
+    float:left;
+    width: 30px;
+}
+.predict-choosen>.arrow-up
+,.predict-choosen>.arrow-down{
+    margin-top: 3px;
+}
+
+.predict-choosen-canclick>.arrow-up
+,.predict-choosen-canclick>.arrow-down{
+    cursor: pointer;
+}
+
+.clear-left {
+    border: 1px solid;
+}
+.clear-top{
+    border: 1px solid;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+.not-choosen{
+    opacity: 0.2;
+}

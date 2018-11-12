@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Dư đoán tài chính</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="content/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="content/css/site.css" /> 
+    <script src="content/js/jquery-3.3.1.min.js" ></script>
+    <script src="content/js/bootstrap.min.js"></script>
+    <script src="content/js/main.js"></script>
+</head>
+<body>
+    <div id="maincontent">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <label>Dự đoán</label>
+                    <button id="btnExact">Trùng</button>
+                    <button id="btnFail">Ngược</button>
+                    <button id="btnClear">Xóa kết quả dự đoan</button>
+                </div>
+                <div class="row" id="lst_ket_qua" style="margin-top: 20px;">
+                    
+                </div>
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col-md-5">
+                        <label>Dự đoán theo 4 kết quả gần nhất</label>
+                    </div>
+                    <div class="col-md-7">
+                        <label name="money_predict_continuous">Số tiền :</label>
+                    </div>
+                </div>
+                <div class="row">
+                     <div class="col-md-12" id="result_predict_continuous"></div>                   
+                </div>
+            </div>
+            
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="row">
+                    <label>Mẫu dự đoán </label>
+                </div>
+                <div class="clear-top"></div>
+                <div class="row" name="predict-t-t-t">
+                    <div class="dudoan-small trung"></div>
+                    <div class="dudoan-small trung"></div>
+                    <div class="dudoan-small trung"></div>
+                    <label name="detail-predict-t-t-t"></label>
+                </div>
+                <div class="row" name="result-predict-t-t-t" style="margin-top: 10px;">
+                    
+                </div>
+                <div class="clear-top"></div>
+                <div class="row">
+                    <div class="dudoan-small trung"></div>
+                    <div class="dudoan-small trung"></div>
+                    <div class="dudoan-small truot"></div>
+                    <label name="detail-predict-t-t-f"></label>
+                </div>
+                <div class="row" style="margin-top: 10px;" name="result-predict-t-t-f">
+                        
+                </div>
+                <div class="clear-top"></div>
+                <div class="row">
+                    <div class="dudoan-small trung"></div>
+                    <div class="dudoan-small truot"></div>
+                    <div class="dudoan-small trung"></div>
+                    <label name="detail-predict-t-f-t"></label>
+                </div>
+                <div class="row" style="margin-top: 10px;" name="result-predict-t-f-t">
+                        
+                </div>
+
+                <div class="clear-top"></div>
+                <div class="row">
+                    <div class="dudoan-small trung"></div>
+                    <div class="dudoan-small truot"></div>
+                    <div class="dudoan-small truot"></div>
+                    <label name="detail-predict-t-f-f"></label>
+                </div>
+                <div class="row" style="margin-top: 10px;" name="result-predict-t-f-f">
+                        
+                </div>
+
+                <div class="clear-top"></div>
+                <div class="row" name="predict-f-t-t">
+                    <div class="dudoan-small truot"></div>
+                    <div class="dudoan-small trung"></div>
+                    <div class="dudoan-small trung"></div>
+                    <label name="detail-predict-f-t-t"></label>
+                </div>
+                <div class="row" name="result-predict-f-t-t" style="margin-top: 10px;">
+                    
+                </div>
+                <div class="clear-top"></div>
+                <div class="row">
+                    <div class="dudoan-small truot"></div>
+                    <div class="dudoan-small trung"></div>
+                    <div class="dudoan-small truot"></div>
+                    <label name="detail-predict-f-t-f"></label>
+                </div>
+                <div class="row" name="result-predict-f-t-f" style="margin-top: 10px;">
+                        
+                </div>
+                <div class="clear-top"></div>
+                <div class="row">
+                    <div class="dudoan-small truot"></div>
+                    <div class="dudoan-small truot"></div>
+                    <div class="dudoan-small trung"></div>
+                    <label name="detail-predict-f-f-t"></label>
+                </div>
+                <div class="row" style="margin-top: 10px;" name="result-predict-f-f-t">
+                        
+                </div>
+
+                <div class="clear-top"></div>
+                <div class="row">
+                    <div class="dudoan-small truot"></div>
+                    <div class="dudoan-small truot"></div>
+                    <div class="dudoan-small truot"></div>
+                    <label name="detail-predict-f-f-f"></label>
+                </div>
+                <div class="row" style="margin-top: 10px;" name="result-predict-f-f-f">
+                        
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</body>
+</html>
