@@ -29,7 +29,7 @@ $(document).ready(function(){
             append_trung_or_truot(arr_du_doan[index]);
         }
     }
-
+    localStorage.clear();
     init_data();
 
     init_page();
@@ -81,18 +81,28 @@ function init_page(){
     $('#lst_ket_qua').html('');
     $('#result_predict_continuous').html('');
     $('label[name=money_predict_continuous]').html('Số tiền :');
+    $('label[name=money_predict_continuous]').data('typemoney', 'N');
+    $('label[name=money_predict_continuous]').data('amountmoney', 0);
     $('#lst_ket_qua_chan').html('');
     $('#result_predict_chan').html('');
     $('label[name=money_predict_chan]').html('Số tiền :');
+    $('label[name=money_predict_chan]').data('typemoney', 'N');
+    $('label[name=money_predict_chan]').data('amountmoney', 0);
     $('#lst_ket_qua_le').html('');
     $('#result_predict_le').html('');
     $('label[name=money_predict_le]').html('Số tiền :');
+    $('label[name=money_predict_le]').data('typemoney', 'N');
+    $('label[name=money_predict_le]').data('amountmoney', 0);
     $('#lst_ket_qua_cap_doi_mot').html('');
     $('#result_predict_cap_doi_mot').html('');
     $('label[name=money_predict_cap_doi_mot]').html('Số tiền :');
+    $('label[name=money_predict_cap_doi_mot]').data('typemoney', 'N');
+    $('label[name=money_predict_cap_doi_mot]').data('amountmoney', 0);
     $('#lst_ket_qua_cap_lien_tiep').html('');
     $('#result_predict_cap_lien_tiep').html('');
     $('label[name=money_predict_cap_lien_tiep]').html('Số tiền :');
+    $('label[name=money_predict_cap_lien_tiep]').data('typemoney', 'N');
+    $('label[name=money_predict_cap_lien_tiep]').data('amountmoney', 0);
 }
 
 function show_sample_detail(key){
@@ -389,7 +399,7 @@ function predict_from_continue_result(){
     else{
         if(obj_before_du_doan != null){
             arr_before_du_doan = JSON.parse(obj_before_du_doan);
-            if(arr_before_du_doan.length > index_before_du_doan){
+            if (index_before_du_doan < 7 && arr_before_du_doan.length > index_before_du_doan){
                 if(arr_before_du_doan[index_before_du_doan ] != arr_du_doan[arr_du_doan.length -1]){
                     is_repeat_du_doan = false;
                 }    
@@ -441,6 +451,8 @@ function show_predict_result_in_array(arr_predict,suggest_chose){
     if(arr_predict.length ==0){
         $('#result_predict_continuous').html('');
         $('label[name=money_predict_continuous]').html('Số tiền : 0');
+        $('label[name=money_predict_continuous]').data('typemoney', 'N');
+        $('label[name=money_predict_continuous]').data('amountmoney', 0);
         return;
     }
 
@@ -475,6 +487,8 @@ function show_predict_result_in_array(arr_predict,suggest_chose){
         }
     }
     $('#result_predict_continuous').html(html_predict);
-    $('label[name=money_predict_continuous]').html('Số tiền : ' +type_money + global_key.money[suggest_chose]);
-    general_lib.calc_total(type_money,global_key.money[suggest_chose]);
+    $('label[name=money_predict_continuous]').html('Số tiền : ' + type_money + global_key.money[suggest_chose]);
+    $('label[name=money_predict_continuous]').data('typemoney', type_money);
+    $('label[name=money_predict_continuous]').data('amountmoney', global_key.money[suggest_chose]);
+    //general_lib.calc_total(type_money,global_key.money[suggest_chose]);
 }
