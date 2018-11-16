@@ -10,11 +10,11 @@
     <script src="content/js/jquery-3.3.1.min.js" ></script>
     <script src="content/js/bootstrap.min.js"></script>
     <script src="content/js/library.js"></script>
-    <script src="content/js/main.js"></script>
-    <script src="content/js/predict_chan.js"></script>
-    <script src="content/js/predict_le.js"></script>
-    <script src="content/js/predict_tachbiet.js"></script>
-    <script src="content/js/predict_lientiep.js"></script>
+    <script src="content/js/main.js?v=1.0.0.2"></script>
+    <script src="content/js/predict_chan.js?v=1.0.0.2"></script>
+    <script src="content/js/predict_le.js?v=1.0.0.2"></script>
+    <script src="content/js/predict_tachbiet.js?v=1.0.0.2"></script>
+    <script src="content/js/predict_lientiep.js?v=1.0.0.2"></script>
 </head>
 <body>
     <div id="maincontent">
@@ -22,9 +22,10 @@
             <div class="col-md-12">
                 <div class="row">
                     <label>Dự đoán</label>
-                    <button id="btnExact">Trùng</button>
-                    <button id="btnFail">Ngược</button>
-                    <button id="btnClear">Làm lại</button>
+                    <button id="btnExact" class="btn btn-success">Trùng</button>
+                    <button id="btnFail" class="btn btn-danger">Ngược</button>
+                    <button id="btnClear" class="btn btn-secondary">Đánh lại</button>
+                    <button id="btnRollback" class="btn btn-primary">Trở lại bước trước</button>
                 </div>
                 <div class="clear-top"></div>
                 <div class="row" id="lst_ket_qua" style="margin-top: 20px;">

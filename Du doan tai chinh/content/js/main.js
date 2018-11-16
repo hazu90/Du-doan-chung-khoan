@@ -17,18 +17,39 @@ $(document).ready(function(){
         init_data();
         init_page();
     });
-    // Lấy ra danh sách các dự đoán từ trước của người dùng
-    var obj= localStorage.getItem(global_key.key_du_doan);
-    var arr_du_doan =[];
-    if(obj != null){
-        arr_du_doan = JSON.parse(obj);   
-    }
-    
-    if(arr_du_doan.length > 0){
-        for (var index = 0; index < arr_du_doan.length; index++) {
-            append_trung_or_truot(arr_du_doan[index]);
+    $('#btnRollback').off('click').on('click',function(){
+        var obj= localStorage.getItem(global_key.key_du_doan);
+        var arr_du_doan =[];
+        if(obj != null){
+            arr_du_doan = JSON.parse(obj);   
         }
-    }
+        if(arr_du_doan.length >1){
+            localStorage.clear();
+            init_data();
+            init_page();
+            for(var index =0;index < arr_du_doan.length-1;index++){
+                if(arr_du_doan[index]){
+                    $('#btnExact').trigger('click');
+                }
+                else{
+                    $('#btnFail').trigger('click');
+                }
+            }
+        }
+        
+    });
+    // Lấy ra danh sách các dự đoán từ trước của người dùng
+    // var obj= localStorage.getItem(global_key.key_du_doan);
+    // var arr_du_doan =[];
+    // if(obj != null){
+    //     arr_du_doan = JSON.parse(obj);   
+    // }
+    
+    // if(arr_du_doan.length > 0){
+    //     for (var index = 0; index < arr_du_doan.length; index++) {
+    //         append_trung_or_truot(arr_du_doan[index]);
+    //     }
+    // }
     localStorage.clear();
     init_data();
 
@@ -60,7 +81,7 @@ $(document).ready(function(){
 
 function init_data(){
     localStorage.setItem('predict-t-t-t', JSON.stringify([false, false, false, false, false, false, false, false]));
-    localStorage.setItem('predict-t-t-f', JSON.stringify([false, true, false, false, false, true, false, true]));
+    localStorage.setItem('predict-t-t-f', JSON.stringify([false, true, false, true, false, true, false, true]));
     localStorage.setItem('predict-t-f-t', JSON.stringify([true, false, true, false, true, false, true, false]));
     localStorage.setItem('predict-f-t-t', JSON.stringify([false, false, false, false, false, false, false, false]));
     localStorage.setItem('predict-f-t-f', JSON.stringify([false, true, false, true, false, true, false, true]));
@@ -69,7 +90,7 @@ function init_data(){
     localStorage.setItem('ext-predict-t-t-f', JSON.stringify([false, true, false, true, false, true, false, true]));
     localStorage.setItem('ext-predict-t-f-t', JSON.stringify([true, false, true, false, true, false, true, false]));
     localStorage.setItem('ext-predict-t-f-f', JSON.stringify([false, false, true, true, false, false, true, true]));
-    localStorage.setItem('ext-predict-f-t-t', JSON.stringify([false, false, false, false, false, false, false, false]));
+    localStorage.setItem('ext-predict-f-t-t', JSON.stringify([true, true, false, false, true, true, false, false]));
     localStorage.setItem('ext-predict-f-t-f', JSON.stringify([false, true, false, true, false, true, false, true]));
     localStorage.setItem('ext-predict-f-f-t', JSON.stringify([true, false, true, false, true, false, true, false]));
 
@@ -257,13 +278,20 @@ function append_trung_or_truot_remain() {
                 $('#lst_ket_qua_cap_doi_mot').append(html_truot);
             }
         }
-
-        if (arr_du_doan[lgt_du_doan - 1] == arr_du_doan[lgt_du_doan - 2]) {
-            $('#lst_ket_qua_cap_lien_tiep').append(html_trung);
+        else{
+            if (arr_du_doan[lgt_du_doan - 1] == arr_du_doan[lgt_du_doan - 2]) {
+                $('#lst_ket_qua_cap_lien_tiep').append(html_trung);
+            }
+            else {
+                $('#lst_ket_qua_cap_lien_tiep').append(html_truot);
+            }
         }
-        else {
-            $('#lst_ket_qua_cap_lien_tiep').append(html_truot);
-        }
+        // if (arr_du_doan[lgt_du_doan - 1] == arr_du_doan[lgt_du_doan - 2]) {
+        //     $('#lst_ket_qua_cap_lien_tiep').append(html_trung);
+        // }
+        // else {
+        //     $('#lst_ket_qua_cap_lien_tiep').append(html_truot);
+        // }
     }
 
 }
@@ -303,12 +331,13 @@ function append_local_storage_trung_or_truot_remain() {
                 push_item_into_array_local_storage(global_key.key_du_doan_chan_le_tach_biet, false);
             }
         }
-
-        if (arr_du_doan[lgt_du_doan - 1] == arr_du_doan[lgt_du_doan - 2]) {
-            push_item_into_array_local_storage(global_key.key_du_doan_chan_le_lien_tiep, true);
-        }
-        else {
-            push_item_into_array_local_storage(global_key.key_du_doan_chan_le_lien_tiep, false);
+        else{
+            if (arr_du_doan[lgt_du_doan - 1] == arr_du_doan[lgt_du_doan - 2]) {
+                push_item_into_array_local_storage(global_key.key_du_doan_chan_le_lien_tiep, true);
+            }
+            else {
+                push_item_into_array_local_storage(global_key.key_du_doan_chan_le_lien_tiep, false);
+            }
         }
     }
 }

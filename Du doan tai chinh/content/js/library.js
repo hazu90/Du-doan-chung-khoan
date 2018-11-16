@@ -73,10 +73,10 @@ var general_lib ={
         $('#totalN').html(total_N.toFixed(2));
         $('#totalT').html(total_T.toFixed(2));
         if (total_N > total_T) {
-            $('#totalCompare').html((total_N - total_T).toFixed(2));
+            $('#totalCompare').html('N '+ ((total_N - total_T)/4).toFixed(2));
         }
         else {
-            $('#totalCompare').html((total_T - total_N).toFixed(2));
+            $('#totalCompare').html('T ' + ((total_T - total_N)/4).toFixed(2));
         }
     }
 };
