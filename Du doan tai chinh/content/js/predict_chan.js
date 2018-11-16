@@ -11,7 +11,7 @@ var predict_chan={
             return;
         }
 
-        var is_calc_predict = arr_general_du_doan.length %2 ==0 ? true : false;
+        var is_calc_predict = arr_general_du_doan.length %2 ==1 ? true : false;
         
         var arr_du_doan = general_lib.get_array_from_local_storage(predict_chan.storage_name.key_du_doan);
         if(arr_du_doan.length < 3){
@@ -30,6 +30,7 @@ var predict_chan={
         else {
             index_before_du_doan = parseInt(index_before_du_doan);
         }
+        // Nếu đang đánh bước lẻ thì hiển thị mức tiền dự đoán của bước chắn trước
         if(arr_general_du_doan.length % 2 ==1){
             predict_chan.show_predict(arr_before_du_doan,index_before_du_doan,is_calc_predict);
             return;
@@ -77,9 +78,7 @@ var predict_chan={
             return;
         }
         else{
-            //var obj_before_du_doan = localStorage.getItem(predict_chan.storage_name.curr_predict_continous);
             if(obj_before_du_doan != null){
-                //arr_before_du_doan = JSON.parse(obj_before_du_doan);
                 if (index_before_du_doan < 7 && arr_before_du_doan.length > index_before_du_doan){
                     if(arr_before_du_doan[index_before_du_doan] != arr_du_doan[arr_du_doan.length -1]){
                         is_repeat_du_doan = false;
@@ -164,8 +163,6 @@ var predict_chan={
             $('label[name=money_predict_chan]').data('typemoney', 'N');
             $('label[name=money_predict_chan]').data('amountmoney', 0);
         }
-        
-        //general_lib.calc_total(type_money,global_key.money[suggest_chose]);
     },
     set_current_data : function(arr_curr_predict,curr_index,curr_3_before){
         localStorage.setItem(predict_chan.storage_name.curr_predict_continous,JSON.stringify(arr_curr_predict));

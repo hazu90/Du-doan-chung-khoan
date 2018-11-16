@@ -10,7 +10,7 @@ var predict_le={
         if(arr_general_du_doan.length ==0 ){
             return;
         }
-        var is_calc_predict = arr_general_du_doan.length %2 ==1 ? true : false;
+        var is_calc_predict = arr_general_du_doan.length %2 ==0 ? true : false;
         
         var arr_du_doan = general_lib.get_array_from_local_storage(predict_le.storage_name.key_du_doan);
         if(arr_du_doan.length < 3){

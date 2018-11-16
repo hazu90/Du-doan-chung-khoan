@@ -10,7 +10,7 @@ var predict_lien_tiep={
         if(arr_general_du_doan.length ==0 ){
             return;
         }
-        var is_calc_predict = arr_general_du_doan.length %2 ==1 ? true : false;
+        var is_calc_predict = arr_general_du_doan.length %2 ==0 ? true : false;
 
         var arr_du_doan = general_lib.get_array_from_local_storage(predict_lien_tiep.storage_name.key_du_doan);
         if(arr_du_doan.length < 3){
@@ -156,7 +156,7 @@ var predict_lien_tiep={
         }
         $('#result_predict_cap_lien_tiep').html(html_predict);
         if(is_calc_predict){
-            $('label[name=money_predict_cap_lien_tiep]').html('Số tiền : ' + type_money + global_key.money[suggest_chose]);
+            $('label[name=money_predict_cap_lien_tiep]').html('Số tiền : ' + predict_lien_tiep.get_predict_money_type_compare_latest_step(type_money)  + global_key.money[suggest_chose]);
             $('label[name=money_predict_cap_lien_tiep]').data('typemoney', type_money);
             $('label[name=money_predict_cap_lien_tiep]').data('amountmoney', global_key.money[suggest_chose]);
         }
@@ -167,6 +167,27 @@ var predict_lien_tiep={
         }
         
         //general_lib.calc_total(type_money, global_key.money[suggest_chose]);
+    },
+    get_predict_money_type_compare_latest_step : function(type_money){
+        var arr_general_du_doan = general_lib.get_array_from_local_storage(global_key.key_du_doan);
+        if(arr_general_du_doan.length >0){
+            if(type_money == 'T'){
+                if(arr_general_du_doan[arr_general_du_doan.length-1]){
+                    return 'T';
+                }
+                else{
+                    return 'N';
+                }
+            }
+            else{
+                if(arr_general_du_doan[arr_general_du_doan.length-1]){
+                    return 'N';
+                }
+                else{
+                    return 'T';
+                }
+            }
+        }
     },
     set_current_data : function(arr_curr_predict,curr_index,curr_3_before){
         localStorage.setItem(predict_lien_tiep.storage_name.curr_predict_continous,JSON.stringify(arr_curr_predict));
