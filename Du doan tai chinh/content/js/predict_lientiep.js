@@ -156,7 +156,8 @@ var predict_lien_tiep={
         }
         $('#result_predict_cap_lien_tiep').html(html_predict);
         if(is_calc_predict){
-            $('label[name=money_predict_cap_lien_tiep]').html('Số tiền : ' + predict_lien_tiep.get_predict_money_type_compare_latest_step(type_money)  + global_key.money[suggest_chose]);
+            type_money = predict_lien_tiep.get_predict_money_type_compare_latest_step(type_money);
+            $('label[name=money_predict_cap_lien_tiep]').html('Số tiền : ' + type_money  + global_key.money[suggest_chose]);
             $('label[name=money_predict_cap_lien_tiep]').data('typemoney', type_money);
             $('label[name=money_predict_cap_lien_tiep]').data('amountmoney', global_key.money[suggest_chose]);
         }
