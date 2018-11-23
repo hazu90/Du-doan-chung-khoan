@@ -207,8 +207,8 @@ function predict_next_steps (order_frame_obj){
         return;
     }
     // Lấy ra kết quả đã dự đoán trước đó
-    var obj_before_du_doan = localStorage.getItem(global_key.nine_frame_1st_frame.curr_predicts);
-    var index_before_du_doan = localStorage.getItem(global_key.nine_frame_1st_frame.curr_index);
+    var obj_before_du_doan = localStorage.getItem(order_frame_obj.curr_predicts);
+    var index_before_du_doan = localStorage.getItem(order_frame_obj.curr_index);
     if (index_before_du_doan == null) {
         index_before_du_doan = 0;
     }
@@ -219,7 +219,7 @@ function predict_next_steps (order_frame_obj){
     var is_repeat_du_doan = true;
     if(obj_before_du_doan != null){
         arr_before_du_doan = JSON.parse(obj_before_du_doan);
-        if (index_before_du_doan < 7 && arr_before_du_doan.length > index_before_du_doan){
+        if (index_before_du_doan < 8 && arr_before_du_doan.length > index_before_du_doan){
             if(arr_before_du_doan[index_before_du_doan ] != arr_du_doan[arr_du_doan.length -1]){
                 is_repeat_du_doan = false;
             }    
@@ -228,7 +228,6 @@ function predict_next_steps (order_frame_obj){
 
     // Lấy ra 3 kết quả gần nhất
     var key = '';
-
     if(is_repeat_du_doan){
 
         key = get_key_predict(arr_du_doan,order_frame_obj);
@@ -247,45 +246,28 @@ function predict_next_steps (order_frame_obj){
     else{
         // Tăng lên 1 mức đầu tư
         index_before_du_doan = index_before_du_doan+1;
-        show_predict_ext(order_frame_obj.order_view,arr_predict,0,true);
-        localStorage.setItem(global_key.curr_predict_continous,JSON.stringify(arr_before_du_doan) );
-        localStorage.setItem(global_key.curr_index_continous,index_before_du_doan);
+        show_predict_ext(order_frame_obj.order_view, arr_before_du_doan, index_before_du_doan,true);
+        localStorage.setItem(order_frame_obj.curr_predicts,JSON.stringify(arr_before_du_doan) );
+        localStorage.setItem(order_frame_obj.curr_index,index_before_du_doan);
     }
 }
 
 function get_key_predict(arr_du_doan,order_frame){
     var lght_arr_du_doan = arr_du_doan.length;
     var key = '';
-    if(arr_du_doan[lght_arr_du_doan- 3]){
-        key += 't';
-    }
-    else{
-        key += 'f';
-    }
-
-    if(arr_du_doan[lght_arr_du_doan- 2]){
-        key += 't';
-    }
-    else{
-        key += 'f';
-    }
-
-    if(arr_du_doan[lght_arr_du_doan- 1]){
-        key += 't';
-    }
-    else{
-        key += 'f';
-    }
+    key += arr_du_doan[lght_arr_du_doan - 3] == true ? 't' : 'f';
+    key += arr_du_doan[lght_arr_du_doan - 2] == true ? 't' : 'f';
+    key += arr_du_doan[lght_arr_du_doan - 1] == true ? 't' : 'f';
 
     switch(key){
-        case 'ttt' : return order_frame.ttt_key; break;
-        case 'ttf' : return order_frame.ttf_key; break;
-        case 'tft' : return order_frame.tft_key; break;
-        case 'tff' : return order_frame.tff_key; break;
-        case 'ftt' : return order_frame.ftt_key; break;
-        case 'ftf' : return order_frame.ftf_key; break;
-        case 'fft' : return order_frame.fft_key; break;
-        case 'fff' : return order_frame.fff_key; break;
+        case 'ttt' : return order_frame.ttt_key;
+        case 'ttf' : return order_frame.ttf_key;
+        case 'tft' : return order_frame.tft_key;
+        case 'tff' : return order_frame.tff_key;
+        case 'ftt' : return order_frame.ftt_key;
+        case 'ftf' : return order_frame.ftf_key;
+        case 'fft' : return order_frame.fft_key;
+        case 'fff' : return order_frame.fff_key;
     }
 }
 
@@ -329,18 +311,6 @@ function show_predict_ext(order_view,arr_predict,suggest_chose,is_calc_predict){
         }
     }
     $('#result_predict_'+order_view).html(html_predict);
-    // if(is_calc_predict){
-    //     type_money = predict_lien_tiep.get_predict_money_type_compare_latest_step(type_money);
-    //     $('label[name=money_predict_cap_lien_tiep]').html('Số tiền : ' + type_money  + global_key.money[suggest_chose]);
-    //     $('label[name=money_predict_cap_lien_tiep]').data('typemoney', type_money);
-    //     $('label[name=money_predict_cap_lien_tiep]').data('amountmoney', global_key.money[suggest_chose]);
-    // }
-    // else{
-    //     $('label[name=money_predict_cap_lien_tiep]').html('Số tiền : 0');
-    //     $('label[name=money_predict_cap_lien_tiep]').data('typemoney', 'N');
-    //     $('label[name=money_predict_cap_lien_tiep]').data('amountmoney', 0);
-    // }
-    //general_lib.calc_total(type_money, global_key.money[suggest_chose]);
 }
 
 function init_data() {
