@@ -89,82 +89,83 @@ var general_lib ={
         var type_money = $('label[name=money_predict_1st_2st_3st_frame]').data('typemoney');
         var mm = parseFloat($('label[name=money_predict_1st_2st_3st_frame]').data('amountmoney'));
         if (type_money == 'N') {
-            total_N += mm;
+            total_N += isNaN(mm) ? 0 : mm;
         }
         else {
-            total_T += mm;
+            total_T += isNaN(mm) ? 0 : mm;
         }
 
         type_money = $('label[name=money_predict_2st_3st_4st_frame]').data('typemoney');
         mm = parseFloat($('label[name=money_predict_2st_3st_4st_frame]').data('amountmoney'));
         if (type_money == 'N') {
-            total_N += mm;
+            total_N += isNaN(mm) ? 0 : mm;
         }
         else {
-            total_T += mm;
+            total_T += isNaN(mm) ? 0 : mm;
         }
 
         type_money = $('label[name=money_predict_3st_4st_5st_frame]').data('typemoney');
         mm = parseFloat($('label[name=money_predict_3st_4st_5st_frame]').data('amountmoney'));
         if (type_money == 'N') {
-            total_N += mm;
+            total_N += isNaN(mm) ? 0 : mm;
         }
         else {
-            total_T += mm;
+            total_T += isNaN(mm) ? 0 : mm;
         }
 
         type_money = $('label[name=money_predict_4st_5st_6st_frame]').data('typemoney');
         mm = parseFloat($('label[name=money_predict_4st_5st_6st_frame]').data('amountmoney'));
         if (type_money == 'N') {
-            total_N += mm;
+            total_N += isNaN(mm) ? 0 : mm;
         }
         else {
-            total_T += mm;
+            total_T += isNaN(mm) ? 0 : mm;
         }
 
         type_money = $('label[name=money_predict_5st_6st_7st_frame]').data('typemoney');
         mm = parseFloat($('label[name=money_predict_5st_6st_7st_frame]').data('amountmoney'));
         if (type_money == 'N') {
-            total_N += mm;
+            total_N += isNaN(mm) ? 0 : mm;
         }
         else {
-            total_T += mm;
+            total_T += isNaN(mm) ? 0 : mm;
         }
 
         type_money = $('label[name=money_predict_6st_7st_8st_frame]').data('typemoney');
         mm = parseFloat($('label[name=money_predict_6st_7st_8st_frame]').data('amountmoney'));
         if (type_money == 'N') {
-            total_N += mm;
+            total_N += isNaN(mm) ? 0 : mm;
         }
         else {
-            total_T += mm;
+            total_T += isNaN(mm) ? 0 : mm;
         }
 
         type_money = $('label[name=money_predict_7st_8st_9st_frame]').data('typemoney');
         mm = parseFloat($('label[name=money_predict_7st_8st_9st_frame]').data('amountmoney'));
         if (type_money == 'N') {
-            total_N += mm;
+            total_N += isNaN(mm) ? 0 : mm;
         }
         else {
-            total_T += mm;
+            total_T += isNaN(mm) ? 0 : mm;
         }
 
         type_money = $('label[name=money_predict_8st_9st_1st_frame]').data('typemoney');
         mm = parseFloat($('label[name=money_predict_8st_9st_1st_frame]').data('amountmoney'));
         if (type_money == 'N') {
-            total_N += mm;
+            total_N += isNaN(mm) ? 0 : mm;
         }
         else {
-            total_T += mm;
+            total_T += isNaN(mm) ? 0 : mm;
         }
 
         type_money = $('label[name=money_predict_9st_1st_2st_frame]').data('typemoney');
         mm = parseFloat($('label[name=money_predict_9st_1st_2st_frame]').data('amountmoney'));
         if (type_money == 'N') {
-            total_N += mm;
+            
+            total_N += isNaN(mm) ? 0 : mm ;
         }
         else {
-            total_T += mm;
+            total_T += isNaN(mm) ? 0 : mm;
         }
 
 
