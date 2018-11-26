@@ -16,6 +16,17 @@
     color: white;
     text-align: center;
 }
+
+.dudoanbakhung{
+    width: 20px;
+    height: 20px;
+    float: left;
+    margin-left: 2px;
+    margin-right: 1px;
+    margin-top: 3px;
+    color: white;
+    text-align: center;
+}
 .dudoan-small{
     width: 10px;
     height: 10px;

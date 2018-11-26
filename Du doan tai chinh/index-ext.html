@@ -10,6 +10,7 @@
     <script src="content/js/jquery-3.3.1.min.js" ></script>
     <script src="content/js/bootstrap.min.js"></script>
     <script src="content/js/library.js"></script>
+    <script src="content/js-ext/global-key-ext.js"></script>
     <script src="content/js-ext/main-ext.js"></script>
 </head>
 <body>
@@ -63,117 +64,197 @@
                 </div>
                 <div class="clear-top"></div>
                 <div class="row" style="margin-top: 10px;">
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         <label>Khung 1</label>
                         <div class="row">
                             <div class="col-md-12" id="result_predict_1st_frame"></div>                   
                        </div>
                     </div>
-                    <div class="col-md-7">
-                        <label name="money_predict_1st_frame">Số tiền :</label>
+                    <div class="col-md-4">
+                        <label>Khung 1-2-3</label>
+                        <div class="row">
+                            <div class="col-md-12" id="result_predict_1st_2st_3st_frame"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label name="money_predict_1st_2st_3st_frame">Số tiền :</label>
+                        <div class="row">
+                            <div class="col-md-12" id="result_predict_next_1st_2st_3st_frame"></div>
+                        </div>
                     </div>
                 </div>
                 
                 <div class="clear-top"></div>
                 <div class="row" style="margin-top:10px;">
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         <label>Khung 2</label>
                         <div class="row">
                             <div class="col-md-12" id="result_predict_2st_frame"></div>
                         </div>
                     </div>
-                    <div class="col-md-7">
-                        <label name="money_predict_2st_frame">Số tiền :</label>
+                    <div class="col-md-4">
+                        <label>Khung 2-3-4</label>
+                        <div class="row">
+                            <div class="col-md-12" id="result_predict_2st_3st_4st_frame"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label name="money_predict_2st_3st_4st_frame">Số tiền :</label>
+                        <div class="row">
+                            <div class="col-md-12" id="result_predict_next_2st_3st_4st_frame"></div>
+                        </div>
                     </div>
                 </div>
                 
                 <div class="clear-top"></div>
                 <div class="row" style="margin-top:10px;">
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         <label>Khung 3</label>
                         <div class="row">
                             <div class="col-md-12" id="result_predict_3st_frame"></div>
                         </div>
                     </div>
-                    <div class="col-md-7">
-                        <label name="money_predict_3st_frame">Số tiền :</label>
+                    <div class="col-md-4">
+                        <label>Khung 3-4-5</label>
+                        <div class="row">
+                            <div class="col-md-12" id="result_predict_3st_4st_5st_frame"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label name="money_predict_3st_4st_5st_frame">Số tiền :</label>
+                        <div class="row">
+                            <div class="col-md-12" id="result_predict_next_3st_4st_5st_frame"></div>
+                        </div>
                     </div>
                 </div>
                 
                 <div class="clear-top"></div>
                 <div class="row" style="margin-top:10px;">
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         <label>Khung 4</label>
                         <div class="row">
                             <div class="col-md-12" id="result_predict_4st_frame"></div>
                         </div>
                     </div>
-                    <div class="col-md-7">
-                        <label name="money_predict_4st_frame">Số tiền :</label>
+                    <div class="col-md-4">
+                        <label>Khung 4-5-6</label>
+                        <div class="row">
+                            <div class="col-md-12" id="result_predict_4st_5st_6st_frame"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label name="money_predict_4st_5st_6st_frame">Số tiền :</label>
+                        <div class="row">
+                            <div class="col-md-12" id="result_predict_next_4st_5st_6st_frame"></div>
+                        </div>
                     </div>
                 </div>
                 
                 <div class="clear-top"></div>
                 <div class="row" style="margin-top:10px;">
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         <label>Khung 5</label>
                         <div class="row">
                             <div class="col-md-12" id="result_predict_5st_frame"></div>
                         </div>
                     </div>
-                    <div class="col-md-7">
-                        <label name="money_predict_5st_frame">Số tiền :</label>
+                    <div class="col-md-4">
+                        <label>Khung 5-6-7</label>
+                        <div class="row">
+                            <div class="col-md-12" id="result_predict_5st_6st_7st_frame"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label name="money_predict_5st_6st_7st_frame">Số tiền :</label>
+                        <div class="row">
+                            <div class="col-md-12" id="result_predict_next_5st_6st_7st_frame"></div>
+                        </div>
                     </div>
                 </div>
                 <div class="clear-top"></div>
                 <div class="row" style="margin-top:10px;">
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         <label>Khung 6</label>
                         <div class="row">
                             <div class="col-md-12" id="result_predict_6st_frame"></div>
                         </div>
                     </div>
-                    <div class="col-md-7">
-                        <label name="money_predict_6st_frame">Số tiền :</label>
+                    <div class="col-md-4">
+                        <label>Khung 6-7-8</label>
+                        <div class="row">
+                            <div class="col-md-12" id="result_predict_6st_7st_8st_frame"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label name="money_predict_6st_7st_8st_frame">Số tiền :</label>
+                        <div class="row">
+                            <div class="col-md-12" id="result_predict_next_6st_7st_8st_frame"></div>
+                        </div>
                     </div>
                 </div>
                 <div class="clear-top"></div>
                 <div class="row" style="margin-top:10px;">
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         <label>Khung 7</label>
                         <div class="row">
                             <div class="col-md-12" id="result_predict_7st_frame"></div>
                         </div>
                     </div>
-                    <div class="col-md-7">
-                        <label name="money_predict_7st_frame">Số tiền :</label>
+                    <div class="col-md-4">
+                        <label>Khung 7-8-9</label>
+                        <div class="row">
+                            <div class="col-md-12" id="result_predict_7st_8st_9st_frame"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label name="money_predict_7st_8st_9st_frame">Số tiền :</label>
+                        <div class="row">
+                            <div class="col-md-12" id="result_predict_next_7st_8st_9st_frame"></div>
+                        </div>
                     </div>
                 </div>
                 <div class="clear-top"></div>
                 <div class="row" style="margin-top:10px;">
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         <label>Khung 8</label>
                         <div class="row">
                             <div class="col-md-12" id="result_predict_8st_frame"></div>
                         </div>
                     </div>
-                    <div class="col-md-7">
-                        <label name="money_predict_8st_frame">Số tiền :</label>
+                    <div class="col-md-4">
+                        <label>Khung 8-9-1</label>
+                        <div class="row">
+                            <div class="col-md-12" id="result_predict_8st_9st_1st_frame"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label name="money_predict_8st_9st_1st_frame">Số tiền :</label>
+                        <div class="row">
+                            <div class="col-md-12" id="result_predict_next_8st_9st_1st_frame"></div>
+                        </div>
                     </div>
                 </div>
                 <div class="clear-top"></div>
                 <div class="row" style="margin-top:10px;">
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         <label>Khung 9</label>
                         <div class="row">
                             <div class="col-md-12" id="result_predict_9st_frame"></div>
                         </div>
                     </div>
-                    <div class="col-md-7">
-                        <label name="money_predict_9st_frame">Số tiền :</label>
+                    <div class="col-md-4">
+                        <label>Khung 9-1-2</label>
+                        <div class="row">
+                            <div class="col-md-12" id="result_predict_9st_1st_2st_frame"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label name="money_predict_9st_1st_2st_frame">Số tiền :</label>
+                        <div class="row">
+                            <div class="col-md-12" id="result_predict_next_9st_1st_2st_frame"></div>
+                        </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

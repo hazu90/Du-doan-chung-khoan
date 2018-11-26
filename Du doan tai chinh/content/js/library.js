@@ -78,5 +78,67 @@ var general_lib ={
         else {
             $('#totalCompare').html('T ' + ((total_T - total_N)/4).toFixed(2));
         }
+    },
+    show_predict:function(combine_frame,arr_predict,suggest_chose,is_calc_predict){
+        var el_show_ket_qua = $('#'+combine_frame.view_du_doan_next_id);
+        var el_show_tien =$('label[name='+ combine_frame.view_show_money_name +']'); 
+        if(arr_predict.length ==0){
+            el_show_ket_qua.html('');
+            el_show_tien.html('Số tiền : 0');
+            el_show_tien.data('typemoney','N');
+            el_show_tien.data('amountmoney',0);
+            return;
+        }
+    
+        var type_money = '';
+        var html_predict='';
+        for(var index =0;index < arr_predict.length;index++){
+            if(arr_predict[index]){
+                html_predict += '<div class="predict-choosen">';
+                html_predict += '   <div class="arrow-up"></div>';
+                if (index == suggest_chose && is_calc_predict) {
+                    type_money = 'T';
+                    html_predict += '<label style="border-bottom: 2px solid red;">T'+(index+1)+'</label>';
+                }
+                else{
+                    html_predict += '   T'+(index+1);
+                }
+                
+                html_predict += '</div>';
+            }
+            else{
+                html_predict += '<div class="predict-choosen">';
+                html_predict += '   <div class="arrow-down"></div>';
+                if (index == suggest_chose && is_calc_predict) {
+                    type_money = 'N';
+                    html_predict += '<label style="border-bottom: 2px solid red;">N'+(index+1)+'</label>';
+                }
+                else{
+                    html_predict += '   N'+(index+1);
+                }
+                
+                html_predict += '</div>';
+            }
+        }
+        el_show_ket_qua.html(html_predict);
+        if(is_calc_predict){
+            el_show_tien.html('Số tiền : ' + type_money + global_key.money[suggest_chose]);
+            el_show_tien.data('typemoney', type_money);
+            el_show_tien.data('amountmoney', global_key.money[suggest_chose]);
+        }
+        else{
+            el_show_tien.html('Số tiền : 0');
+            el_show_tien.data('typemoney', 'N');
+            el_show_tien.data('amountmoney', 0);
+        }
+    },
+    set_current_data : function(combine_frame,arr_curr_predict,curr_index,curr_3_before){
+        localStorage.setItem(combine_frame.curr_predicts,JSON.stringify(arr_curr_predict));
+        localStorage.setItem(combine_frame.curr_index,curr_index);
+        localStorage.setItem(combine_frame.curr_3_before,curr_3_before);
+    },
+    set_current_data_without_curr_3_before_continous : function(combine_frame,arr_curr_predict,curr_index){
+        localStorage.setItem(combine_frame.curr_predicts,JSON.stringify(arr_curr_predict));
+        localStorage.setItem(combine_frame.curr_index,curr_index);
     }
 };
