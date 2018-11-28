@@ -45,6 +45,10 @@ function btnExact_Click(){
         global_key.nine_frame_8st_frame,
         global_key.nine_frame_9st_frame
     ];
+    for (var index = 0; index < arr_frame.length; index++) {
+        predict_next_steps(arr_frame[index]);
+    }
+
     var arr_combine=[
          global_key.three_frame_combine_1st_2st_3st,
          global_key.three_frame_combine_2st_3st_4st,
@@ -57,7 +61,7 @@ function btnExact_Click(){
          global_key.three_frame_combine_9st_1st_2st
         ];
     for(var index =0;index < arr_combine.length;index++){
-        predict_next_steps(arr_frame[index]);
+        
         if(index == 7){
             show_combine_from_three_step(arr_frame[index],arr_frame[index+1],arr_frame[0],arr_combine[index]);
             predict_next_step_from_three_frame(arr_combine[index]);
@@ -71,6 +75,8 @@ function btnExact_Click(){
             predict_next_step_from_three_frame(arr_combine[index]);
         }
     }
+    general_lib.show_total_ext();
+
 };
 function btnFail_Click(){
     append_trung_or_truot(false);
@@ -112,6 +118,8 @@ function btnFail_Click(){
             predict_next_step_from_three_frame(arr_combine[index]);
         }
     }
+
+    general_lib.show_total_ext();
 };
 function append_trung_or_truot(is_trung){
     var html_trung ='<div class="dudoan trung">T</div>';

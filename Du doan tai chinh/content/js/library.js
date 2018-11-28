@@ -79,6 +79,105 @@ var general_lib ={
             $('#totalCompare').html('T ' + ((total_T - total_N)/4).toFixed(2));
         }
     },
+    show_total_ext: function () {
+        //var total_N = parseFloat(localStorage.getItem('total_N')).toFixed(2);;
+        //var total_T = parseFloat(localStorage.getItem('total_T')).toFixed(2);;
+
+        var total_N = 0;
+        var total_T = 0;
+
+        var type_money = $('label[name=money_predict_1st_2st_3st_frame]').data('typemoney');
+        var mm = parseFloat($('label[name=money_predict_1st_2st_3st_frame]').data('amountmoney'));
+        if (type_money == 'N') {
+            total_N += isNaN(mm) ? 0 : mm;
+        }
+        else {
+            total_T += isNaN(mm) ? 0 : mm;
+        }
+
+        type_money = $('label[name=money_predict_2st_3st_4st_frame]').data('typemoney');
+        mm = parseFloat($('label[name=money_predict_2st_3st_4st_frame]').data('amountmoney'));
+        if (type_money == 'N') {
+            total_N += isNaN(mm) ? 0 : mm;
+        }
+        else {
+            total_T += isNaN(mm) ? 0 : mm;
+        }
+
+        type_money = $('label[name=money_predict_3st_4st_5st_frame]').data('typemoney');
+        mm = parseFloat($('label[name=money_predict_3st_4st_5st_frame]').data('amountmoney'));
+        if (type_money == 'N') {
+            total_N += isNaN(mm) ? 0 : mm;
+        }
+        else {
+            total_T += isNaN(mm) ? 0 : mm;
+        }
+
+        type_money = $('label[name=money_predict_4st_5st_6st_frame]').data('typemoney');
+        mm = parseFloat($('label[name=money_predict_4st_5st_6st_frame]').data('amountmoney'));
+        if (type_money == 'N') {
+            total_N += isNaN(mm) ? 0 : mm;
+        }
+        else {
+            total_T += isNaN(mm) ? 0 : mm;
+        }
+
+        type_money = $('label[name=money_predict_5st_6st_7st_frame]').data('typemoney');
+        mm = parseFloat($('label[name=money_predict_5st_6st_7st_frame]').data('amountmoney'));
+        if (type_money == 'N') {
+            total_N += isNaN(mm) ? 0 : mm;
+        }
+        else {
+            total_T += isNaN(mm) ? 0 : mm;
+        }
+
+        type_money = $('label[name=money_predict_6st_7st_8st_frame]').data('typemoney');
+        mm = parseFloat($('label[name=money_predict_6st_7st_8st_frame]').data('amountmoney'));
+        if (type_money == 'N') {
+            total_N += isNaN(mm) ? 0 : mm;
+        }
+        else {
+            total_T += isNaN(mm) ? 0 : mm;
+        }
+
+        type_money = $('label[name=money_predict_7st_8st_9st_frame]').data('typemoney');
+        mm = parseFloat($('label[name=money_predict_7st_8st_9st_frame]').data('amountmoney'));
+        if (type_money == 'N') {
+            total_N += isNaN(mm) ? 0 : mm;
+        }
+        else {
+            total_T += isNaN(mm) ? 0 : mm;
+        }
+
+        type_money = $('label[name=money_predict_8st_9st_1st_frame]').data('typemoney');
+        mm = parseFloat($('label[name=money_predict_8st_9st_1st_frame]').data('amountmoney'));
+        if (type_money == 'N') {
+            total_N += isNaN(mm) ? 0 : mm;
+        }
+        else {
+            total_T += isNaN(mm) ? 0 : mm;
+        }
+
+        type_money = $('label[name=money_predict_9st_1st_2st_frame]').data('typemoney');
+        mm = parseFloat($('label[name=money_predict_9st_1st_2st_frame]').data('amountmoney'));
+        if (type_money == 'N') {
+            
+            total_N += isNaN(mm) ? 0 : mm ;
+        }
+        else {
+            total_T += isNaN(mm) ? 0 : mm;
+        }
+
+
+        $('#totalN').html(total_N.toFixed(2));
+        $('#totalT').html(total_T.toFixed(2));
+        if (total_N > total_T) {
+            $('#totalCompare').html('N ' + ((total_N - total_T) / 4).toFixed(2));
+        }
+        else {
+            $('#totalCompare').html('T ' + ((total_T - total_N) / 4).toFixed(2));
+        }
+    },
     show_predict:function(combine_frame,arr_predict,suggest_chose,is_calc_predict){
         var el_show_ket_qua = $('#'+combine_frame.view_du_doan_next_id);
         var el_show_tien =$('label[name='+ combine_frame.view_show_money_name +']'); 
