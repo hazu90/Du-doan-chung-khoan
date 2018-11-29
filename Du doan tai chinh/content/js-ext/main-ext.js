@@ -92,6 +92,9 @@ function btnFail_Click(){
         global_key.nine_frame_8st_frame,
         global_key.nine_frame_9st_frame
     ];
+    for (var index = 0; index < arr_frame.length; index++) {
+        predict_next_steps(arr_frame[index]);
+    }
     var arr_combine=[
          global_key.three_frame_combine_1st_2st_3st,
          global_key.three_frame_combine_2st_3st_4st,
@@ -104,7 +107,6 @@ function btnFail_Click(){
          global_key.three_frame_combine_9st_1st_2st
         ];
     for(var index =0;index < arr_combine.length;index++){
-        predict_next_steps(arr_frame[index]);
         if(index == 7){
             show_combine_from_three_step(arr_frame[index],arr_frame[index+1],arr_frame[0],arr_combine[index]);
             predict_next_step_from_three_frame(arr_combine[index]);
@@ -286,11 +288,13 @@ function predict_next_step_from_three_frame(combine_frame){
         if(arr_du_doan[arr_du_doan.length -1 ] == true){
             var arr_predict_special = [true,true,false,true,false,true,false,true];
             general_lib.show_predict(combine_frame,arr_predict_special,1,is_calc_predict);
+            general_lib.append_predict_three_frame_combine(combine_frame,arr_predict_special,1);
             general_lib.set_current_data(combine_frame,arr_predict_special,1,'ext-predict-t-t-t-f-t');    
         }
         else{
             var arr_predict_special = [false,false,false,true,true,false,false,true];
             general_lib.show_predict(combine_frame,arr_predict_special,1,is_calc_predict);
+            general_lib.append_predict_three_frame_combine(combine_frame,arr_predict_special,1);
             general_lib.set_current_data(combine_frame,arr_predict_special,1,'ext-predict-t-t-t-f-f');    
         }
         return;
@@ -298,6 +302,7 @@ function predict_next_step_from_three_frame(combine_frame){
     else if(curr_3_before_continous == 'ext-predict-f-f-f'){
         if(arr_du_doan[arr_du_doan.length-1] == true){
             general_lib.show_predict([],0,is_calc_predict);
+            general_lib.append_predict_three_frame_combine(combine_frame,[],0);
             general_lib.set_current_data(combine_frame,[],0,'ext-predict-f-f-f-t');
             return;
         }
@@ -306,11 +311,13 @@ function predict_next_step_from_three_frame(combine_frame){
         if(arr_du_doan[arr_du_doan.length-1] == true){
             var arr_predict_special = [true,true,true,false,false,true,true,false];
             general_lib.show_predict(combine_frame,arr_predict_special,1,is_calc_predict);
+            general_lib.append_predict_three_frame_combine(combine_frame,arr_predict_special,1);
             general_lib.set_current_data(combine_frame,arr_predict_special,1,'ext-predict-f-f-f-t-t');
         }
         else{
             var arr_predict_special =[false,false,true,false,true,false,true,false];
             general_lib.show_predict(combine_frame,arr_predict_special,1,is_calc_predict);
+            general_lib.append_predict_three_frame_combine(combine_frame,arr_predict_special,1);
             general_lib.set_current_data(combine_frame,arr_predict_special,1,'ext-predict-f-f-f-t-f');
         }
         return;
@@ -342,12 +349,14 @@ function predict_next_step_from_three_frame(combine_frame){
             arr_predict = general_lib.get_array_from_local_storage(key);
         }
         general_lib.show_predict(combine_frame,arr_predict,0,is_calc_predict);
+        general_lib.append_predict_three_frame_combine(combine_frame,arr_predict,0);
         general_lib.set_current_data(combine_frame,arr_predict,0,key);
 
     }
     else{
         index_before_du_doan += 1;
         general_lib.show_predict(combine_frame,arr_before_du_doan,index_before_du_doan,is_calc_predict);
+        general_lib.append_predict_three_frame_combine(combine_frame,arr_before_du_doan,index_before_du_doan);
         general_lib.set_current_data_without_curr_3_before_continous(combine_frame,arr_before_du_doan,index_before_du_doan);
     }
 }

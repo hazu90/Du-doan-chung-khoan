@@ -125,7 +125,8 @@ var global_key ={
         curr_predicts :'three_frame_combine_1st_2st_3st_curr_predict',
         curr_index :'three_frame_combine_1st_2st_3st_curr_predict_index',
         view_du_doan_next_id :'result_predict_next_1st_2st_3st_frame',
-        view_show_money_name:'money_predict_1st_2st_3st_frame'
+        view_show_money_name:'money_predict_1st_2st_3st_frame',
+        save_predict_3_combine:'result_predict_save_1st_2st_3st_frame'
     },
     three_frame_combine_2st_3st_4st :{
         du_doan :'three_frame_combine_2st_3st_4st_du_doan',
@@ -134,7 +135,8 @@ var global_key ={
         curr_predicts :'three_frame_combine_2st_3st_4st_curr_predict',
         curr_index :'three_frame_combine_2st_3st_4st_curr_predict_index',
         view_du_doan_next_id :'result_predict_next_2st_3st_4st_frame',
-        view_show_money_name:'money_predict_2st_3st_4st_frame'
+        view_show_money_name:'money_predict_2st_3st_4st_frame',
+        save_predict_3_combine:'result_predict_save_2st_3st_4st_frame'
     },
     three_frame_combine_3st_4st_5st :{
         du_doan :'three_frame_combine_3st_4st_5st_du_doan',
@@ -143,7 +145,8 @@ var global_key ={
         curr_predicts :'three_frame_combine_3st_4st_5st_curr_predict',
         curr_index :'three_frame_combine_3st_4st_5st_curr_predict_index',
         view_du_doan_next_id :'result_predict_next_3st_4st_5st_frame',
-        view_show_money_name:'money_predict_3st_4st_5st_frame'
+        view_show_money_name:'money_predict_3st_4st_5st_frame',
+        save_predict_3_combine:'result_predict_save_3st_4st_5st_frame'
     },
     three_frame_combine_4st_5st_6st :{
         du_doan :'three_frame_combine_4st_5st_6st_du_doan',
@@ -152,7 +155,8 @@ var global_key ={
         curr_predicts :'three_frame_combine_4st_5st_6st_curr_predict',
         curr_index :'three_frame_combine_4st_5st_6st_curr_predict_index',
         view_du_doan_next_id :'result_predict_next_4st_5st_6st_frame',
-        view_show_money_name:'money_predict_4st_5st_6st_frame'
+        view_show_money_name:'money_predict_4st_5st_6st_frame',
+        save_predict_3_combine:'result_predict_save_4st_5st_6st_frame'
     },
     three_frame_combine_5st_6st_7st :{
         du_doan :'three_frame_combine_5st_6st_7st_du_doan',
@@ -161,7 +165,8 @@ var global_key ={
         curr_predicts :'three_frame_combine_5st_6st_7st_curr_predict',
         curr_index :'three_frame_combine_5st_6st_7st_curr_predict_index',
         view_du_doan_next_id :'result_predict_next_5st_6st_7st_frame',
-        view_show_money_name:'money_predict_5st_6st_7st_frame'
+        view_show_money_name:'money_predict_5st_6st_7st_frame',
+        save_predict_3_combine:'result_predict_save_5st_6st_7st_frame'
     },
     three_frame_combine_6st_7st_8st :{
         du_doan :'three_frame_combine_6st_7st_8st_du_doan',
@@ -170,7 +175,8 @@ var global_key ={
         curr_predicts :'three_frame_combine_6st_7st_8st_curr_predict',
         curr_index :'three_frame_combine_6st_7st_8st_curr_predict_index',
         view_du_doan_next_id :'result_predict_next_6st_7st_8st_frame',
-        view_show_money_name:'money_predict_6st_7st_8st_frame'
+        view_show_money_name:'money_predict_6st_7st_8st_frame',
+        save_predict_3_combine:'result_predict_save_6st_7st_8st_frame'
     },
     three_frame_combine_7st_8st_9st :{
         du_doan :'three_frame_combine_7st_8st_9st_du_doan',
@@ -179,7 +185,8 @@ var global_key ={
         curr_predicts :'three_frame_combine_7st_8st_9st_curr_predict',
         curr_index :'three_frame_combine_7st_8st_9st_curr_predict_index',
         view_du_doan_next_id :'result_predict_next_7st_8st_9st_frame',
-        view_show_money_name:'money_predict_7st_8st_9st_frame'
+        view_show_money_name:'money_predict_7st_8st_9st_frame',
+        save_predict_3_combine:'result_predict_save_7st_8st_9st_frame'
     },
     three_frame_combine_8st_9st_1st :{
         du_doan :'three_frame_combine_8st_9st_1st_du_doan',
@@ -188,7 +195,8 @@ var global_key ={
         curr_predicts :'three_frame_combine_8st_9st_1st_curr_predict',
         curr_index :'three_frame_combine_8st_9st_1st_curr_predict_index',
         view_du_doan_next_id :'result_predict_next_8st_9st_1st_frame',
-        view_show_money_name:'money_predict_8st_9st_1st_frame'
+        view_show_money_name:'money_predict_8st_9st_1st_frame',
+        save_predict_3_combine:'result_predict_save_8st_9st_1st_frame'
     },
     three_frame_combine_9st_1st_2st :{
         du_doan :'three_frame_combine_9st_1st_2st_du_doan',
@@ -197,6 +205,7 @@ var global_key ={
         curr_predicts :'three_frame_combine_9st_1st_2st_curr_predict',
         curr_index :'three_frame_combine_9st_1st_2st_curr_predict_index',
         view_du_doan_next_id :'result_predict_next_9st_1st_2st_frame',
-        view_show_money_name:'money_predict_9st_1st_2st_frame'
+        view_show_money_name:'money_predict_9st_1st_2st_frame',
+        save_predict_3_combine:'result_predict_save_9st_1st_2st_frame'
     }
 };

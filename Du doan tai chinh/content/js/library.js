@@ -239,5 +239,23 @@ var general_lib ={
     set_current_data_without_curr_3_before_continous : function(combine_frame,arr_curr_predict,curr_index){
         localStorage.setItem(combine_frame.curr_predicts,JSON.stringify(arr_curr_predict));
         localStorage.setItem(combine_frame.curr_index,curr_index);
+    },
+    append_predict_three_frame_combine(combine_frame,arr_curr_predict,curr_index){
+        if(arr_curr_predict.length >0){
+            var html_predict ='<div class="predict-choosen">';
+
+            if(arr_curr_predict[curr_index]){
+                html_predict += '<div class="arrow-up"></div>';
+                html_predict += 'T'+(curr_index+1);
+                
+            }
+            else{
+                html_predict += '<div class="arrow-down"></div>';
+                html_predict += 'N'+(curr_index+1);
+
+            }
+            html_predict +='</div>';
+            $('#'+combine_frame.save_predict_3_combine).append(html_predict);
+        }
     }
 };
