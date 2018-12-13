@@ -5,10 +5,10 @@ $(document).ready(function(){
     $('#btnClear').off('click').on('click',function(){
         localStorage.clear();
         init_data();
-        //init_page();
+        init_page();
     });
     $('#btnRollback').off('click').on('click',function(){
-        var obj= localStorage.getItem(global_key.key_du_doan);
+        var obj= localStorage.getItem(global_key.nine_frame_key_du_doan);
         var arr_du_doan =[];
         if(obj != null){
             arr_du_doan = JSON.parse(obj);   
@@ -61,19 +61,17 @@ function btnExact_Click(){
          global_key.three_frame_combine_9st_1st_2st
         ];
     for(var index =0;index < arr_combine.length;index++){
-        
         if(index == 7){
             show_combine_from_three_step(arr_frame[index],arr_frame[index+1],arr_frame[0],arr_combine[index]);
-            predict_next_step_from_three_frame(arr_combine[index]);
         }
         else if(index == 8){
             show_combine_from_three_step(arr_frame[index],arr_frame[0],arr_frame[1],arr_combine[index]);
-            predict_next_step_from_three_frame(arr_combine[index]);
         }
         else{
             show_combine_from_three_step(arr_frame[index],arr_frame[index+1],arr_frame[index+2],arr_combine[index]);
-            predict_next_step_from_three_frame(arr_combine[index]);
         }
+        //predict_next_step_from_three_frame(arr_combine[index]);
+        predict_next_step_next_from_three_frame(arr_combine[index]);
     }
     general_lib.show_total_ext();
 
@@ -109,16 +107,15 @@ function btnFail_Click(){
     for(var index =0;index < arr_combine.length;index++){
         if(index == 7){
             show_combine_from_three_step(arr_frame[index],arr_frame[index+1],arr_frame[0],arr_combine[index]);
-            predict_next_step_from_three_frame(arr_combine[index]);
         }
         else if(index == 8){
             show_combine_from_three_step(arr_frame[index],arr_frame[0],arr_frame[1],arr_combine[index]);
-            predict_next_step_from_three_frame(arr_combine[index]);
         }
         else{
             show_combine_from_three_step(arr_frame[index],arr_frame[index+1],arr_frame[index+2],arr_combine[index]);
-            predict_next_step_from_three_frame(arr_combine[index]);
         }
+        //predict_next_step_from_three_frame(arr_combine[index]);
+        predict_next_step_next_from_three_frame(arr_combine[index]);
     }
 
     general_lib.show_total_ext();
@@ -245,11 +242,137 @@ function show_combine_from_three_step(first_frame,second_frame,third_frame,combi
     localStorage.setItem(combine_frame.du_doan, JSON.stringify(arr_combine_frame));
 }
 
+function predict_next_step_next_from_three_frame(combine_frame){
+    var arr_general_du_doan = general_lib.get_array_from_local_storage(global_key.nine_frame_key_du_doan);
+    var arr_combine_du_doan = general_lib.get_array_from_local_storage(combine_frame.du_doan);
+    if(arr_combine_du_doan.length <=1 ){
+        return;
+    }
+
+    var arr_du_doan = general_lib.get_array_from_local_storage(combine_frame.du_doan_next);
+    var html_trung ='<div class="dudoan trung">T</div>';
+    var html_truot = '<div class="dudoan truot">N</div>';
+    if(arr_general_du_doan[arr_general_du_doan.length - 1] == arr_combine_du_doan[arr_combine_du_doan.length - 2] ){
+        $('#'+combine_frame.view_du_doan_next_next_id).append(html_trung);
+        arr_du_doan.push(true);
+    }
+    else{
+        $('#'+combine_frame.view_du_doan_next_next_id).append(html_truot);
+        arr_du_doan.push(false);
+    }
+    localStorage.setItem(combine_frame.du_doan_next,JSON.stringify(arr_du_doan) );
+
+    var is_calc_predict = true;
+    arr_du_doan = general_lib.get_array_from_local_storage(combine_frame.du_doan_next);
+    if(arr_du_doan.length < 3){
+        return ;
+    }
+
+    var obj_before_du_doan = localStorage.getItem(combine_frame.curr_predicts_next);
+    var arr_before_du_doan =[];
+    if(obj_before_du_doan !=null){
+        arr_before_du_doan = JSON.parse(obj_before_du_doan);
+    }
+    var index_before_du_doan = localStorage.getItem(combine_frame.curr_index_next);
+    if (index_before_du_doan == null) {
+        index_before_du_doan = 0;
+    }
+    else {
+        index_before_du_doan = parseInt(index_before_du_doan);
+    }
+
+    var curr_3_before_continous = localStorage.getItem(combine_frame.curr_3_before_next);
+    var is_repeat_du_doan = true;
+
+    if(curr_3_before_continous == 'ext-predict-t-t-t'){
+        if(arr_du_doan[arr_du_doan.length-1] == false){
+            general_lib.show_predict_next(combine_frame,[],0,is_calc_predict);
+            general_lib.set_current_data_next(combine_frame,[],0,'ext-predict-t-t-t-f');
+            return;
+        }
+    }
+    else if(curr_3_before_continous == 'ext-predict-t-t-t-f'){
+        if(arr_du_doan[arr_du_doan.length -1 ] == true){
+            var arr_predict_special = [true,true,false,true,false,true,false,true];
+            general_lib.show_predict_next(combine_frame,arr_predict_special,1,is_calc_predict);
+            general_lib.append_predict_three_frame_combine(combine_frame,arr_predict_special,1);
+            general_lib.set_current_data_next(combine_frame,arr_predict_special,1,'ext-predict-t-t-t-f-t');    
+        }
+        else{
+            var arr_predict_special = [false,false,false,true,true,false,false,true];
+            general_lib.show_predict_next(combine_frame,arr_predict_special,1,is_calc_predict);
+            general_lib.append_predict_three_frame_combine(combine_frame,arr_predict_special,1);
+            general_lib.set_current_data_next(combine_frame,arr_predict_special,1,'ext-predict-t-t-t-f-f');    
+        }
+        return;
+    }
+    else if(curr_3_before_continous == 'ext-predict-f-f-f'){
+        if(arr_du_doan[arr_du_doan.length-1] == true){
+            general_lib.show_predict_next([],0,is_calc_predict);
+            general_lib.append_predict_three_frame_combine(combine_frame,[],0);
+            general_lib.set_current_data_next(combine_frame,[],0,'ext-predict-f-f-f-t');
+            return;
+        }
+    }
+    else if(curr_3_before_continous == 'ext-predict-f-f-f-t'){
+        if(arr_du_doan[arr_du_doan.length-1] == true){
+            var arr_predict_special = [true,true,true,false,false,true,true,false];
+            general_lib.show_predict_next(combine_frame,arr_predict_special,1,is_calc_predict);
+            general_lib.append_predict_three_frame_combine(combine_frame,arr_predict_special,1);
+            general_lib.set_current_data_next(combine_frame,arr_predict_special,1,'ext-predict-f-f-f-t-t');
+        }
+        else{
+            var arr_predict_special =[false,false,true,false,true,false,true,false];
+            general_lib.show_predict_next(combine_frame,arr_predict_special,1,is_calc_predict);
+            general_lib.append_predict_three_frame_combine(combine_frame,arr_predict_special,1);
+            general_lib.set_current_data_next(combine_frame,arr_predict_special,1,'ext-predict-f-f-f-t-f');
+        }
+        return;
+    }
+    else{
+        if(obj_before_du_doan != null){
+            if (index_before_du_doan < 7 && arr_before_du_doan.length > index_before_du_doan){
+                is_repeat_du_doan = false;
+            }
+        }
+    }
+
+    var key ='ext-predict';
+    if(is_repeat_du_doan){
+        key += arr_du_doan[arr_du_doan.length -3] == true ? '-t' : '-f';
+        key += arr_du_doan[arr_du_doan.length -2] == true ? '-t' : '-f';
+        key += arr_du_doan[arr_du_doan.length -1] == true ? '-t' : '-f';
+        
+        var arr_predict =[];
+        if(key == 'ext-predict-t-t-t'){
+            arr_predict.push(true);
+        }
+        else if(key == 'ext-predict-f-f-f'){
+            arr_predict.push(false);
+        }
+        else{
+            arr_predict = general_lib.get_array_from_local_storage(key);
+        }
+        general_lib.show_predict_next(combine_frame,arr_predict,0,is_calc_predict);
+        general_lib.append_predict_three_frame_combine(combine_frame,arr_predict,0);
+        general_lib.set_current_data_next(combine_frame,arr_predict,0,key);
+
+    }
+    else{
+        index_before_du_doan += 1;
+        general_lib.show_predict_next(combine_frame,arr_before_du_doan,index_before_du_doan,is_calc_predict);
+        general_lib.append_predict_three_frame_combine(combine_frame,arr_before_du_doan,index_before_du_doan);
+        general_lib.set_current_data_without_curr_3_before_continous_next(combine_frame,arr_before_du_doan,index_before_du_doan);
+    }
+}
+
 function predict_next_step_from_three_frame(combine_frame){
     var arr_general_du_doan = general_lib.get_array_from_local_storage(combine_frame.du_doan);
     if(arr_general_du_doan.length ==0 ){
         return;
     }
+
+    var arr_general_du_doan_over_all = general_lib.get_array_from_local_storage(global_key.nine_frame_key_du_doan);
 
     var is_calc_predict = true;//rr_general_du_doan.length %2 ==1 ? true : false;
     
@@ -325,7 +448,7 @@ function predict_next_step_from_three_frame(combine_frame){
     else{
         if(obj_before_du_doan != null){
             if (index_before_du_doan < 7 && arr_before_du_doan.length > index_before_du_doan){
-                if(arr_before_du_doan[index_before_du_doan] != arr_du_doan[arr_du_doan.length -1]){
+                if(arr_before_du_doan[index_before_du_doan] != arr_general_du_doan_over_all[arr_general_du_doan_over_all.length -1]){
                     is_repeat_du_doan = false;
                 }    
             }
@@ -420,6 +543,83 @@ function show_predict_ext(order_view,arr_predict,suggest_chose,is_calc_predict){
         }
     }
     $('#result_predict_'+order_view).html(html_predict);
+}
+
+function init_page(){
+    $('#lst_ket_qua').html('');
+    $('#result_predict_1st_frame').html('');
+    $('#result_predict_1st_2st_3st_frame').html('');
+    $('#result_predict_next_1st_2st_3st_frame').html('');
+    $('#result_predict_save_1st_2st_3st_frame').html('');
+    $('label[name=money_predict_1st_2st_3st_frame]').html('Số tiền :');
+    $('label[name=money_predict_1st_2st_3st_frame]').data('typemoney', 'N');
+    $('label[name=money_predict_1st_2st_3st_frame]').data('amountmoney', 0);
+
+    $('#result_predict_2st_frame').html('');
+    $('#result_predict_2st_3st_4st_frame').html('');
+    $('#result_predict_next_2st_3st_4st_frame').html('');
+    $('#result_predict_save_2st_3st_4st_frame').html('');
+    $('label[name=money_predict_2st_3st_4st_frame]').html('Số tiền :');
+    $('label[name=money_predict_2st_3st_4st_frame]').data('typemoney', 'N');
+    $('label[name=money_predict_2st_3st_4st_frame]').data('amountmoney', 0);
+    
+    $('#result_predict_3st_frame').html('');
+    $('#result_predict_3st_4st_5st_frame').html('');
+    $('#result_predict_next_3st_4st_5st_frame').html('');
+    $('#result_predict_save_3st_4st_5st_frame').html('');
+    $('label[name=money_predict_3st_4st_5st_frame]').html('Số tiền :');
+    $('label[name=money_predict_3st_4st_5st_frame]').data('typemoney', 'N');
+    $('label[name=money_predict_3st_4st_5st_frame]').data('amountmoney', 0);
+    
+    $('#result_predict_4st_frame').html('');
+    $('#result_predict_4st_5st_6st_frame').html('');
+    $('#result_predict_next_4st_5st_6st_frame').html('');
+    $('#result_predict_save_4st_5st_6st_frame').html('');
+    $('label[name=money_predict_4st_5st_6st_frame]').html('Số tiền :');
+    $('label[name=money_predict_4st_5st_6st_frame]').data('typemoney', 'N');
+    $('label[name=money_predict_4st_5st_6st_frame]').data('amountmoney', 0);
+
+    
+    $('#result_predict_5st_frame').html('');
+    $('#result_predict_5st_6st_7st_frame').html('');
+    $('#result_predict_next_5st_6st_7st_frame').html('');
+    $('#result_predict_save_5st_6st_7st_frame').html('');
+    $('label[name=money_predict_5st_6st_7st_frame]').html('Số tiền :');
+    $('label[name=money_predict_5st_6st_7st_frame]').data('typemoney', 'N');
+    $('label[name=money_predict_5st_6st_7st_frame]').data('amountmoney', 0);
+
+    $('#result_predict_6st_frame').html('');
+    $('#result_predict_6st_7st_8st_frame').html('');
+    $('#result_predict_next_6st_7st_8st_frame').html('');
+    $('#result_predict_save_6st_7st_8st_frame').html('');
+    $('label[name=money_predict_6st_7st_8st_frame]').html('Số tiền :');
+    $('label[name=money_predict_6st_7st_8st_frame]').data('typemoney', 'N');
+    $('label[name=money_predict_6st_7st_8st_frame]').data('amountmoney', 0);
+    
+    $('#result_predict_7st_frame').html('');
+    $('#result_predict_7st_8st_9st_frame').html('');
+    $('#result_predict_next_7st_8st_9st_frame').html('');
+    $('#result_predict_save_7st_8st_9st_frame').html('');
+    $('label[name=money_predict_7st_8st_9st_frame]').html('Số tiền :');
+    $('label[name=money_predict_7st_8st_9st_frame]').data('typemoney', 'N');
+    $('label[name=money_predict_7st_8st_9st_frame]').data('amountmoney', 0);
+    
+    $('#result_predict_8st_frame').html('');
+    $('#result_predict_8st_9st_1st_frame').html('');
+    $('#result_predict_next_8st_9st_1st_frame').html('');
+    $('#result_predict_save_8st_9st_1st_frame').html('');
+    $('label[name=money_predict_8st_9st_1st_frame]').html('Số tiền :');
+    $('label[name=money_predict_8st_9st_1st_frame]').data('typemoney', 'N');
+    $('label[name=money_predict_8st_9st_1st_frame]').data('amountmoney', 0);
+    
+    $('#result_predict_9st_frame').html('');
+    $('#result_predict_9st_1st_2st_frame').html('');
+    $('#result_predict_next_9st_1st_2st_frame').html('');
+    $('#result_predict_save_9st_1st_2st_frame').html('');
+    $('label[name=money_predict_9st_1st_2st_frame]').html('Số tiền :');
+    $('label[name=money_predict_9st_1st_2st_frame]').data('typemoney', 'N');
+    $('label[name=money_predict_9st_1st_2st_frame]').data('amountmoney', 0);
+
 }
 
 function init_data() {

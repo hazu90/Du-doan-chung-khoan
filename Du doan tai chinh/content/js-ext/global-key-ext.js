@@ -126,7 +126,12 @@ var global_key ={
         curr_index :'three_frame_combine_1st_2st_3st_curr_predict_index',
         view_du_doan_next_id :'result_predict_next_1st_2st_3st_frame',
         view_show_money_name:'money_predict_1st_2st_3st_frame',
-        save_predict_3_combine:'result_predict_save_1st_2st_3st_frame'
+        save_predict_3_combine:'result_predict_save_1st_2st_3st_frame',
+        view_du_doan_next_next_id :'result_predict_next_next_1st_2st_3st_frame',
+        curr_predicts_next :'three_frame_combine_1st_2st_3st_curr_predict_next',
+        curr_index_next :'three_frame_combine_1st_2st_3st_curr_predict_index_next',
+        du_doan_next :'three_frame_combine_1st_2st_3st_du_doan_next',
+        curr_3_before_next :'three_frame_combine_1st_2st_3st_curr_three_before_next'
     },
     three_frame_combine_2st_3st_4st :{
         du_doan :'three_frame_combine_2st_3st_4st_du_doan',
