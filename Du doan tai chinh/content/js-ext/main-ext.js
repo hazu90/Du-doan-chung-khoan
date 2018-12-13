@@ -71,7 +71,10 @@ function btnExact_Click(){
             show_combine_from_three_step(arr_frame[index],arr_frame[index+1],arr_frame[index+2],arr_combine[index]);
         }
         //predict_next_step_from_three_frame(arr_combine[index]);
-        predict_next_step_next_from_three_frame(arr_combine[index]);
+        if (index == 0) {
+            predict_next_step_next_from_three_frame(arr_combine[index]);
+        }
+        
     }
     general_lib.show_total_ext();
 
@@ -115,7 +118,9 @@ function btnFail_Click(){
             show_combine_from_three_step(arr_frame[index],arr_frame[index+1],arr_frame[index+2],arr_combine[index]);
         }
         //predict_next_step_from_three_frame(arr_combine[index]);
-        predict_next_step_next_from_three_frame(arr_combine[index]);
+        if (index == 0) {
+            predict_next_step_next_from_three_frame(arr_combine[index]);
+        }
     }
 
     general_lib.show_total_ext();
@@ -331,8 +336,14 @@ function predict_next_step_next_from_three_frame(combine_frame){
     }
     else{
         if(obj_before_du_doan != null){
-            if (index_before_du_doan < 7 && arr_before_du_doan.length > index_before_du_doan){
-                is_repeat_du_doan = false;
+            if (index_before_du_doan < 7 && arr_before_du_doan.length > index_before_du_doan) {
+                var t_m = $('#' + combine_frame.view_show_money_name).data('typemoney');
+                var a_m = $('#' + combine_frame.view_show_money_name).data('amountmoney');
+                if (    ( arr_general_du_doan[arr_general_du_doan.length - 1] && t_m == 'N')
+                    ||  (!arr_general_du_doan[arr_general_du_doan.length - 1] && t_m == 'T'))
+                {
+                    is_repeat_du_doan = false;    
+                }
             }
         }
     }

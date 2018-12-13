@@ -80,9 +80,6 @@ var general_lib ={
         }
     },
     show_total_ext: function () {
-        //var total_N = parseFloat(localStorage.getItem('total_N')).toFixed(2);;
-        //var total_T = parseFloat(localStorage.getItem('total_T')).toFixed(2);;
-
         var total_N = 0;
         var total_T = 0;
 
@@ -232,7 +229,7 @@ var general_lib ={
         }
     },
     show_predict_next:function(combine_frame,arr_predict,suggest_chose,is_calc_predict){
-        var el_show_ket_qua = $('#'+combine_frame.view_du_doan_next_id);
+        var el_show_ket_qua = $('#' + combine_frame.save_predict_3_combine);
         var el_show_tien =$('label[name='+ combine_frame.view_show_money_name +']'); 
         if(arr_predict.length ==0){
             el_show_ket_qua.html('');
@@ -241,7 +238,10 @@ var general_lib ={
             el_show_tien.data('amountmoney',0);
             return;
         }
-    
+
+        var arr_du_doan = general_lib.get_array_from_local_storage(combine_frame.du_doan_next);
+        var lastest_type_success_or_fail = arr_du_doan[arr_du_doan.length - 1];
+
         var type_money = '';
         var html_predict='';
         for(var index =0;index < arr_predict.length;index++){
@@ -250,6 +250,15 @@ var general_lib ={
                 html_predict += '   <div class="arrow-up"></div>';
                 if (index == suggest_chose && is_calc_predict) {
                     type_money = 'T';
+                    if (lastest_type_success_or_fail)
+                    {
+                        type_money = 'T';
+                    }
+                    else
+                    {
+                        type_money = 'N';
+                    }
+
                     html_predict += '<label style="border-bottom: 2px solid red;">T'+(index+1)+'</label>';
                 }
                 else{
@@ -263,6 +272,14 @@ var general_lib ={
                 html_predict += '   <div class="arrow-down"></div>';
                 if (index == suggest_chose && is_calc_predict) {
                     type_money = 'N';
+
+                    if (lastest_type_success_or_fail) {
+                        type_money = 'N';
+                    }
+                    else {
+                        type_money = 'T';
+                    }
+
                     html_predict += '<label style="border-bottom: 2px solid red;">N'+(index+1)+'</label>';
                 }
                 else{
