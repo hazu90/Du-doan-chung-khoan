@@ -236,6 +236,7 @@ var general_lib ={
             el_show_tien.html('Số tiền : 0');
             el_show_tien.data('typemoney','N');
             el_show_tien.data('amountmoney',0);
+            $('#'+combine_frame.result_show_money_next).append('0; ');
             return;
         }
 
@@ -294,11 +295,13 @@ var general_lib ={
             el_show_tien.html('Số tiền : ' + type_money + global_key.money[suggest_chose]);
             el_show_tien.data('typemoney', type_money);
             el_show_tien.data('amountmoney', global_key.money[suggest_chose]);
+            $('#'+combine_frame.result_show_money_next).append(type_money + global_key.money[suggest_chose] +' ;');
         }
         else{
             el_show_tien.html('Số tiền : 0');
             el_show_tien.data('typemoney', 'N');
             el_show_tien.data('amountmoney', 0);
+            $('#'+combine_frame.result_show_money_next).append('0 ;');
         }
     },
     set_current_data : function(combine_frame,arr_curr_predict,curr_index,curr_3_before){
