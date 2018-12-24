@@ -558,6 +558,7 @@ function init_page(){
     $('#result_predict_1st_frame').html('');
     $('#result_predict_1st_2st_3st_frame').html('');
     $('#result_predict_next_1st_2st_3st_frame').html('');
+    $('#result_predict_next_next_1st_2st_3st_frame').html('');
     $('#result_predict_save_1st_2st_3st_frame').html('');
     $('label[name=money_predict_1st_2st_3st_frame]').html('Số tiền :');
     $('label[name=money_predict_1st_2st_3st_frame]').data('typemoney', 'N');
@@ -566,6 +567,7 @@ function init_page(){
     $('#result_predict_2st_frame').html('');
     $('#result_predict_2st_3st_4st_frame').html('');
     $('#result_predict_next_2st_3st_4st_frame').html('');
+    $('#result_predict_next_next_2st_3st_4st_frame').html('');
     $('#result_predict_save_2st_3st_4st_frame').html('');
     $('label[name=money_predict_2st_3st_4st_frame]').html('Số tiền :');
     $('label[name=money_predict_2st_3st_4st_frame]').data('typemoney', 'N');
@@ -574,6 +576,7 @@ function init_page(){
     $('#result_predict_3st_frame').html('');
     $('#result_predict_3st_4st_5st_frame').html('');
     $('#result_predict_next_3st_4st_5st_frame').html('');
+    $('#result_predict_next_next_3st_4st_5st_frame').html('');
     $('#result_predict_save_3st_4st_5st_frame').html('');
     $('label[name=money_predict_3st_4st_5st_frame]').html('Số tiền :');
     $('label[name=money_predict_3st_4st_5st_frame]').data('typemoney', 'N');
@@ -582,6 +585,7 @@ function init_page(){
     $('#result_predict_4st_frame').html('');
     $('#result_predict_4st_5st_6st_frame').html('');
     $('#result_predict_next_4st_5st_6st_frame').html('');
+    $('#result_predict_next_next_4st_5st_6st_frame').html('');
     $('#result_predict_save_4st_5st_6st_frame').html('');
     $('label[name=money_predict_4st_5st_6st_frame]').html('Số tiền :');
     $('label[name=money_predict_4st_5st_6st_frame]').data('typemoney', 'N');
@@ -591,6 +595,7 @@ function init_page(){
     $('#result_predict_5st_frame').html('');
     $('#result_predict_5st_6st_7st_frame').html('');
     $('#result_predict_next_5st_6st_7st_frame').html('');
+    $('#result_predict_next_next_5st_6st_7st_frame').html('');
     $('#result_predict_save_5st_6st_7st_frame').html('');
     $('label[name=money_predict_5st_6st_7st_frame]').html('Số tiền :');
     $('label[name=money_predict_5st_6st_7st_frame]').data('typemoney', 'N');
@@ -599,6 +604,7 @@ function init_page(){
     $('#result_predict_6st_frame').html('');
     $('#result_predict_6st_7st_8st_frame').html('');
     $('#result_predict_next_6st_7st_8st_frame').html('');
+    $('#result_predict_next_next_6st_7st_8st_frame').html('');
     $('#result_predict_save_6st_7st_8st_frame').html('');
     $('label[name=money_predict_6st_7st_8st_frame]').html('Số tiền :');
     $('label[name=money_predict_6st_7st_8st_frame]').data('typemoney', 'N');
@@ -607,6 +613,7 @@ function init_page(){
     $('#result_predict_7st_frame').html('');
     $('#result_predict_7st_8st_9st_frame').html('');
     $('#result_predict_next_7st_8st_9st_frame').html('');
+    $('#result_predict_next_next_7st_8st_9st_frame').html('');
     $('#result_predict_save_7st_8st_9st_frame').html('');
     $('label[name=money_predict_7st_8st_9st_frame]').html('Số tiền :');
     $('label[name=money_predict_7st_8st_9st_frame]').data('typemoney', 'N');
@@ -615,6 +622,7 @@ function init_page(){
     $('#result_predict_8st_frame').html('');
     $('#result_predict_8st_9st_1st_frame').html('');
     $('#result_predict_next_8st_9st_1st_frame').html('');
+    $('#result_predict_next_next_8st_9st_1st_frame').html('');
     $('#result_predict_save_8st_9st_1st_frame').html('');
     $('label[name=money_predict_8st_9st_1st_frame]').html('Số tiền :');
     $('label[name=money_predict_8st_9st_1st_frame]').data('typemoney', 'N');
@@ -623,6 +631,7 @@ function init_page(){
     $('#result_predict_9st_frame').html('');
     $('#result_predict_9st_1st_2st_frame').html('');
     $('#result_predict_next_9st_1st_2st_frame').html('');
+    $('#result_predict_next_next_9st_1st_2st_frame').html('');
     $('#result_predict_save_9st_1st_2st_frame').html('');
     $('label[name=money_predict_9st_1st_2st_frame]').html('Số tiền :');
     $('label[name=money_predict_9st_1st_2st_frame]').data('typemoney', 'N');

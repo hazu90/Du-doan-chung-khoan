@@ -240,7 +240,7 @@ var general_lib ={
             return;
         }
 
-        var arr_du_doan = general_lib.get_array_from_local_storage(combine_frame.du_doan_next);
+        var arr_du_doan = general_lib.get_array_from_local_storage(combine_frame.du_doan);
         var lastest_type_success_or_fail = arr_du_doan[arr_du_doan.length - 1];
 
         var type_money = '';
