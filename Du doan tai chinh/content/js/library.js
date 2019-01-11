@@ -170,10 +170,21 @@ var general_lib ={
         $('#totalT').html(total_T.toFixed(2));
         if (total_N > total_T) {
             $('#totalCompare').html('N ' + ((total_N - total_T) / 4).toFixed(2));
+            if(total_N != total_T)
+            {
+                $('div[name=ket-qua-lech]').append('N ;');
+            }
+            
         }
         else {
             $('#totalCompare').html('T ' + ((total_T - total_N) / 4).toFixed(2));
+            if(total_N != total_T)
+            {
+                $('div[name=ket-qua-lech]').append('T ;');
+            }
         }
+
+        
     },
     show_predict:function(combine_frame,arr_predict,suggest_chose,is_calc_predict){
         var el_show_ket_qua = $('#'+combine_frame.view_du_doan_next_id);
@@ -295,7 +306,15 @@ var general_lib ={
             el_show_tien.html('Số tiền : ' + type_money + global_key.money[suggest_chose]);
             el_show_tien.data('typemoney', type_money);
             el_show_tien.data('amountmoney', global_key.money[suggest_chose]);
-            $('#'+combine_frame.result_show_money_next).append(type_money + global_key.money[suggest_chose] +' ;');
+            $('#'+combine_frame.result_show_money_next).append(type_money + (suggest_chose +1) +' ;');
+            var arr_res = general_lib.get_array_from_local_storage(combine_frame.result_show_money_next_data);
+            if(type_money == 'T'){
+                arr_res.push((suggest_chose +1));    
+            }
+            else{
+                arr_res.push((suggest_chose +1) *(-1));
+            }
+            localStorage.setItem(combine_frame.result_show_money_next_data,JSON.stringify(arr_res));
         }
         else{
             el_show_tien.html('Số tiền : 0');
@@ -339,5 +358,20 @@ var general_lib ={
             html_predict +='</div>';
             $('#'+combine_frame.save_predict_3_combine).append(html_predict);
         }
+    },
+    show_bonus_ext : function(cb1 ,cb2){
+        var arr_cb1 = general_lib.get_array_from_local_storage(cb1.result_show_money_next_data);
+        var arr_cb2 = general_lib.get_array_from_local_storage(cb2.result_show_money_next_data);
+        if(arr_cb1.length ==0 || arr_cb2.length==0) return;
+        if((arr_cb1[arr_cb1.length -1] + arr_cb2[arr_cb2.length-1] ) <0){
+            $('div[name='+cb1.result_money_add_bonus_view+']').append('N; '); 
+        }
+        else if ((arr_cb1[arr_cb1.length -1] + arr_cb2[arr_cb2.length-1] ) >0){
+            $('div[name='+cb1.result_money_add_bonus_view+']').append('T; ');
+        }
+        else{
+            $('div[name='+cb1.result_money_add_bonus_view+']').append('0; ');
+        }
+
     }
 };

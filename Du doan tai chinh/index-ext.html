@@ -23,10 +23,11 @@
                     <button id="btnExact" class="btn btn-success">Trùng</button>
                     <button id="btnFail" class="btn btn-danger">Ngược</button>
                     <button id="btnRollback" class="btn btn-primary">Trở lại bước trước</button>
-                    
+                    <button id="btnBonus" class="btn btn-secondary">Kết quả bổ sung</button>
                 </div>
                 <div class="row" style="margin-top: 40px;">
                     <button id="btnClear" class="btn btn-secondary">Đánh lại</button>
+                    
                 </div>
                 <div class="clear-top"></div>
                 <div>
@@ -57,294 +58,372 @@
                             <label id="totalCompare">0</label>
                         </div>
                     </div>
+                    <div class="row">
+                        <div name="ket-qua-lech" class="col-xs-12 col-md-12">
+                            
+                        </div>
+                    </div>
                 </div>
                 <div class="clear-top"></div>
                 <div class="row" id="lst_ket_qua" style="margin-top: 20px;">
                     
                 </div>
                 <div class="clear-top"></div>
-                <div class="row" style="margin-top: 10px;">
-                    <div class="col-md-3">
-                        <label>Khung 1</label>
-                        <div class="row">
-                            <div class="col-md-12" id="result_predict_1st_frame"></div>                   
-                       </div>
-                    </div>
-                    <div class="col-md-3">
-                        <label>Khung 1-2-3</label>
-                        <div class="row">
-                            <div class="col-md-12" id="result_predict_1st_2st_3st_frame"></div>
+                <div name="main-result-screen" style="width: 100%;">
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-md-3">
+                            <label>Khung 1</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_predict_1st_frame"></div>                   
+                           </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label>Khung 1-2-3</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_predict_1st_2st_3st_frame"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label name="money_predict_1st_2st_3st_frame">Số tiền :</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_show_money_next_1st_2st_3st_frame"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 hide" id="result_predict_next_1st_2st_3st_frame"></div>
+                                <div class="col-md-12" id="result_predict_next_next_1st_2st_3st_frame"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label>Kết quả đã dự đoán 1-2-3</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_predict_save_1st_2st_3st_frame"></div>                   
+                           </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <label name="money_predict_1st_2st_3st_frame">Số tiền :</label>
-                        <div class="row">
-                            <div class="col-md-12" id="result_show_money_next_1st_2st_3st_frame"></div>
+                    <div class="clear-top"></div>
+                    <div class="row" style="margin-top:10px;">
+                        <div class="col-md-3">
+                            <label>Khung 2</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_predict_2st_frame"></div>
+                            </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-12 hide" id="result_predict_next_1st_2st_3st_frame"></div>
-                            <div class="col-md-12" id="result_predict_next_next_1st_2st_3st_frame"></div>
+                        <div class="col-md-3">
+                            <label>Khung 2-3-4</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_predict_2st_3st_4st_frame"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label name="money_predict_2st_3st_4st_frame">Số tiền :</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_show_money_next_2st_3st_4st_frame"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 hide" id="result_predict_next_2st_3st_4st_frame"></div>
+                                <div class="col-md-12" id="result_predict_next_next_2st_3st_4st_frame"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label>Kết quả đã dự đoán 2-3-4</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_predict_save_2st_3st_4st_frame"></div>                   
+                           </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <label>Kết quả đã dự đoán 1-2-3</label>
-                        <div class="row">
-                            <div class="col-md-12" id="result_predict_save_1st_2st_3st_frame"></div>                   
-                       </div>
+                    <div class="clear-top"></div>
+                    <div class="row" style="margin-top:10px;">
+                        <div class="col-md-3">
+                            <label>Khung 3</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_predict_3st_frame"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label>Khung 3-4-5</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_predict_3st_4st_5st_frame"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label name="money_predict_3st_4st_5st_frame">Số tiền :</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_show_money_next_3st_4st_5st_frame"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 hide" id="result_predict_next_3st_4st_5st_frame"></div>
+                                <div class="col-md-12" id="result_predict_next_next_3st_4st_5st_frame"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label>Kết quả đã dự đoán 3-4-5</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_predict_save_3st_4st_5st_frame"></div>                   
+                           </div>
+                        </div>
                     </div>
+                    <div class="clear-top"></div>
+                    <div class="row" style="margin-top:10px;">
+                        <div class="col-md-3">
+                            <label>Khung 4</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_predict_4st_frame"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label>Khung 4-5-6</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_predict_4st_5st_6st_frame"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label name="money_predict_4st_5st_6st_frame">Số tiền :</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_show_money_next_4st_5st_6st_frame"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 hide" id="result_predict_next_4st_5st_6st_frame"></div>
+                                <div class="col-md-12" id="result_predict_next_next_4st_5st_6st_frame"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label>Kết quả đã dự đoán 4-5-6</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_predict_save_4st_5st_6st_frame"></div>                   
+                           </div>
+                        </div>
+                    </div>
+                    <div class="clear-top"></div>
+                    <div class="row" style="margin-top:10px;">
+                        <div class="col-md-3">
+                            <label>Khung 5</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_predict_5st_frame"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label>Khung 5-6-7</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_predict_5st_6st_7st_frame"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label name="money_predict_5st_6st_7st_frame">Số tiền :</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_show_money_next_5st_6st_7st_frame"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 hide" id="result_predict_next_5st_6st_7st_frame"></div>
+                                <div class="col-md-12" id="result_predict_next_next_5st_6st_7st_frame"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label>Kết quả đã dự đoán 5-6-7</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_predict_save_5st_6st_7st_frame"></div>                   
+                           </div>
+                        </div>
+                    </div>
+                    <div class="clear-top"></div>
+                    <div class="row" style="margin-top:10px;">
+                        <div class="col-md-3">
+                            <label>Khung 6</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_predict_6st_frame"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label>Khung 6-7-8</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_predict_6st_7st_8st_frame"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label name="money_predict_6st_7st_8st_frame">Số tiền :</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_show_money_next_6st_7st_8st_frame"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 hide" id="result_predict_next_6st_7st_8st_frame"></div>
+                                <div class="col-md-12" id="result_predict_next_next_6st_7st_8st_frame"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label>Kết quả đã dự đoán 6-7-8</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_predict_save_6st_7st_8st_frame"></div>                   
+                           </div>
+                        </div>
+                    </div>
+                    <div class="clear-top"></div>
+                    <div class="row" style="margin-top:10px;">
+                        <div class="col-md-3">
+                            <label>Khung 7</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_predict_7st_frame"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label>Khung 7-8-9</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_predict_7st_8st_9st_frame"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label name="money_predict_7st_8st_9st_frame">Số tiền :</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_show_money_next_7st_8st_9st_frame"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 hide" id="result_predict_next_7st_8st_9st_frame"></div>
+                                <div class="col-md-12" id="result_predict_next_next_7st_8st_9st_frame"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label>Kết quả đã dự đoán 7-8-9</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_predict_save_7st_8st_9st_frame"></div>                   
+                           </div>
+                        </div>
+                    </div>
+                    <div class="clear-top"></div>
+                    <div class="row" style="margin-top:10px;">
+                        <div class="col-md-3">
+                            <label>Khung 8</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_predict_8st_frame"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label>Khung 8-9-1</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_predict_8st_9st_1st_frame"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label name="money_predict_8st_9st_1st_frame">Số tiền :</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_show_money_next_8st_9st_1st_frame"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 hide" id="result_predict_next_8st_9st_1st_frame"></div>
+                                <div class="col-md-12" id="result_predict_next_next_8st_9st_1st_frame"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label>Kết quả đã dự đoán 8-9-1</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_predict_save_8st_9st_1st_frame"></div>
+                                
+                           </div>
+                        </div>
+    
+                    </div>
+                    <div class="clear-top"></div>
+                    <div class="row" style="margin-top:10px;">
+                        <div class="col-md-3">
+                            <label>Khung 9</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_predict_9st_frame"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label>Khung 9-1-2</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_predict_9st_1st_2st_frame"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label name="money_predict_9st_1st_2st_frame">Số tiền :</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_show_money_next_9st_1st_2st_frame"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 hide" id="result_predict_next_9st_1st_2st_frame"></div>
+                                <div class="col-md-12" id="result_predict_next_next_9st_1st_2st_frame"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label>Kết quả đã dự đoán 9-1-2</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_predict_save_9st_1st_2st_frame"></div>                   
+                           </div>
+                        </div>
+                    </div>    
                 </div>
-                
-                <div class="clear-top"></div>
-                <div class="row" style="margin-top:10px;">
-                    <div class="col-md-3">
-                        <label>Khung 2</label>
-                        <div class="row">
-                            <div class="col-md-12" id="result_predict_2st_frame"></div>
+                <div name="bonus-result-screen" style="width: 100%;">
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-md-3">
+                            <label>Khung 1 + 2</label>
+                            <div class="row">
+                                <div class="col-md-12" name="result_money_add_1st_2st"></div>                   
+                           </div>
                         </div>
-                    </div>
-                    <div class="col-md-3">
-                        <label>Khung 2-3-4</label>
-                        <div class="row">
-                            <div class="col-md-12" id="result_predict_2st_3st_4st_frame"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <label name="money_predict_2st_3st_4st_frame">Số tiền :</label>
-                        <div class="row">
-                            <div class="col-md-12" id="result_show_money_next_2st_3st_4st_frame"></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12 hide" id="result_predict_next_2st_3st_4st_frame"></div>
-                            <div class="col-md-12" id="result_predict_next_next_2st_3st_4st_frame"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <label>Kết quả đã dự đoán 2-3-4</label>
-                        <div class="row">
-                            <div class="col-md-12" id="result_predict_save_2st_3st_4st_frame"></div>                   
-                       </div>
-                    </div>
-                </div>
-                
-                <div class="clear-top"></div>
-                <div class="row" style="margin-top:10px;">
-                    <div class="col-md-3">
-                        <label>Khung 3</label>
-                        <div class="row">
-                            <div class="col-md-12" id="result_predict_3st_frame"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <label>Khung 3-4-5</label>
-                        <div class="row">
-                            <div class="col-md-12" id="result_predict_3st_4st_5st_frame"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <label name="money_predict_3st_4st_5st_frame">Số tiền :</label>
-                        <div class="row">
-                            <div class="col-md-12" id="result_show_money_next_3st_4st_5st_frame"></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12 hide" id="result_predict_next_3st_4st_5st_frame"></div>
-                            <div class="col-md-12" id="result_predict_next_next_3st_4st_5st_frame"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <label>Kết quả đã dự đoán 3-4-5</label>
-                        <div class="row">
-                            <div class="col-md-12" id="result_predict_save_3st_4st_5st_frame"></div>                   
-                       </div>
-                    </div>
-                </div>
-                
-                <div class="clear-top"></div>
-                <div class="row" style="margin-top:10px;">
-                    <div class="col-md-3">
-                        <label>Khung 4</label>
-                        <div class="row">
-                            <div class="col-md-12" id="result_predict_4st_frame"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <label>Khung 4-5-6</label>
-                        <div class="row">
-                            <div class="col-md-12" id="result_predict_4st_5st_6st_frame"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <label name="money_predict_4st_5st_6st_frame">Số tiền :</label>
-                        <div class="row">
-                            <div class="col-md-12" id="result_show_money_next_4st_5st_6st_frame"></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12 hide" id="result_predict_next_4st_5st_6st_frame"></div>
-                            <div class="col-md-12" id="result_predict_next_next_4st_5st_6st_frame"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <label>Kết quả đã dự đoán 4-5-6</label>
-                        <div class="row">
-                            <div class="col-md-12" id="result_predict_save_4st_5st_6st_frame"></div>                   
-                       </div>
-                    </div>
-                </div>
-                
-                <div class="clear-top"></div>
-                <div class="row" style="margin-top:10px;">
-                    <div class="col-md-3">
-                        <label>Khung 5</label>
-                        <div class="row">
-                            <div class="col-md-12" id="result_predict_5st_frame"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <label>Khung 5-6-7</label>
-                        <div class="row">
-                            <div class="col-md-12" id="result_predict_5st_6st_7st_frame"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <label name="money_predict_5st_6st_7st_frame">Số tiền :</label>
-                        <div class="row">
-                            <div class="col-md-12" id="result_show_money_next_5st_6st_7st_frame"></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12 hide" id="result_predict_next_5st_6st_7st_frame"></div>
-                            <div class="col-md-12" id="result_predict_next_next_5st_6st_7st_frame"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <label>Kết quả đã dự đoán 5-6-7</label>
-                        <div class="row">
-                            <div class="col-md-12" id="result_predict_save_5st_6st_7st_frame"></div>                   
-                       </div>
-                    </div>
-                </div>
-                <div class="clear-top"></div>
-                <div class="row" style="margin-top:10px;">
-                    <div class="col-md-3">
-                        <label>Khung 6</label>
-                        <div class="row">
-                            <div class="col-md-12" id="result_predict_6st_frame"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <label>Khung 6-7-8</label>
-                        <div class="row">
-                            <div class="col-md-12" id="result_predict_6st_7st_8st_frame"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <label name="money_predict_6st_7st_8st_frame">Số tiền :</label>
-                        <div class="row">
-                            <div class="col-md-12" id="result_show_money_next_6st_7st_8st_frame"></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12 hide" id="result_predict_next_6st_7st_8st_frame"></div>
-                            <div class="col-md-12" id="result_predict_next_next_6st_7st_8st_frame"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <label>Kết quả đã dự đoán 6-7-8</label>
-                        <div class="row">
-                            <div class="col-md-12" id="result_predict_save_6st_7st_8st_frame"></div>                   
-                       </div>
-                    </div>
-                </div>
-                <div class="clear-top"></div>
-                <div class="row" style="margin-top:10px;">
-                    <div class="col-md-3">
-                        <label>Khung 7</label>
-                        <div class="row">
-                            <div class="col-md-12" id="result_predict_7st_frame"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <label>Khung 7-8-9</label>
-                        <div class="row">
-                            <div class="col-md-12" id="result_predict_7st_8st_9st_frame"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <label name="money_predict_7st_8st_9st_frame">Số tiền :</label>
-                        <div class="row">
-                            <div class="col-md-12" id="result_show_money_next_7st_8st_9st_frame"></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12 hide" id="result_predict_next_7st_8st_9st_frame"></div>
-                            <div class="col-md-12" id="result_predict_next_next_7st_8st_9st_frame"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <label>Kết quả đã dự đoán 7-8-9</label>
-                        <div class="row">
-                            <div class="col-md-12" id="result_predict_save_7st_8st_9st_frame"></div>                   
-                       </div>
-                    </div>
-                </div>
-                <div class="clear-top"></div>
-                <div class="row" style="margin-top:10px;">
-                    <div class="col-md-3">
-                        <label>Khung 8</label>
-                        <div class="row">
-                            <div class="col-md-12" id="result_predict_8st_frame"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <label>Khung 8-9-1</label>
-                        <div class="row">
-                            <div class="col-md-12" id="result_predict_8st_9st_1st_frame"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <label name="money_predict_8st_9st_1st_frame">Số tiền :</label>
-                        <div class="row">
-                            <div class="col-md-12" id="result_show_money_next_8st_9st_1st_frame"></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12 hide" id="result_predict_next_8st_9st_1st_frame"></div>
-                            <div class="col-md-12" id="result_predict_next_next_8st_9st_1st_frame"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <label>Kết quả đã dự đoán 8-9-1</label>
-                        <div class="row">
-                            <div class="col-md-12" id="result_predict_save_8st_9st_1st_frame"></div>
-                            
-                       </div>
                     </div>
 
-                </div>
-                <div class="clear-top"></div>
-                <div class="row" style="margin-top:10px;">
-                    <div class="col-md-3">
-                        <label>Khung 9</label>
-                        <div class="row">
-                            <div class="col-md-12" id="result_predict_9st_frame"></div>
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-md-3">
+                            <label>Khung 2 + 3</label>
+                            <div class="row">
+                                <div class="col-md-12" name="result_money_add_2st_3st"></div>                   
+                           </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <label>Khung 9-1-2</label>
-                        <div class="row">
-                            <div class="col-md-12" id="result_predict_9st_1st_2st_frame"></div>
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-md-3">
+                            <label>Khung 3 + 4</label>
+                            <div class="row">
+                                <div class="col-md-12" name="result_money_add_3st_4st"></div>                   
+                           </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <label name="money_predict_9st_1st_2st_frame">Số tiền :</label>
-                        <div class="row">
-                            <div class="col-md-12" id="result_show_money_next_9st_1st_2st_frame"></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12 hide" id="result_predict_next_9st_1st_2st_frame"></div>
-                            <div class="col-md-12" id="result_predict_next_next_9st_1st_2st_frame"></div>
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-md-3">
+                            <label>Khung 4 + 5</label>
+                            <div class="row">
+                                <div class="col-md-12" name="result_money_add_4st_5st"></div>                   
+                           </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <label>Kết quả đã dự đoán 9-1-2</label>
-                        <div class="row">
-                            <div class="col-md-12" id="result_predict_save_9st_1st_2st_frame"></div>                   
-                       </div>
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-md-3">
+                            <label>Khung 5 + 6</label>
+                            <div class="row">
+                                <div class="col-md-12" name="result_money_add_5st_6st"></div>                   
+                           </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-md-3">
+                            <label>Khung 6 + 7</label>
+                            <div class="row">
+                                <div class="col-md-12" name="result_money_add_6st_7st"></div>                   
+                           </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-md-3">
+                            <label>Khung 7 + 8</label>
+                            <div class="row">
+                                <div class="col-md-12" name="result_money_add_7st_8st"></div>                   
+                           </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-md-3">
+                            <label>Khung 8 + 9</label>
+                            <div class="row">
+                                <div class="col-md-12" name="result_money_add_8st_9st"></div>                   
+                           </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-md-3">
+                            <label>Khung 9 + 1</label>
+                            <div class="row">
+                                <div class="col-md-12" name="result_money_add_9st_1st"></div>                   
+                           </div>
+                        </div>
                     </div>
                 </div>
             </div>
