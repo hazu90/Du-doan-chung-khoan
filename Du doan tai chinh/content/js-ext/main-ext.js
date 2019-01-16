@@ -40,6 +40,19 @@ $(document).ready(function(){
             $('div[name=bonus-result-screen]').removeClass('hide');
         }
     });
+    $('#btnCombine4k9k').off('click').on('click',function(){
+        if( $('div[name=main-result-screen]').hasClass('hide')){
+            $(this).html('Kết hợp 4 khung');
+            $('div[name=main-result-screen]').removeClass('hide');
+            $('div[name=combine-4k-9k-screen]').addClass('hide');
+        }
+        else{
+            $(this).html('Kết quả chính');
+            $('div[name=main-result-screen]').addClass('hide');
+            $('div[name=combine-4k-9k-screen]').removeClass('hide');
+        }
+    });
+
     localStorage.clear();
     init_data();
 });

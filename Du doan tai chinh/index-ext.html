@@ -24,6 +24,7 @@
                     <button id="btnFail" class="btn btn-danger">Ngược</button>
                     <button id="btnRollback" class="btn btn-primary">Trở lại bước trước</button>
                     <button id="btnBonus" class="btn btn-secondary">Kết quả bổ sung</button>
+                    <button id="btnCombine4k9k" class="btn btn-secondary">Kết hợp 4 khung</button>
                 </div>
                 <div class="row" style="margin-top: 40px;">
                     <button id="btnClear" class="btn btn-secondary">Đánh lại</button>
@@ -351,7 +352,7 @@
                         </div>
                     </div>    
                 </div>
-                <div name="bonus-result-screen" style="width: 100%;">
+                <div name="bonus-result-screen" class="hide" style="width: 100%;">
                     <div class="row" style="margin-top: 10px;">
                         <div class="col-md-3">
                             <label>Khung 1 + 2</label>
@@ -423,6 +424,135 @@
                             <div class="row">
                                 <div class="col-md-12" name="result_money_add_9st_1st"></div>                   
                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div name="combine-4k-9k-screen" class="hide" style="width:100%;">
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-md-6">
+                            <label>Khung 1</label>
+                            <div class="row">
+                                <div class="col-md-12" id="combine_4k_9k_1st_frame"></div>                   
+                           </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Kết quả tính theo công thức 4 khung</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_4k_9k_1st_frame"></div>
+                                <label name="money_predict_chan_combine_1"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-md-6">
+                            <label>Khung 2</label>
+                            <div class="row">
+                                <div class="col-md-12" id="combine_4k_9k_2st_frame"></div>                   
+                           </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Kết quả tính theo công thức 4 khung</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_4k_9k_2st_frame"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-md-6">
+                            <label>Khung 3</label>
+                            <div class="row">
+                                <div class="col-md-12" id="combine_4k_9k_3st_frame"></div>                   
+                           </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Kết quả tính theo công thức 4 khung</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_4k_9k_3st_frame"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-md-6">
+                            <label>Khung 4</label>
+                            <div class="row">
+                                <div class="col-md-12" id="combine_4k_9k_4st_frame"></div>                   
+                           </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Kết quả tính theo công thức 4 khung</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_4k_9k_4st_frame"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-md-6">
+                            <label>Khung 5</label>
+                            <div class="row">
+                                <div class="col-md-12" id="combine_4k_9k_5st_frame"></div>                   
+                           </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Kết quả tính theo công thức 4 khung</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_4k_9k_5st_frame"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-md-6">
+                            <label>Khung 6</label>
+                            <div class="row">
+                                <div class="col-md-12" id="combine_4k_9k_6st_frame"></div>                   
+                           </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Kết quả tính theo công thức 4 khung</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_4k_9k_6st_frame"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-md-6">
+                            <label>Khung 7</label>
+                            <div class="row">
+                                <div class="col-md-12" id="combine_4k_9k_7st_frame"></div>                   
+                           </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Kết quả tính theo công thức 4 khung</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_4k_9k_7st_frame"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-md-6">
+                            <label>Khung 8</label>
+                            <div class="row">
+                                <div class="col-md-12" id="combine_4k_9k_8st_frame"></div>                   
+                           </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Kết quả tính theo công thức 4 khung</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_4k_9k_8st_frame"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-md-6">
+                            <label>Khung 9</label>
+                            <div class="row">
+                                <div class="col-md-12" id="combine_4k_9k_9st_frame"></div>                   
+                           </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Kết quả tính theo công thức 4 khung</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_4k_9k_9st_frame"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
