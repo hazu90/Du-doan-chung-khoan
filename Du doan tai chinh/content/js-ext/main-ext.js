@@ -110,7 +110,7 @@ function btnExact_Click(){
         }
         
     }
-    
+    show_combine_result.show();
 };
 function btnFail_Click(){
     append_trung_or_truot(false);
@@ -166,6 +166,8 @@ function btnFail_Click(){
         }
         
     }
+
+    show_combine_result.show();
 };
 function append_trung_or_truot(is_trung){
     var html_trung ='<div class="dudoan trung">T</div>';
@@ -701,6 +703,16 @@ function init_page(){
     $('div[name=result_money_add_7st_8st]').html('');
     $('div[name=result_money_add_8st_9st]').html('');
     $('div[name=result_money_add_9st_1st]').html('');
+
+    $('#result_4k_9k_1st_frame').html('');
+    $('#result_4k_9k_2st_frame').html('');
+    $('#result_4k_9k_3st_frame').html('');
+    $('#result_4k_9k_4st_frame').html('');
+    $('#result_4k_9k_5st_frame').html('');
+    $('#result_4k_9k_6st_frame').html('');
+    $('#result_4k_9k_7st_frame').html('');
+    $('#result_4k_9k_8st_frame').html('');
+    $('#result_4k_9k_9st_frame').html('');
 }
 
 function init_data() {
@@ -784,6 +796,13 @@ function init_data() {
     localStorage.setItem(global_key.nine_frame_9st_frame.ftf_key, JSON.stringify([true, false, true, true, false, true, true, false, true]));
     localStorage.setItem(global_key.nine_frame_9st_frame.fft_key, JSON.stringify([false, true, false, false, true, false, false, true, false]));
     localStorage.setItem(global_key.nine_frame_9st_frame.fff_key, JSON.stringify([false, false, true, false, false, true, false, false, true]));
+
+    localStorage.setItem('predict-t-t-t', JSON.stringify([false, false, false, false, false, false, false, false]));
+    localStorage.setItem('predict-t-t-f', JSON.stringify([false, true, false, true, false, true, false, true]));
+    localStorage.setItem('predict-t-f-t', JSON.stringify([true, false, true, false, true, false, true, false]));
+    localStorage.setItem('predict-f-t-t', JSON.stringify([false, false, false, false, false, false, false, false]));
+    localStorage.setItem('predict-f-t-f', JSON.stringify([false, true, false, true, false, true, false, true]));
+    localStorage.setItem('predict-f-f-t', JSON.stringify([false, false, false, false, false, false, false, false]));
 
     localStorage.setItem('ext-predict-t-t-f', JSON.stringify([false, true, false, true, false, true, false, true]));
     localStorage.setItem('ext-predict-t-f-t', JSON.stringify([true, false, true, false, true, false, true, false]));

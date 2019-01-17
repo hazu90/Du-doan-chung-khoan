@@ -12,6 +12,12 @@
     <script src="content/js/library.js"></script>
     <script src="content/js-ext/global-key-ext.js"></script>
     <script src="content/js-ext/main-ext.js"></script>
+    <script src="content/js-ext/predict_lien_tiep_combine.js"></script>
+    <script src="content/js-ext/predict_le_combine.js"></script>
+    <script src="content/js-ext/predict_normal_combine.js"></script>
+    <script src="content/js-ext/predict_tachbiet_combine.js"></script>
+    <script src="content/js-ext/predict-chan-combine.js"></script>
+    <script src="content/js-ext/main-ext-combine.js"></script>
 </head>
 <body>
     <div id="maincontent">
@@ -24,7 +30,7 @@
                     <button id="btnFail" class="btn btn-danger">Ngược</button>
                     <button id="btnRollback" class="btn btn-primary">Trở lại bước trước</button>
                     <button id="btnBonus" class="btn btn-secondary">Kết quả bổ sung</button>
-                    <button id="btnCombine4k9k" class="btn btn-secondary">Kết hợp 4 khung</button>
+                    <button id="btnCombine4k9k" class="btn btn-warning">Kết hợp 4 khung</button>
                 </div>
                 <div class="row" style="margin-top: 40px;">
                     <button id="btnClear" class="btn btn-secondary">Đánh lại</button>
@@ -431,16 +437,17 @@
                     <div class="row" style="margin-top: 10px;">
                         <div class="col-md-6">
                             <label>Khung 1</label>
-                            <div class="row">
-                                <div class="col-md-12" id="combine_4k_9k_1st_frame"></div>                   
-                           </div>
+                            <div class="col-md-12" id="combine_4k_9k_1st_frame"></div>                   
                         </div>
                         <div class="col-md-6">
                             <label>Kết quả tính theo công thức 4 khung</label>
-                            <div class="row">
-                                <div class="col-md-12" id="result_4k_9k_1st_frame"></div>
-                                <label name="money_predict_chan_combine_1"></label>
-                            </div>
+                            <div class="col-md-12" id="result_4k_9k_1st_frame"></div>
+                            <label name="money_predict_continuous_1"></label>
+                            <label name="money_predict_chan_combine_1"></label>
+                            <label name="money_predict_le_combine_1"></label>
+                            <label name="money_predict_cap_lien_tiep_1"></label>
+                            <label name="money_predict_cap_doi_mot_1"></label>
+                            
                         </div>
                     </div>
                     <div class="row" style="margin-top: 10px;">
@@ -454,6 +461,11 @@
                             <label>Kết quả tính theo công thức 4 khung</label>
                             <div class="row">
                                 <div class="col-md-12" id="result_4k_9k_2st_frame"></div>
+                                <label name="money_predict_continuous_2"></label>
+                                <label name="money_predict_chan_combine_2"></label>
+                                <label name="money_predict_le_combine_2"></label>
+                                <label name="money_predict_cap_lien_tiep_2"></label>
+                                <label name="money_predict_cap_doi_mot_2"></label>
                             </div>
                         </div>
                     </div>
@@ -468,6 +480,11 @@
                             <label>Kết quả tính theo công thức 4 khung</label>
                             <div class="row">
                                 <div class="col-md-12" id="result_4k_9k_3st_frame"></div>
+                                <label name="money_predict_continuous_3"></label>
+                                <label name="money_predict_chan_combine_3"></label>
+                                <label name="money_predict_le_combine_3"></label>
+                                <label name="money_predict_cap_lien_tiep_3"></label>
+                                <label name="money_predict_cap_doi_mot_3"></label>
                             </div>
                         </div>
                     </div>
@@ -482,6 +499,11 @@
                             <label>Kết quả tính theo công thức 4 khung</label>
                             <div class="row">
                                 <div class="col-md-12" id="result_4k_9k_4st_frame"></div>
+                                <label name="money_predict_continuous_4"></label>
+                                <label name="money_predict_chan_combine_4"></label>
+                                <label name="money_predict_le_combine_4"></label>
+                                <label name="money_predict_cap_lien_tiep_4"></label>
+                                <label name="money_predict_cap_doi_mot_4"></label>
                             </div>
                         </div>
                     </div>
@@ -496,6 +518,11 @@
                             <label>Kết quả tính theo công thức 4 khung</label>
                             <div class="row">
                                 <div class="col-md-12" id="result_4k_9k_5st_frame"></div>
+                                <label name="money_predict_continuous_5"></label>
+                                <label name="money_predict_chan_combine_5"></label>
+                                <label name="money_predict_le_combine_5"></label>
+                                <label name="money_predict_cap_lien_tiep_5"></label>
+                                <label name="money_predict_cap_doi_mot_5"></label>
                             </div>
                         </div>
                     </div>
@@ -510,6 +537,11 @@
                             <label>Kết quả tính theo công thức 4 khung</label>
                             <div class="row">
                                 <div class="col-md-12" id="result_4k_9k_6st_frame"></div>
+                                <label name="money_predict_continuous_6"></label>
+                                <label name="money_predict_chan_combine_6"></label>
+                                <label name="money_predict_le_combine_6"></label>
+                                <label name="money_predict_cap_lien_tiep_6"></label>
+                                <label name="money_predict_cap_doi_mot_6"></label>
                             </div>
                         </div>
                     </div>
@@ -524,6 +556,11 @@
                             <label>Kết quả tính theo công thức 4 khung</label>
                             <div class="row">
                                 <div class="col-md-12" id="result_4k_9k_7st_frame"></div>
+                                <label name="money_predict_continuous_7"></label>
+                                <label name="money_predict_chan_combine_7"></label>
+                                <label name="money_predict_le_combine_7"></label>
+                                <label name="money_predict_cap_lien_tiep_7"></label>
+                                <label name="money_predict_cap_doi_mot_7"></label>
                             </div>
                         </div>
                     </div>
@@ -538,6 +575,11 @@
                             <label>Kết quả tính theo công thức 4 khung</label>
                             <div class="row">
                                 <div class="col-md-12" id="result_4k_9k_8st_frame"></div>
+                                <label name="money_predict_continuous_8"></label>
+                                <label name="money_predict_chan_combine_8"></label>
+                                <label name="money_predict_le_combine_8"></label>
+                                <label name="money_predict_cap_lien_tiep_8"></label>
+                                <label name="money_predict_cap_doi_mot_8"></label>
                             </div>
                         </div>
                     </div>
@@ -552,6 +594,11 @@
                             <label>Kết quả tính theo công thức 4 khung</label>
                             <div class="row">
                                 <div class="col-md-12" id="result_4k_9k_9st_frame"></div>
+                                <label name="money_predict_continuous_9"></label>
+                                <label name="money_predict_chan_combine_9"></label>
+                                <label name="money_predict_le_combine_9"></label>
+                                <label name="money_predict_cap_lien_tiep_9"></label>
+                                <label name="money_predict_cap_doi_mot_9"></label>
                             </div>
                         </div>
                     </div>
