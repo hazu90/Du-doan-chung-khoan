@@ -29,6 +29,7 @@
                     
                 </div>
                 <div class="row" style="margin-top: 40px;">
+                    <button id="btnShowTotal" class="btn btn-warning">Kết quả tổng</button>
                     <button id="btnClear" class="btn btn-secondary">Đánh lại</button>
                 </div>
                 <div class="clear-top"></div>
@@ -61,89 +62,107 @@
                         </div>
                     </div>
                 </div>
-
-
-                <div class="clear-top"></div>
-                <div class="row" id="lst_ket_qua" style="margin-top: 20px;">
+                
+                <div id="wrap_base_du_doan" style="width:100%;" >
+                    <div class="clear-top"></div>
+                    <div class="row" id="lst_ket_qua" style="margin-top: 20px;"></div>
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-md-5">
+                            <label>Khung theo 3 kết quả gần nhất</label>
+                            <div class="row"><div class="col-md-12" id="result_predict_continuous"></div></div>
+                        </div>
+                        <div class="col-md-7">
+                            <label name="money_predict_continuous">Số tiền :</label>
+                        </div>
+                    </div>
+                    <div class="clear-top"></div>
+                    <div class="row" id="lst_ket_qua_chan" style="margin-top: 20px;"></div>
+                    <div class="row" style="margin-top:10px;">
+                        <div class="col-md-5">
+                            <label>Khung theo 3 kết quả chẵn gần nhất</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_predict_chan"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <label name="money_predict_chan">Số tiền :</label>
+                        </div>
+                    </div>
+                    <div class="clear-top"></div>
+                    <div class="row" id="lst_ket_qua_le" style="margin-top: 20px;">
+                    </div>
+                    <div class="row" style="margin-top:10px;">
+                        <div class="col-md-5">
+                            <label>Khung theo 3 kết quả lẻ gần nhất</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_predict_le"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <label name="money_predict_le">Số tiền :</label>
+                        </div>
+                    </div>
+                    <div class="clear-top"></div>
+                    <div class="row" id="lst_ket_qua_cap_doi_mot" style="margin-top: 20px;"></div>
+                    <div class="row" style="margin-top:10px;">
+                        <div class="col-md-5">
+                            <label>Khung theo 3 kết quả cặp từng đôi một gần nhất</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_predict_cap_doi_mot"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <label name="money_predict_cap_doi_mot">Số tiền :</label>
+                        </div>
+                    </div>
                     
-                </div>
-                <div class="row" style="margin-top: 10px;">
-                    <div class="col-md-5">
-                        <label>Khung theo 3 kết quả gần nhất</label>
-                        <div class="row">
-                            <div class="col-md-12" id="result_predict_continuous"></div>                   
-                       </div>
-                    </div>
-                    <div class="col-md-7">
-                        <label name="money_predict_continuous">Số tiền :</label>
-                    </div>
-                </div>
-                
-                <div class="clear-top"></div>
-                <div class="row" id="lst_ket_qua_chan" style="margin-top: 20px;">
-
-                </div>
-                <div class="row" style="margin-top:10px;">
-                    <div class="col-md-5">
-                        <label>Khung theo 3 kết quả chẵn gần nhất</label>
-                        <div class="row">
-                            <div class="col-md-12" id="result_predict_chan"></div>
+                    <div class="clear-top"></div>
+                    <div class="row" id="lst_ket_qua_cap_lien_tiep" style="margin-top: 20px;"></div>
+                    <div class="row" style="margin-top:10px;">
+                        <div class="col-md-5">
+                            <label>Khung theo 3 kết quả cặp liên tiếp gần nhất</label>
+                            <div class="row">
+                                <div class="col-md-12" id="result_predict_cap_lien_tiep"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <label name="money_predict_cap_lien_tiep">Số tiền :</label>
                         </div>
                     </div>
-                    <div class="col-md-7">
-                        <label name="money_predict_chan">Số tiền :</label>
-                    </div>
+                    <div class="clear-top"></div>
                 </div>
-                
-                <div class="clear-top"></div>
-                <div class="row" id="lst_ket_qua_le" style="margin-top: 20px;">
-                </div>
-                <div class="row" style="margin-top:10px;">
-                    <div class="col-md-5">
-                        <label>Khung theo 3 kết quả lẻ gần nhất</label>
-                        <div class="row">
-                            <div class="col-md-12" id="result_predict_le"></div>
+                <div id="wrap_tinh_tong_du_doan" class="hide">
+                    <div class="clear-top"></div>
+                    <div class="row" style="margin-top:10px;" >
+                        <div class="col-md-12">
+                            <label>Khung chẵn + cặp từng đôi một</label>
+                            <div class="row" id="chan_cong_cap_doi_mot" style="margin-top: 20px;" ></div>
                         </div>
                     </div>
-                    <div class="col-md-7">
-                        <label name="money_predict_le">Số tiền :</label>
-                    </div>
-                </div>
-                
-                <div class="clear-top"></div>
-                <div class="row" id="lst_ket_qua_cap_doi_mot" style="margin-top: 20px;">
-
-                </div>
-                <div class="row" style="margin-top:10px;">
-                    <div class="col-md-5">
-                        <label>Khung theo 3 kết quả cặp từng đôi một gần nhất</label>
-                        <div class="row">
-                            <div class="col-md-12" id="result_predict_cap_doi_mot"></div>
+                    <div class="clear-top"></div>
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-md-12">
+                            <label>Khung lẻ + cặp liên tiếp</label>
+                            <div class="row" id="le_cong_cap_lien_tiep" style="margin-top: 20px;" ></div>
+                        </div>
+                    </div>    
+                    <div class="clear-top"></div>
+                    <div class="row" style="margin-top:10px;">
+                        <div class="col-md-12">
+                            <label>Khung 3 cặp liên tiếp + khung chẵn + cặp từng đôi một</label>
+                            <div class="row" id="chung_chan_cong_cap_doi_mot" style="margin-top:20px;"></div>
                         </div>
                     </div>
-                    <div class="col-md-7">
-                        <label name="money_predict_cap_doi_mot">Số tiền :</label>
-                    </div>
-                </div>
-                
-                <div class="clear-top"></div>
-                <div class="row" id="lst_ket_qua_cap_lien_tiep" style="margin-top: 20px;">
-
-                </div>
-                <div class="row" style="margin-top:10px;">
-                    <div class="col-md-5">
-                        <label>Khung theo 3 kết quả cặp liên tiếp gần nhất</label>
-                        <div class="row">
-                            <div class="col-md-12" id="result_predict_cap_lien_tiep"></div>
+                    
+                    <div class="clear-top"></div>
+                    <div class="row" style="margin-top: 10px">
+                        <div class="col-md-12">
+                            <label>Khung 3 cặp liên tiếp + khung lẻ + cặp liên tiếp</label>
+                            <div class="row" id="chung_le_cong_cap_lien_tiep" style="margin-top:20px;" ></div>
                         </div>
                     </div>
-                    <div class="col-md-7">
-                        <label name="money_predict_cap_lien_tiep">Số tiền :</label>
-                    </div>
-                </div>
-                <div class="clear-top"></div>
-                
-                
+                    
+                </div>                
             </div>
         </div>
     </div>

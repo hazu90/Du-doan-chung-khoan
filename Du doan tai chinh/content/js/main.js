@@ -38,6 +38,20 @@ $(document).ready(function(){
         }
         
     });
+
+    $('#btnShowTotal').off('click').on('click',function(){
+        if( $('div#wrap_base_du_doan').hasClass('hide')){
+            $(this).html('Kết quả tổng');
+            $('div#wrap_base_du_doan').removeClass('hide');
+            $('div#wrap_tinh_tong_du_doan').addClass('hide');
+        }
+        else{
+            $(this).html('Kết quả dự đoán');
+            $('div#wrap_base_du_doan').addClass('hide');
+            $('div#wrap_tinh_tong_du_doan').removeClass('hide');
+        }
+    });
+
     // Lấy ra danh sách các dự đoán từ trước của người dùng
     // var obj= localStorage.getItem(global_key.key_du_doan);
     // var arr_du_doan =[];
@@ -216,6 +230,7 @@ function btnExact_Click(){
     predict_lien_tiep.predict_next_step_series();
     predict_tach_biet.predict_next_step_series();
     general_lib.show_total();
+    show_total_ket_hop();
 };
 
 function btnFail_Click(){
@@ -229,6 +244,7 @@ function btnFail_Click(){
     predict_lien_tiep.predict_next_step_series();
     predict_tach_biet.predict_next_step_series();
     general_lib.show_total();
+    show_total_ket_hop();
 };
 
 function append_trung_or_truot(is_trung){
@@ -520,4 +536,79 @@ function show_predict_result_in_array(arr_predict,suggest_chose){
     $('label[name=money_predict_continuous]').data('typemoney', type_money);
     $('label[name=money_predict_continuous]').data('amountmoney', global_key.money[suggest_chose]);
     //general_lib.calc_total(type_money,global_key.money[suggest_chose]);
+}
+
+function show_total_ket_hop(){
+    var type_ket_qua_gan_nhat = $('label[name=money_predict_continuous]').data('typemoney');
+    var money_ket_qua_gan_nhat =$('label[name=money_predict_continuous]').data('amountmoney');
+    var parse_ket_qua_gan_nhat = parseFloat(money_ket_qua_gan_nhat);
+    parse_ket_qua_gan_nhat = type_ket_qua_gan_nhat == 'T' ? parse_ket_qua_gan_nhat : (-1) * parse_ket_qua_gan_nhat;
+
+    // Hiển thị kết quả chẵn + cặp từng đôi một
+    var type_chan = $('label[name=money_predict_chan]').data('typemoney');
+    var money_chan = $('label[name=money_predict_chan]').data('amountmoney');
+    var parse_money_chan = parseFloat(money_chan);
+    parse_money_chan = type_chan == 'T' ? parse_money_chan : (-1) * parse_money_chan;
+
+    var type_le = $('label[name=money_predict_le]').data('typemoney');
+    var money_le = $('label[name=money_predict_le]').data('amountmoney');
+    var parse_money_le = parseFloat(money_le);
+    parse_money_le = type_le == 'T' ? parse_money_le : (-1) * parse_money_le;
+
+    var type_cap_doi_mot = $('label[name=money_predict_cap_doi_mot]').data('typemoney');
+    var money_cap_doi_mot = $('label[name=money_predict_cap_doi_mot]').data('amountmoney');
+    var parse_money_cap_doi_mot = parseFloat(money_cap_doi_mot);
+    parse_money_cap_doi_mot = type_cap_doi_mot == 'T' ? parse_money_cap_doi_mot : (-1) * parse_money_cap_doi_mot;
+
+    var type_cap_doi_lien_tiep = $('label[name=money_predict_cap_lien_tiep]').data('typemoney');
+    var money_cap_doi_lien_tiep = $('label[name=money_predict_cap_lien_tiep]').data('amountmoney');
+    var parse_money_cap_doi_lien_tiep = parseFloat(money_cap_doi_lien_tiep);
+    parse_money_cap_doi_lien_tiep = type_cap_doi_lien_tiep == 'T' ? parse_money_cap_doi_lien_tiep : (-1) * parse_money_cap_doi_lien_tiep;
+
+    // Tính tổng kết quả chẵn + cặp đôi một
+    var html_trung = '<div class="dudoan trung">T</div>';
+    var html_truot = '<div class="dudoan truot">N</div>';
+    var html_khong = '<div class="dudoan khong">0</div>'
+    if(parse_money_chan + parse_money_cap_doi_mot ==0){
+        $('#chan_cong_cap_doi_mot').append(html_khong);
+    }
+    else if(parse_money_chan + parse_money_cap_doi_mot <0 ){
+        $('#chan_cong_cap_doi_mot').append(html_truot);
+    }
+    else{
+        $('#chan_cong_cap_doi_mot').append(html_trung);
+    }
+
+    // Tính tổng kết quả lẻ + cặp đôi liên tiếp
+    if(parse_money_le + parse_money_cap_doi_lien_tiep == 0){
+        $('#le_cong_cap_lien_tiep').append(html_khong);
+    }
+    else if(parse_money_le + parse_money_cap_doi_lien_tiep <0 ){
+        $('#le_cong_cap_lien_tiep').append(html_truot);
+    }
+    else{
+        $('#le_cong_cap_lien_tiep').append(html_trung);
+    }
+
+    // Tính tổng kết quả gần nhất + chẵn + cặp đôi một
+    if(parse_ket_qua_gan_nhat + parse_money_chan + parse_money_cap_doi_mot ==0){
+        $('#chung_chan_cong_cap_doi_mot').append(html_khong);
+    }
+    else if(parse_ket_qua_gan_nhat + parse_money_chan + parse_money_cap_doi_mot <0 ){
+        $('#chung_chan_cong_cap_doi_mot').append(html_truot);
+    }
+    else{
+        $('#chung_chan_cong_cap_doi_mot').append(html_trung);
+    }
+
+    // Tính tổng kết quả lẻ + cặp đôi liên tiếp
+    if(parse_ket_qua_gan_nhat + parse_money_le + parse_money_cap_doi_lien_tiep == 0){
+        $('#chung_le_cong_cap_lien_tiep').append(html_khong);
+    }
+    else if(parse_ket_qua_gan_nhat + parse_money_le + parse_money_cap_doi_lien_tiep <0 ){
+        $('#chung_le_cong_cap_lien_tiep').append(html_truot);
+    }
+    else{
+        $('#chung_le_cong_cap_lien_tiep').append(html_trung);
+    }
 }
