@@ -7,7 +7,10 @@ var global_key = {
     money :[1.05,3.21,7.64,16.74,35.41,74,153,315],
     curr_predict_continous:'curr_predict_continous',
     curr_index_continous : 'curr_index_continous',
-    curr_3_before_continous :'curr_3_before_continous'
+    curr_3_before_continous :'curr_3_before_continous',
+    dd_chan_cong_cap_doi_mot :'dd_chan_cong_cap_doi_mot',
+    doi_chan_cong_cap_doi_mot :'doi_chan_cong_cap_doi_mot',
+    luot_truoc_chan_cap_doi :'luot_truoc_chan_cap_doi'
 };
 $(document).ready(function(){
     $('#btnExact').off('click').on('click',btnExact_Click);
@@ -107,6 +110,21 @@ function init_data(){
     localStorage.setItem('ext-predict-f-t-t', JSON.stringify([true, true, false, false, true, true, false, false]));
     localStorage.setItem('ext-predict-f-t-f', JSON.stringify([false, true, false, true, false, true, false, true]));
     localStorage.setItem('ext-predict-f-f-t', JSON.stringify([true, false, true, false, true, false, true, false]));
+
+    localStorage.setItem('total-predict-t-t-t',JSON.stringify([false,false,false,false,false,false,false,false,false]));
+    localStorage.setItem('total-predict-f-f-f',JSON.stringify([true,true,true,true,true,true,true,true,true]));
+    localStorage.setItem('total-predict-t-f-f',JSON.stringify([false,false,true,true,false,false,true,true,false]));
+    localStorage.setItem('total-predict-f-t-t',JSON.stringify([true,true,false,false,true,true,false,false,true]));
+    localStorage.setItem('total-predict-t-f-t-f',JSON.stringify([false,true,false,true,false,true,false,true,false]));
+    localStorage.setItem('total-predict-t-f-t-t',JSON.stringify([true,true,false,false,true,true,false,false,true]));
+    localStorage.setItem('total-predict-f-t-f-t',JSON.stringify([true,false,true,false,true,false,true,false,true]));
+    localStorage.setItem('total-predict-f-t-f-f',JSON.stringify([false,false,true,true,false,false,true,true,false]));
+    localStorage.setItem('total-predict-t-t-f-f',JSON.stringify([false,false,true,true,false,false,true,true,false]));
+    localStorage.setItem('total-predict-t-t-f-t-f',JSON.stringify([false,true,false,true,false,true,false,true,false]));
+    localStorage.setItem('total-predict-t-t-f-t-t',JSON.stringify([true,true,false,false,true,true,false,false,true]));
+    localStorage.setItem('total-predict-f-f-t-t',JSON.stringify([true,true,false,false,true,true,false,false,true]));
+    localStorage.setItem('total-predict-f-f-t-f-t',JSON.stringify([true,false,true,false,true,false,true,false,true]));
+    localStorage.setItem('total-predict-f-f-t-f-f',JSON.stringify([false,false,true,true,false,false,true,true,false]));
 
     localStorage.setItem('total_N',0);
     localStorage.setItem('total_T',0);
@@ -574,9 +592,15 @@ function show_total_ket_hop(){
     }
     else if(parse_money_chan + parse_money_cap_doi_mot <0 ){
         $('#chan_cong_cap_doi_mot').append(html_truot);
+        var arr_dd_chan_cong_cap_doi_mot = general_lib.get_array_from_local_storage(global_key.dd_chan_cong_cap_doi_mot);
+        arr_dd_chan_cong_cap_doi_mot.push(false);
+        localStorage.setItem(global_key.dd_chan_cong_cap_doi_mot,JSON.stringify(arr_dd_chan_cong_cap_doi_mot));
     }
     else{
         $('#chan_cong_cap_doi_mot').append(html_trung);
+        var arr_dd_chan_cong_cap_doi_mot = general_lib.get_array_from_local_storage(global_key.dd_chan_cong_cap_doi_mot);
+        arr_dd_chan_cong_cap_doi_mot.push(true);
+        localStorage.setItem(global_key.dd_chan_cong_cap_doi_mot,JSON.stringify(arr_dd_chan_cong_cap_doi_mot));
     }
 
     // Tính tổng kết quả lẻ + cặp đôi liên tiếp
@@ -610,5 +634,52 @@ function show_total_ket_hop(){
     }
     else{
         $('#chung_le_cong_cap_lien_tiep').append(html_trung);
+    }
+}
+function show_total_predict_next(total_frame_key,is_doi_key,buoc_truoc_key,el_show_predict,el_show_money,du_doan_lech){
+    var arr_du_doan = general_lib.get_array_from_local_storage(total_frame_key);
+    if(arr_du_doan.length <3){
+        return;
+    }
+    var lgth_du_doan = arr_du_doan.length;
+    var three_combine = arr_du_doan[lgth_du_doan - 3] == true ? 'T' :'N';
+    three_combine += arr_du_doan[lgth_du_doan - 2] == true ? 'T' :'N' ;
+    three_combine += arr_du_doan[lgth_du_doan - 1] == true ? 'T' :'N' ;
+
+    var is_doi = false;
+    if(localStorage.getItem(is_doi_key) == null || localStorage.getItem(is_doi_key) == false ){
+        is_doi = false;
+    }
+    else{
+        is_doi = true;
+    }
+    if(is_doi){
+        var buoc_truoc = localStorage.getItem(buoc_truoc_key);
+        if(buoc_truoc == null) return; 
+        if(buoc_truoc == 'TNT'){
+            if(arr_du_doan[lgth_du_doan -1] == true){
+                var arr_predict_next = general_lib.get_array_from_local_storage('total-predict-t-f-t-t');
+                show_total_series_predict_html(el_show_predict,el_show_money,arr_predict_next,du_doan_lech);
+            }
+            else{
+
+            }
+        }
+    }
+    else{
+
+    }
+}
+function show_total_series_predict_html(element_id,element_money_id, arr_predict,curr_predict_index){
+    var html_truot ='<div class="predict-choosen">   <div class="arrow-up"></div>[dd]</div>';
+    var html_trung = '<div class="predict-choosen">   <div class="arrow-down"></div>[dd]</div>';
+    var html ='';
+    for(var index =0;index < arr_predict.length;index++){
+        if(arr_predict[index]){
+            html += html_trung.replace('[dd]','T' +(index + 1).toString() );
+        }
+        else{
+            html += html_truot.replace('[dd]','N' +(index + 1).toString() );
+        }
     }
 }
