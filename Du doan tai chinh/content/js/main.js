@@ -7,10 +7,16 @@ var global_key = {
     money :[1.05,3.21,7.64,16.74,35.41,74,153,315],
     curr_predict_continous:'curr_predict_continous',
     curr_index_continous : 'curr_index_continous',
-    curr_3_before_continous :'curr_3_before_continous',
-    dd_chan_cong_cap_doi_mot :'dd_chan_cong_cap_doi_mot',
-    doi_chan_cong_cap_doi_mot :'doi_chan_cong_cap_doi_mot',
-    luot_truoc_chan_cap_doi :'luot_truoc_chan_cap_doi'
+    curr_3_before_continous: 'curr_3_before_continous',
+    chan_cong_cap_doi_mot: {
+        du_doan_key: 'chan_cap_doi_mot_dd',
+        is_doi_key: 'chan_cap_doi_mot_doi',
+        luot_truoc_key: 'chan_cap_doi_mot_luot_truoc',
+        hien_thi_du_doan_key: 'chan_cap_doi_mot_hien_thi_html',
+        tien_du_doan_key: 'chan_cap_doi_hien_thi_tien_html',
+        du_doan_lech: 'chan_cap_doi_du_doan_lech',
+        de_xuat_truoc:'chan_cap_doi_de_xuat_truoc'
+    }
 };
 $(document).ready(function(){
     $('#btnExact').off('click').on('click',btnExact_Click);
@@ -661,7 +667,36 @@ function show_total_predict_next(total_frame_key,is_doi_key,buoc_truoc_key,el_sh
                 var arr_predict_next = general_lib.get_array_from_local_storage('total-predict-t-f-t-t');
                 show_total_series_predict_html(el_show_predict,el_show_money,arr_predict_next,du_doan_lech);
             }
-            else{
+            else {
+                var arr_predict_next = general_lib.get_array_from_local_storage('total-predict-t-f-t-f');
+                show_total_series_predict_html(el_show_predict, el_show_money, arr_predict_next, du_doan_lech);
+            }
+        }
+        else if (buoc_truoc == 'NTN') {
+            if (arr_du_doan[lgth_du_doan - 1] == true) {
+                var arr_predict_next = general_lib.get_array_from_local_storage('total-predict-f-t-f-t');
+                show_total_series_predict_html(el_show_predict, el_show_money, arr_predict_next, du_doan_lech);
+            }
+            else {
+                var arr_predict_next = general_lib.get_array_from_local_storage('total-predict-f-t-f-f');
+                show_total_series_predict_html(el_show_predict, el_show_money, arr_predict_next, du_doan_lech);
+            }
+        }
+        else if (buoc_truoc == 'TTN') {
+            if (arr_predict_next[lgth_du_doan - 1] == false) {
+                var arr_predict_next = general_lib.get_array_from_local_storage('total-predict-t-t-f-f');
+                show_total_series_predict_html(el_show_predict, el_show_money, arr_predict_next, du_doan_lech);
+            }
+            else {
+
+            }
+        }
+        else if (buoc_truoc == 'NNT') {
+            if (arr_predict_next[lgth_du_doan - 1] == true) {
+                var arr_predict_next = general_lib.get_array_from_local_storage('total-predict-f-f-t-t');
+                show_total_series_predict_html(el_show_predict, el_show_money, arr_predict_next, du_doan_lech);
+            }
+            else {
 
             }
         }
