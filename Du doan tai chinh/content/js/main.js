@@ -15,7 +15,8 @@ var global_key = {
         hien_thi_du_doan_key: 'khung_tong_4_khung_hien_thi_html',
         tien_du_doan_key: 'khung_tong_4_khung_hien_thi_tien_html',
         du_doan_lech: 'khung_tong_4_khung_du_doan_lech',
-        de_xuat_truoc:'khung_tong_4_khung_de_xuat_truoc'
+        de_xuat_truoc:'khung_tong_4_khung_de_xuat_truoc',
+        gen_du_doan_key:'generate_khung_tong_4_khung_dd'
     },
     ket_qua_gan_nhat:{
         du_doan_key: 'ket_qua_gan_nhat_dd',
@@ -24,7 +25,8 @@ var global_key = {
         hien_thi_du_doan_key: 'ket_qua_gan_nhat_hien_thi_html',
         tien_du_doan_key: 'ket_qua_gan_nhat_hien_thi_tien_html',
         du_doan_lech: 'ket_qua_gan_nhat_du_doan_lech',
-        de_xuat_truoc:'ket_qua_gan_nhat_de_xuat_truoc'
+        de_xuat_truoc:'ket_qua_gan_nhat_de_xuat_truoc',
+        gen_du_doan_key:'ket_qua_gan_nhat_dd'
     },
     chan_cong_cap_doi_mot: {
         du_doan_key: 'chan_cap_doi_mot_dd',
@@ -33,7 +35,8 @@ var global_key = {
         hien_thi_du_doan_key: 'chan_cap_doi_mot_hien_thi_html',
         tien_du_doan_key: 'chan_cap_doi_hien_thi_tien_html',
         du_doan_lech: 'chan_cap_doi_du_doan_lech',
-        de_xuat_truoc:'chan_cap_doi_de_xuat_truoc'
+        de_xuat_truoc:'chan_cap_doi_de_xuat_truoc',
+        gen_du_doan_key:'generate_chan_cap_doi_mot_dd'
     },
     le_cong_cap_lien_tiep: {
         du_doan_key: 'chan_cap_lien_tiep_dd',
@@ -42,7 +45,8 @@ var global_key = {
         hien_thi_du_doan_key: 'le_cap_lien_tiep_hien_thi_html',
         tien_du_doan_key: 'le_cap_lien_tiep_hien_thi_tien_html',
         du_doan_lech: 'chan_cap_lien_tiep_du_doan_lech',
-        de_xuat_truoc:'chan_cap_lien_tiep_de_xuat_truoc'
+        de_xuat_truoc:'chan_cap_lien_tiep_de_xuat_truoc',
+        gen_du_doan_key:'generate_chan_cap_lien_tiep_dd'
     },
     chung_chan_cap_doi_mot:{
         du_doan_key: 'chung_chan_cap_doi_mot_dd',
@@ -51,7 +55,8 @@ var global_key = {
         hien_thi_du_doan_key: 'chung_chan_cap_doi_hien_thi_html',
         tien_du_doan_key: 'chung_chan_cap_doi_tien_html',
         du_doan_lech: 'chung_chan_cap_doi_mot_du_doan_lech',
-        de_xuat_truoc:'chung_chan_cap_doi_mot_de_xuat_truoc'
+        de_xuat_truoc:'chung_chan_cap_doi_mot_de_xuat_truoc',
+        gen_du_doan_key:'generate_chung_chan_cap_doi_mot_dd'
     },
     chung_le_cap_lien_tiep:{
         du_doan_key: 'chung_le_cap_lien_tiep_dd',
@@ -60,7 +65,8 @@ var global_key = {
         hien_thi_du_doan_key: 'chung_le_lien_tiep_hien_thi_html',
         tien_du_doan_key: 'chung_le_lien_tiep_tien_html',
         du_doan_lech: 'chung_le_cap_lien_tiep_du_doan_lech',
-        de_xuat_truoc:'chung_le_cap_lien_tiep_de_xuat_truoc'
+        de_xuat_truoc:'chung_le_cap_lien_tiep_de_xuat_truoc',
+        gen_du_doan_key:'generate_chung_le_cap_lien_tiep_dd'
     }
 };
 $(document).ready(function(){
@@ -105,19 +111,6 @@ $(document).ready(function(){
             $('div#wrap_tinh_tong_du_doan').removeClass('hide');
         }
     });
-
-    // Lấy ra danh sách các dự đoán từ trước của người dùng
-    // var obj= localStorage.getItem(global_key.key_du_doan);
-    // var arr_du_doan =[];
-    // if(obj != null){
-    //     arr_du_doan = JSON.parse(obj);   
-    // }
-    
-    // if(arr_du_doan.length > 0){
-    //     for (var index = 0; index < arr_du_doan.length; index++) {
-    //         append_trung_or_truot(arr_du_doan[index]);
-    //     }
-    // }
     localStorage.clear();
     init_data();
 
@@ -207,6 +200,35 @@ function init_page(){
     $('label[name=money_predict_cap_lien_tiep]').html('Số tiền :');
     $('label[name=money_predict_cap_lien_tiep]').data('typemoney', 'N');
     $('label[name=money_predict_cap_lien_tiep]').data('amountmoney', 0);
+
+    $('#ket_qua_gan_nhat').html('');
+    $('#ket_qua_gan_nhat_hien_thi_html').html('');
+    $('label[name=ket_qua_gan_nhat_hien_thi_tien_html]').html('');
+
+    $('#khung_tong_4_khung').html('');
+    $('#khung_tong_4_khung_generate').html('');
+    $('#khung_tong_4_khung_hien_thi_html').html('');
+    $('label[name=khung_tong_4_khung_hien_thi_tien_html]').html('');
+
+    $('#chan_cong_cap_doi_mot').html('');
+    $('#chan_cong_cap_doi_mot_generate').html('');
+    $('#chan_cap_doi_mot_hien_thi_html').html('');
+    $('label[name=chan_cap_doi_hien_thi_tien_html]').html('');
+
+    $('#le_cong_cap_lien_tiep').html('');
+    $('#le_cong_cap_lien_tiep_generate').html('');
+    $('#le_cap_lien_tiep_hien_thi_html').html('');
+    $('label[name=le_cap_lien_tiep_hien_thi_tien_html]').html('');
+
+    $('#chung_chan_cong_cap_doi_mot').html('');
+    $('#chung_chan_cong_cap_doi_mot_generate').html('');
+    $('#chung_chan_cap_doi_hien_thi_html').html('');
+    $('label[name=chung_chan_cap_doi_tien_html]').html('');
+
+    $('#chung_le_cong_cap_lien_tiep').html('');
+    $('#chung_le_cong_cap_lien_tiep_generate').html('');
+    $('#chung_le_lien_tiep_hien_thi_html').html('');
+    $('label[name=chung_le_lien_tiep_tien_html]').html('');
 }
 
 function show_sample_detail(key){
@@ -613,10 +635,52 @@ function show_total_ket_hop(){
     var html_truot = '<div class="dudoan truot">N</div>';
     var html_khong = '<div class="dudoan khong">0</div>';
 
+    // Tính tổng kết quả lẻ + cặp đôi liên tiếp
+    var arr_dd_kqua_gan_nhat = general_lib.get_array_from_local_storage(global_key.key_du_doan);
+    if(arr_dd_kqua_gan_nhat[arr_dd_kqua_gan_nhat.length - 1]){
+        $('#ket_qua_gan_nhat').append(html_trung);
+        var arr_dd = general_lib.get_array_from_local_storage(global_key.ket_qua_gan_nhat.du_doan_key);
+        arr_dd.push(true);
+        localStorage.setItem(global_key.ket_qua_gan_nhat.du_doan_key,JSON.stringify(arr_dd));
+        var frame_e = global_key.ket_qua_gan_nhat;
+        show_total_predict_next(frame_e);
+    }
+    else{
+        $('#ket_qua_gan_nhat').append(html_truot);
+        var arr_dd = general_lib.get_array_from_local_storage(global_key.ket_qua_gan_nhat.du_doan_key);
+        arr_dd.push(false);
+        localStorage.setItem(global_key.ket_qua_gan_nhat.du_doan_key,JSON.stringify(arr_dd));
+
+        var frame_e = global_key.ket_qua_gan_nhat;
+        show_total_predict_next(frame_e);
+    }
+
     var total_N =parseFloat($('#totalN').text().trim()) ;
     var total_T =parseFloat($('#totalT').text().trim()) ;
     if(total_N == total_T){
         $('#khung_tong_4_khung').append(html_khong);
+        var arr_dd = general_lib.get_array_from_local_storage(global_key.khung_tong_4_khung.du_doan_key);
+        arr_dd.push(null);
+        localStorage.setItem(global_key.khung_tong_4_khung.du_doan_key,JSON.stringify(arr_dd));
+
+        if(arr_dd.length >1){
+            var arr_dd_gen = general_lib.get_array_from_local_storage(global_key.khung_tong_4_khung.gen_du_doan_key);
+            if(arr_dd[arr_dd.length -2] == null){
+                arr_dd_gen.push(null);
+                $('#khung_tong_4_khung_generate').append(html_khong);
+            }
+            else if(arr_dd[arr_dd.length -2] == arr_dd_kqua_gan_nhat[arr_dd_kqua_gan_nhat.length -1] ){
+                arr_dd_gen.push(true);
+                $('#khung_tong_4_khung_generate').append(html_trung);
+            }
+            else{
+                arr_dd_gen.push(false);
+                $('#khung_tong_4_khung_generate').append(html_truot);
+            }
+            localStorage.setItem(global_key.khung_tong_4_khung.gen_du_doan_key,JSON.stringify(arr_dd_gen));
+        }
+        var frame_e = global_key.khung_tong_4_khung;
+        show_total_predict_next(frame_e);
     }
     else if(total_N < total_T){
         $('#khung_tong_4_khung').append(html_trung);
@@ -624,8 +688,24 @@ function show_total_ket_hop(){
         arr_dd.push(true);
         localStorage.setItem(global_key.khung_tong_4_khung.du_doan_key,JSON.stringify(arr_dd));
 
+        if(arr_dd.length >1){
+            var arr_dd_gen = general_lib.get_array_from_local_storage(global_key.khung_tong_4_khung.gen_du_doan_key);
+            if(arr_dd[arr_dd.length -2] == null){
+                arr_dd_gen.push(null);
+                $('#khung_tong_4_khung_generate').append(html_khong);
+            }
+            else if(arr_dd[arr_dd.length -2] == arr_dd_kqua_gan_nhat[arr_dd_kqua_gan_nhat.length -1] ){
+                arr_dd_gen.push(true);
+                $('#khung_tong_4_khung_generate').append(html_trung);
+            }
+            else{
+                arr_dd_gen.push(false);
+                $('#khung_tong_4_khung_generate').append(html_truot);
+            }
+            localStorage.setItem(global_key.khung_tong_4_khung.gen_du_doan_key,JSON.stringify(arr_dd_gen));
+        }
         var frame_e = global_key.khung_tong_4_khung;
-        show_total_predict_next(frame_e.du_doan_key,frame_e.is_doi_key,frame_e.luot_truoc_key,frame_e.hien_thi_du_doan_key,frame_e.tien_du_doan_key,frame_e.du_doan_lech,frame_e.de_xuat_truoc );
+        show_total_predict_next(frame_e);
     }
     else{
         $('#khung_tong_4_khung').append(html_truot);
@@ -633,8 +713,24 @@ function show_total_ket_hop(){
         arr_dd.push(false);
         localStorage.setItem(global_key.khung_tong_4_khung.du_doan_key,JSON.stringify(arr_dd));
 
+        if(arr_dd.length >1){
+            var arr_dd_gen = general_lib.get_array_from_local_storage(global_key.khung_tong_4_khung.gen_du_doan_key);
+            if(arr_dd[arr_dd.length -2] == null){
+                arr_dd_gen.push(null);
+                $('#khung_tong_4_khung_generate').append(html_khong);
+            }
+            else if(arr_dd[arr_dd.length -2] == arr_dd_kqua_gan_nhat[arr_dd_kqua_gan_nhat.length -1] ){
+                arr_dd_gen.push(true);
+                $('#khung_tong_4_khung_generate').append(html_trung);
+            }
+            else{
+                arr_dd_gen.push(false);
+                $('#khung_tong_4_khung_generate').append(html_truot);
+            }
+            localStorage.setItem(global_key.khung_tong_4_khung.gen_du_doan_key,JSON.stringify(arr_dd_gen));
+        }
         var frame_e = global_key.khung_tong_4_khung;
-        show_total_predict_next(frame_e.du_doan_key,frame_e.is_doi_key,frame_e.luot_truoc_key,frame_e.hien_thi_du_doan_key,frame_e.tien_du_doan_key,frame_e.du_doan_lech,frame_e.de_xuat_truoc );
+        show_total_predict_next(frame_e);
     }
 
 
@@ -663,69 +759,127 @@ function show_total_ket_hop(){
     var money_cap_doi_lien_tiep = $('label[name=money_predict_cap_lien_tiep]').data('amountmoney');
     var parse_money_cap_doi_lien_tiep = parseFloat(money_cap_doi_lien_tiep);
     parse_money_cap_doi_lien_tiep = type_cap_doi_lien_tiep == 'T' ? parse_money_cap_doi_lien_tiep : (-1) * parse_money_cap_doi_lien_tiep;
-
-    
-
-    // Tính tổng kết quả lẻ + cặp đôi liên tiếp
-    if(parse_ket_qua_gan_nhat == 0){
-        $('#ket_qua_gan_nhat').append(html_khong);
-    }
-    else if(parse_ket_qua_gan_nhat  <0 ){
-        $('#ket_qua_gan_nhat').append(html_truot);
-        var arr_dd = general_lib.get_array_from_local_storage(global_key.ket_qua_gan_nhat.du_doan_key);
-        arr_dd.push(false);
-        localStorage.setItem(global_key.ket_qua_gan_nhat.du_doan_key,JSON.stringify(arr_dd));
-
-        var frame_e = global_key.ket_qua_gan_nhat;
-        show_total_predict_next(frame_e.du_doan_key,frame_e.is_doi_key,frame_e.luot_truoc_key,frame_e.hien_thi_du_doan_key,frame_e.tien_du_doan_key,frame_e.du_doan_lech,frame_e.de_xuat_truoc );
-    }
-    else{
-        $('#ket_qua_gan_nhat').append(html_trung);
-
-        var arr_dd = general_lib.get_array_from_local_storage(global_key.ket_qua_gan_nhat.du_doan_key);
-        arr_dd.push(true);
-        localStorage.setItem(global_key.ket_qua_gan_nhat.du_doan_key,JSON.stringify(arr_dd));
-
-        var frame_e = global_key.ket_qua_gan_nhat;
-        show_total_predict_next(frame_e.du_doan_key,frame_e.is_doi_key,frame_e.luot_truoc_key,frame_e.hien_thi_du_doan_key,frame_e.tien_du_doan_key,frame_e.du_doan_lech,frame_e.de_xuat_truoc );
-    }
-
-
     if(parse_money_chan + parse_money_cap_doi_mot ==0){
         $('#chan_cong_cap_doi_mot').append(html_khong);
+        var arr_dd_chan_cong_cap_doi_mot = general_lib.get_array_from_local_storage(global_key.chan_cong_cap_doi_mot.du_doan_key);
+        arr_dd_chan_cong_cap_doi_mot.push(null);
+        localStorage.setItem(global_key.chan_cong_cap_doi_mot.du_doan_key,JSON.stringify(arr_dd_chan_cong_cap_doi_mot));
+        if(arr_dd_chan_cong_cap_doi_mot.length >1){
+            var arr_dd_gen = general_lib.get_array_from_local_storage(global_key.chan_cong_cap_doi_mot.gen_du_doan_key);
+            if(arr_dd_chan_cong_cap_doi_mot[arr_dd_chan_cong_cap_doi_mot.length -2] == null){
+                arr_dd_gen.push(null);
+                $('#chan_cong_cap_doi_mot_generate').append(html_khong);
+            }
+            else if(arr_dd_chan_cong_cap_doi_mot[arr_dd_chan_cong_cap_doi_mot.length -2] == arr_dd_kqua_gan_nhat[arr_dd_kqua_gan_nhat.length -1] ){
+                arr_dd_gen.push(true);
+                $('#chan_cong_cap_doi_mot_generate').append(html_trung);
+            }
+            else{
+                arr_dd_gen.push(false);
+                $('#chan_cong_cap_doi_mot_generate').append(html_truot);
+            }
+            localStorage.setItem(global_key.chan_cong_cap_doi_mot.gen_du_doan_key,JSON.stringify(arr_dd_gen));
+        }
+        var frame_e = global_key.chan_cong_cap_doi_mot;
+        show_total_predict_next(frame_e);
     }
     else if(parse_money_chan + parse_money_cap_doi_mot <0 ){
         $('#chan_cong_cap_doi_mot').append(html_truot);
         var arr_dd_chan_cong_cap_doi_mot = general_lib.get_array_from_local_storage(global_key.chan_cong_cap_doi_mot.du_doan_key);
         arr_dd_chan_cong_cap_doi_mot.push(false);
         localStorage.setItem(global_key.chan_cong_cap_doi_mot.du_doan_key,JSON.stringify(arr_dd_chan_cong_cap_doi_mot));
-
+        if(arr_dd_chan_cong_cap_doi_mot.length >1){
+            var arr_dd_gen = general_lib.get_array_from_local_storage(global_key.chan_cong_cap_doi_mot.gen_du_doan_key);
+            if(arr_dd_chan_cong_cap_doi_mot[arr_dd_chan_cong_cap_doi_mot.length -2] == null){
+                arr_dd_gen.push(null);
+                $('#chan_cong_cap_doi_mot_generate').append(html_khong);
+            }
+            else if(arr_dd_chan_cong_cap_doi_mot[arr_dd_chan_cong_cap_doi_mot.length -2] == arr_dd_kqua_gan_nhat[arr_dd_kqua_gan_nhat.length -1] ){
+                arr_dd_gen.push(true);
+                $('#chan_cong_cap_doi_mot_generate').append(html_trung);
+            }
+            else{
+                arr_dd_gen.push(false);
+                $('#chan_cong_cap_doi_mot_generate').append(html_truot);
+            }
+            localStorage.setItem(global_key.chan_cong_cap_doi_mot.gen_du_doan_key,JSON.stringify(arr_dd_gen));
+        }
         var frame_e = global_key.chan_cong_cap_doi_mot;
-        show_total_predict_next(frame_e.du_doan_key,frame_e.is_doi_key,frame_e.luot_truoc_key,frame_e.hien_thi_du_doan_key,frame_e.tien_du_doan_key,frame_e.du_doan_lech,frame_e.de_xuat_truoc );
+        show_total_predict_next(frame_e);
     }
     else{
         $('#chan_cong_cap_doi_mot').append(html_trung);
         var arr_dd_chan_cong_cap_doi_mot = general_lib.get_array_from_local_storage(global_key.chan_cong_cap_doi_mot.du_doan_key);
         arr_dd_chan_cong_cap_doi_mot.push(true);
         localStorage.setItem(global_key.chan_cong_cap_doi_mot.du_doan_key,JSON.stringify(arr_dd_chan_cong_cap_doi_mot));
-
+        if(arr_dd_chan_cong_cap_doi_mot.length >1){
+            var arr_dd_gen = general_lib.get_array_from_local_storage(global_key.chan_cong_cap_doi_mot.gen_du_doan_key);
+            if(arr_dd_chan_cong_cap_doi_mot[arr_dd_chan_cong_cap_doi_mot.length -2] == null){
+                arr_dd_gen.push(null);
+                $('#chan_cong_cap_doi_mot_generate').append(html_khong);
+            }
+            else if(arr_dd_chan_cong_cap_doi_mot[arr_dd_chan_cong_cap_doi_mot.length -2] == arr_dd_kqua_gan_nhat[arr_dd_kqua_gan_nhat.length -1] ){
+                arr_dd_gen.push(true);
+                $('#chan_cong_cap_doi_mot_generate').append(html_trung);
+            }
+            else{
+                arr_dd_gen.push(false);
+                $('#chan_cong_cap_doi_mot_generate').append(html_truot);
+            }
+            localStorage.setItem(global_key.chan_cong_cap_doi_mot.gen_du_doan_key,JSON.stringify(arr_dd_gen));
+        }
         var frame_e = global_key.chan_cong_cap_doi_mot;
-        show_total_predict_next(frame_e.du_doan_key,frame_e.is_doi_key,frame_e.luot_truoc_key,frame_e.hien_thi_du_doan_key,frame_e.tien_du_doan_key,frame_e.du_doan_lech,frame_e.de_xuat_truoc );
+        show_total_predict_next(frame_e);
     }
 
     // Tính tổng kết quả lẻ + cặp đôi liên tiếp
     if(parse_money_le + parse_money_cap_doi_lien_tiep == 0){
         $('#le_cong_cap_lien_tiep').append(html_khong);
-        
+        var arr_dd = general_lib.get_array_from_local_storage(global_key.le_cong_cap_lien_tiep.du_doan_key);
+        arr_dd.push(null);
+        localStorage.setItem(global_key.le_cong_cap_lien_tiep.du_doan_key,JSON.stringify(arr_dd));
+        if(arr_dd.length >1){
+            var arr_dd_gen = general_lib.get_array_from_local_storage(global_key.le_cong_cap_lien_tiep.gen_du_doan_key);
+            if(arr_dd[arr_dd.length -2] == null){
+                arr_dd_gen.push(null);
+                $('#le_cong_cap_lien_tiep_generate').append(html_khong);
+            }
+            else if(arr_dd[arr_dd.length -2] == arr_dd_kqua_gan_nhat[arr_dd_kqua_gan_nhat.length -1] ){
+                arr_dd_gen.push(true);
+                $('#le_cong_cap_lien_tiep_generate').append(html_trung);
+            }
+            else{
+                arr_dd_gen.push(false);
+                $('#le_cong_cap_lien_tiep_generate').append(html_truot);
+            }
+            localStorage.setItem(global_key.le_cong_cap_lien_tiep.gen_du_doan_key,JSON.stringify(arr_dd_gen));
+        }
+        var frame_e = global_key.le_cong_cap_lien_tiep;
+        show_total_predict_next(frame_e);
     }
     else if(parse_money_le + parse_money_cap_doi_lien_tiep <0 ){
         $('#le_cong_cap_lien_tiep').append(html_truot);
         var arr_dd = general_lib.get_array_from_local_storage(global_key.le_cong_cap_lien_tiep.du_doan_key);
         arr_dd.push(false);
         localStorage.setItem(global_key.le_cong_cap_lien_tiep.du_doan_key,JSON.stringify(arr_dd));
-
+        if(arr_dd.length >1){
+            var arr_dd_gen = general_lib.get_array_from_local_storage(global_key.le_cong_cap_lien_tiep.gen_du_doan_key);
+            if(arr_dd[arr_dd.length -2] == null){
+                arr_dd_gen.push(null);
+                $('#le_cong_cap_lien_tiep_generate').append(html_khong);
+            }
+            else if(arr_dd[arr_dd.length -2] == arr_dd_kqua_gan_nhat[arr_dd_kqua_gan_nhat.length -1] ){
+                arr_dd_gen.push(true);
+                $('#le_cong_cap_lien_tiep_generate').append(html_trung);
+            }
+            else{
+                arr_dd_gen.push(false);
+                $('#le_cong_cap_lien_tiep_generate').append(html_truot);
+            }
+            localStorage.setItem(global_key.le_cong_cap_lien_tiep.gen_du_doan_key,JSON.stringify(arr_dd_gen));
+        }
         var frame_e = global_key.le_cong_cap_lien_tiep;
-        show_total_predict_next(frame_e.du_doan_key,frame_e.is_doi_key,frame_e.luot_truoc_key,frame_e.hien_thi_du_doan_key,frame_e.tien_du_doan_key,frame_e.du_doan_lech,frame_e.de_xuat_truoc );
+        show_total_predict_next(frame_e);
     }
     else{
         $('#le_cong_cap_lien_tiep').append(html_trung);
@@ -733,46 +887,148 @@ function show_total_ket_hop(){
         var arr_dd = general_lib.get_array_from_local_storage(global_key.le_cong_cap_lien_tiep.du_doan_key);
         arr_dd.push(true);
         localStorage.setItem(global_key.le_cong_cap_lien_tiep.du_doan_key,JSON.stringify(arr_dd));
-
+        if(arr_dd.length >1){
+            var arr_dd_gen = general_lib.get_array_from_local_storage(global_key.le_cong_cap_lien_tiep.gen_du_doan_key);
+            if(arr_dd[arr_dd.length -2] == null){
+                arr_dd_gen.push(null);
+                $('#le_cong_cap_lien_tiep_generate').append(html_khong);
+            }
+            else if(arr_dd[arr_dd.length -2] == arr_dd_kqua_gan_nhat[arr_dd_kqua_gan_nhat.length -1] ){
+                arr_dd_gen.push(true);
+                $('#le_cong_cap_lien_tiep_generate').append(html_trung);
+            }
+            else{
+                arr_dd_gen.push(false);
+                $('#le_cong_cap_lien_tiep_generate').append(html_truot);
+            }
+            localStorage.setItem(global_key.le_cong_cap_lien_tiep.gen_du_doan_key,JSON.stringify(arr_dd_gen));
+        }
         var frame_e = global_key.le_cong_cap_lien_tiep;
-        show_total_predict_next(frame_e.du_doan_key,frame_e.is_doi_key,frame_e.luot_truoc_key,frame_e.hien_thi_du_doan_key,frame_e.tien_du_doan_key,frame_e.du_doan_lech,frame_e.de_xuat_truoc );
+        show_total_predict_next(frame_e);
     }
 
     // Tính tổng kết quả gần nhất + chẵn + cặp đôi một
     if(parse_ket_qua_gan_nhat + parse_money_chan + parse_money_cap_doi_mot ==0){
         $('#chung_chan_cong_cap_doi_mot').append(html_khong);
+        var arr_dd = general_lib.get_array_from_local_storage(global_key.chung_chan_cap_doi_mot.du_doan_key);
+        arr_dd.push(null);
+        localStorage.setItem(global_key.chung_chan_cap_doi_mot.du_doan_key,JSON.stringify(arr_dd));
+        if(arr_dd.length >1){
+            var arr_dd_gen = general_lib.get_array_from_local_storage(global_key.chung_chan_cap_doi_mot.gen_du_doan_key);
+            if(arr_dd[arr_dd.length -2] == null){
+                arr_dd_gen.push(null);
+                $('#chung_chan_cong_cap_doi_mot_generate').append(html_khong);
+            }
+            else if(arr_dd[arr_dd.length -2] == arr_dd_kqua_gan_nhat[arr_dd_kqua_gan_nhat.length -1] ){
+                arr_dd_gen.push(true);
+                $('#chung_chan_cong_cap_doi_mot_generate').append(html_trung);
+            }
+            else{
+                arr_dd_gen.push(false);
+                $('#chung_chan_cong_cap_doi_mot_generate').append(html_truot);
+            }
+            localStorage.setItem(global_key.chung_chan_cap_doi_mot.gen_du_doan_key,JSON.stringify(arr_dd_gen));
+        }
+        var frame_e = global_key.chung_chan_cap_doi_mot;
+        show_total_predict_next(frame_e);
     }
     else if(parse_ket_qua_gan_nhat + parse_money_chan + parse_money_cap_doi_mot <0 ){
         $('#chung_chan_cong_cap_doi_mot').append(html_truot);
         var arr_dd = general_lib.get_array_from_local_storage(global_key.chung_chan_cap_doi_mot.du_doan_key);
         arr_dd.push(false);
         localStorage.setItem(global_key.chung_chan_cap_doi_mot.du_doan_key,JSON.stringify(arr_dd));
-
+        if(arr_dd.length >1){
+            var arr_dd_gen = general_lib.get_array_from_local_storage(global_key.chung_chan_cap_doi_mot.gen_du_doan_key);
+            if(arr_dd[arr_dd.length -2] == null){
+                arr_dd_gen.push(null);
+                $('#chung_chan_cong_cap_doi_mot_generate').append(html_khong);
+            }
+            else if(arr_dd[arr_dd.length -2] == arr_dd_kqua_gan_nhat[arr_dd_kqua_gan_nhat.length -1] ){
+                arr_dd_gen.push(true);
+                $('#chung_chan_cong_cap_doi_mot_generate').append(html_trung);
+            }
+            else{
+                arr_dd_gen.push(false);
+                $('#chung_chan_cong_cap_doi_mot_generate').append(html_truot);
+            }
+            localStorage.setItem(global_key.chung_chan_cap_doi_mot.gen_du_doan_key,JSON.stringify(arr_dd_gen));
+        }
         var frame_e = global_key.chung_chan_cap_doi_mot;
-        show_total_predict_next(frame_e.du_doan_key,frame_e.is_doi_key,frame_e.luot_truoc_key,frame_e.hien_thi_du_doan_key,frame_e.tien_du_doan_key,frame_e.du_doan_lech,frame_e.de_xuat_truoc );
+        show_total_predict_next(frame_e);
     }
     else{
         $('#chung_chan_cong_cap_doi_mot').append(html_trung);
         var arr_dd = general_lib.get_array_from_local_storage(global_key.chung_chan_cap_doi_mot.du_doan_key);
         arr_dd.push(true);
         localStorage.setItem(global_key.chung_chan_cap_doi_mot.du_doan_key,JSON.stringify(arr_dd));
-
+        if(arr_dd.length >1){
+            var arr_dd_gen = general_lib.get_array_from_local_storage(global_key.chung_chan_cap_doi_mot.gen_du_doan_key);
+            if(arr_dd[arr_dd.length -2] == null){
+                arr_dd_gen.push(null);
+                $('#chung_chan_cong_cap_doi_mot_generate').append(html_khong);
+            }
+            else if(arr_dd[arr_dd.length -2] == arr_dd_kqua_gan_nhat[arr_dd_kqua_gan_nhat.length -1] ){
+                arr_dd_gen.push(true);
+                $('#chung_chan_cong_cap_doi_mot_generate').append(html_trung);
+            }
+            else{
+                arr_dd_gen.push(false);
+                $('#chung_chan_cong_cap_doi_mot_generate').append(html_truot);
+            }
+            localStorage.setItem(global_key.chung_chan_cap_doi_mot.gen_du_doan_key,JSON.stringify(arr_dd_gen));
+        }
         var frame_e = global_key.chung_chan_cap_doi_mot;
-        show_total_predict_next(frame_e.du_doan_key,frame_e.is_doi_key,frame_e.luot_truoc_key,frame_e.hien_thi_du_doan_key,frame_e.tien_du_doan_key,frame_e.du_doan_lech,frame_e.de_xuat_truoc );
+        show_total_predict_next(frame_e);
     }
 
     // Tính tổng kết quả lẻ + cặp đôi liên tiếp
     if(parse_ket_qua_gan_nhat + parse_money_le + parse_money_cap_doi_lien_tiep == 0){
         $('#chung_le_cong_cap_lien_tiep').append(html_khong);
+        var arr_dd = general_lib.get_array_from_local_storage(global_key.chung_le_cap_lien_tiep.du_doan_key);
+        arr_dd.push(null);
+        localStorage.setItem(global_key.chung_le_cap_lien_tiep.du_doan_key,JSON.stringify(arr_dd));
+        if(arr_dd.length >1){
+            var arr_dd_gen = general_lib.get_array_from_local_storage(global_key.chung_le_cap_lien_tiep.gen_du_doan_key);
+            if(arr_dd[arr_dd.length -2] == null){
+                arr_dd_gen.push(null);
+                $('#chung_le_cong_cap_lien_tiep_generate').append(html_khong);
+            }
+            else if(arr_dd[arr_dd.length -2] == arr_dd_kqua_gan_nhat[arr_dd_kqua_gan_nhat.length -1] ){
+                arr_dd_gen.push(true);
+                $('#chung_le_cong_cap_lien_tiep_generate').append(html_trung);
+            }
+            else{
+                arr_dd_gen.push(false);
+                $('#chung_le_cong_cap_lien_tiep_generate').append(html_truot);
+            }
+            localStorage.setItem(global_key.chung_le_cap_lien_tiep.gen_du_doan_key,JSON.stringify(arr_dd_gen));
+        }
+        var frame_e = global_key.chung_le_cap_lien_tiep;
+        show_total_predict_next(frame_e);
     }
     else if(parse_ket_qua_gan_nhat + parse_money_le + parse_money_cap_doi_lien_tiep <0 ){
         $('#chung_le_cong_cap_lien_tiep').append(html_truot);
         var arr_dd = general_lib.get_array_from_local_storage(global_key.chung_le_cap_lien_tiep.du_doan_key);
         arr_dd.push(false);
         localStorage.setItem(global_key.chung_le_cap_lien_tiep.du_doan_key,JSON.stringify(arr_dd));
-
+        if(arr_dd.length >1){
+            var arr_dd_gen = general_lib.get_array_from_local_storage(global_key.chung_le_cap_lien_tiep.gen_du_doan_key);
+            if(arr_dd[arr_dd.length -2] == null){
+                arr_dd_gen.push(null);
+                $('#chung_le_cong_cap_lien_tiep_generate').append(html_khong);
+            }
+            else if(arr_dd[arr_dd.length -2] == arr_dd_kqua_gan_nhat[arr_dd_kqua_gan_nhat.length -1] ){
+                arr_dd_gen.push(true);
+                $('#chung_le_cong_cap_lien_tiep_generate').append(html_trung);
+            }
+            else{
+                arr_dd_gen.push(false);
+                $('#chung_le_cong_cap_lien_tiep_generate').append(html_truot);
+            }
+            localStorage.setItem(global_key.chung_le_cap_lien_tiep.gen_du_doan_key,JSON.stringify(arr_dd_gen));
+        }
         var frame_e = global_key.chung_le_cap_lien_tiep;
-        show_total_predict_next(frame_e.du_doan_key,frame_e.is_doi_key,frame_e.luot_truoc_key,frame_e.hien_thi_du_doan_key,frame_e.tien_du_doan_key,frame_e.du_doan_lech,frame_e.de_xuat_truoc );
+        show_total_predict_next(frame_e);
     }
     else{
         $('#chung_le_cong_cap_lien_tiep').append(html_trung);
@@ -780,16 +1036,42 @@ function show_total_ket_hop(){
         var arr_dd = general_lib.get_array_from_local_storage(global_key.chung_le_cap_lien_tiep.du_doan_key);
         arr_dd.push(true);
         localStorage.setItem(global_key.chung_le_cap_lien_tiep.du_doan_key,JSON.stringify(arr_dd));
-
+        if(arr_dd.length >1){
+            var arr_dd_gen = general_lib.get_array_from_local_storage(global_key.chung_le_cap_lien_tiep.gen_du_doan_key);
+            if(arr_dd[arr_dd.length -2] == null){
+                arr_dd_gen.push(null);
+                $('#chung_le_cong_cap_lien_tiep_generate').append(html_khong);
+            }
+            else if(arr_dd[arr_dd.length -2] == arr_dd_kqua_gan_nhat[arr_dd_kqua_gan_nhat.length -1] ){
+                arr_dd_gen.push(true);
+                $('#chung_le_cong_cap_lien_tiep_generate').append(html_trung);
+            }
+            else{
+                arr_dd_gen.push(false);
+                $('#chung_le_cong_cap_lien_tiep_generate').append(html_truot);
+            }
+            localStorage.setItem(global_key.chung_le_cap_lien_tiep.gen_du_doan_key,JSON.stringify(arr_dd_gen));
+        }
         var frame_e = global_key.chung_le_cap_lien_tiep;
-        show_total_predict_next(frame_e.du_doan_key,frame_e.is_doi_key,frame_e.luot_truoc_key,frame_e.hien_thi_du_doan_key,frame_e.tien_du_doan_key,frame_e.du_doan_lech,frame_e.de_xuat_truoc );
+        show_total_predict_next(frame_e);
     }
 }
-function show_total_predict_next(total_frame_key,is_doi_key,buoc_truoc_key,el_show_predict,el_show_money,du_doan_lech_key,day_du_doan_truoc_key){
-    var arr_du_doan = general_lib.get_array_from_local_storage(total_frame_key);
+function show_total_predict_next(frame_container){
+    var arr_du_doan = general_lib.get_array_from_local_storage(frame_container.gen_du_doan_key);
+    
+    if(arr_du_doan[arr_du_doan.length -1] == null){
+        show_total_series_predict_html(frame_container.hien_thi_du_doan_key,frame_container.tien_du_doan_key,[],0);
+        arr_du_doan.splice(arr_du_doan.length-1,1);
+        localStorage.setItem(frame_container.gen_du_doan_key,JSON.stringify(arr_du_doan));
+        return;
+    }
     if(arr_du_doan.length <3){
         return;
     }
+
+    var arr_danh_sach_danh = general_lib.get_array_from_local_storage(global_key.key_du_doan);
+    var lgt_danh_sach_danh = arr_danh_sach_danh.length;
+
     var lgth_du_doan = arr_du_doan.length;
     var three_combine = arr_du_doan[lgth_du_doan - 3] == true ? 'T' :'N';
     three_combine += arr_du_doan[lgth_du_doan - 2] == true ? 'T' :'N' ;
@@ -799,18 +1081,19 @@ function show_total_predict_next(total_frame_key,is_doi_key,buoc_truoc_key,el_sh
     predict_combine += arr_du_doan[lgth_du_doan - 2] == true ? 't-' :'f-' ;
     predict_combine += arr_du_doan[lgth_du_doan - 1] == true ? 't' :'f' ;
 
-    var du_doan_lech = localStorage.getItem(du_doan_lech_key) == null ? 0 : parseInt(localStorage.getItem(du_doan_lech_key)) ;
+    var du_doan_lech = localStorage.getItem(frame_container.du_doan_lech) == null ? 0 : parseInt(localStorage.getItem(frame_container.du_doan_lech)) ;
 
-    var arr_day_du_doan_truoc = general_lib.get_array_from_local_storage(day_du_doan_truoc_key);
+    var arr_day_du_doan_truoc = general_lib.get_array_from_local_storage(frame_container.de_xuat_truoc);
     if(arr_day_du_doan_truoc.length != 0){
-        if(du_doan_lech != (lgth_du_doan-1) && (arr_day_du_doan_truoc[du_doan_lech] != arr_du_doan[lgth_du_doan -1]) ){
+        if(du_doan_lech != (arr_day_du_doan_truoc.length-1) && (arr_day_du_doan_truoc[du_doan_lech] != arr_danh_sach_danh[lgt_danh_sach_danh -1]) ){
             du_doan_lech = du_doan_lech +1;
-            show_total_series_predict_html(el_show_predict,el_show_money,arr_day_du_doan_truoc,du_doan_lech);
+            show_total_series_predict_html(frame_container.hien_thi_du_doan_key,frame_container.tien_du_doan_key,arr_day_du_doan_truoc,du_doan_lech);
 
-            localStorage.setItem(buoc_truoc_key,'');
-            localStorage.setItem(is_doi_key,false);
-            localStorage.setItem(du_doan_lech_key,du_doan_lech);
-            localStorage.setItem(day_du_doan_truoc_key,JSON.stringify(arr_day_du_doan_truoc));
+            localStorage.setItem(frame_container.luot_truoc_key,'');
+            localStorage.setItem(frame_container.is_doi_key,false);
+            localStorage.setItem(frame_container.du_doan_lech,du_doan_lech);
+            localStorage.setItem(frame_container.de_xuat_truoc,JSON.stringify(arr_day_du_doan_truoc));
+            return;
         }
         else{
             du_doan_lech = 0;
@@ -818,122 +1101,122 @@ function show_total_predict_next(total_frame_key,is_doi_key,buoc_truoc_key,el_sh
     }
 
     var is_doi = false;
-    if(localStorage.getItem(is_doi_key) == null || localStorage.getItem(is_doi_key) == 'false' ){
+    if(localStorage.getItem(frame_container.is_doi_key) == null || localStorage.getItem(frame_container.is_doi_key) == 'false' ){
         is_doi = false;
     }
     else{
         is_doi = true;
     }
     if(is_doi){
-        var buoc_truoc = localStorage.getItem(buoc_truoc_key);
+        var buoc_truoc = localStorage.getItem(frame_container.luot_truoc_key);
         if(buoc_truoc == null) return; 
         if(buoc_truoc == 'TNT' || buoc_truoc == 'TTNT' ){
             if(arr_du_doan[lgth_du_doan -1] == true){
                 var arr_predict_next = general_lib.get_array_from_local_storage('total-predict-t-f-t-t');
-                show_total_series_predict_html(el_show_predict,el_show_money,arr_predict_next,0);
+                show_total_series_predict_html(frame_container.hien_thi_du_doan_key,frame_container.tien_du_doan_key,arr_predict_next,0);
 
-                localStorage.setItem(buoc_truoc_key,'');
-                localStorage.setItem(is_doi_key,false);
-                localStorage.setItem(du_doan_lech_key,0);
-                localStorage.setItem(day_du_doan_truoc_key,JSON.stringify(arr_predict_next));
+                localStorage.setItem(frame_container.luot_truoc_key,'');
+                localStorage.setItem(frame_container.is_doi_key,false);
+                localStorage.setItem(frame_container.du_doan_lech,0);
+                localStorage.setItem(frame_container.de_xuat_truoc,JSON.stringify(arr_predict_next));
             }
             else {
                 var arr_predict_next = general_lib.get_array_from_local_storage('total-predict-t-f-t-f');
-                show_total_series_predict_html(el_show_predict, el_show_money, arr_predict_next, 0);
+                show_total_series_predict_html(frame_container.hien_thi_du_doan_key,frame_container.tien_du_doan_key, arr_predict_next, 0);
 
-                localStorage.setItem(buoc_truoc_key,'');
-                localStorage.setItem(is_doi_key,false);
-                localStorage.setItem(du_doan_lech_key,0);
-                localStorage.setItem(day_du_doan_truoc_key,JSON.stringify(arr_predict_next));
+                localStorage.setItem(frame_container.luot_truoc_key,'');
+                localStorage.setItem(frame_container.is_doi_key,false);
+                localStorage.setItem(frame_container.du_doan_lech,0);
+                localStorage.setItem(frame_container.de_xuat_truoc,JSON.stringify(arr_predict_next));
             }
         }
         else if (buoc_truoc == 'NTN' || buoc_truoc == 'NNTN' ) {
             if (arr_du_doan[lgth_du_doan - 1] == true) {
                 var arr_predict_next = general_lib.get_array_from_local_storage('total-predict-f-t-f-t');
-                show_total_series_predict_html(el_show_predict, el_show_money, arr_predict_next, 0);
+                show_total_series_predict_html(frame_container.hien_thi_du_doan_key,frame_container.tien_du_doan_key, arr_predict_next, 0);
 
-                localStorage.setItem(buoc_truoc_key,'');
-                localStorage.setItem(is_doi_key,false);
-                localStorage.setItem(du_doan_lech_key,0);
-                localStorage.setItem(day_du_doan_truoc_key,JSON.stringify(arr_predict_next));
+                localStorage.setItem(frame_container.luot_truoc_key,'');
+                localStorage.setItem(frame_container.is_doi_key,false);
+                localStorage.setItem(frame_container.du_doan_lech,0);
+                localStorage.setItem(frame_container.de_xuat_truoc,JSON.stringify(arr_predict_next));
             }
             else {
                 var arr_predict_next = general_lib.get_array_from_local_storage('total-predict-f-t-f-f');
-                show_total_series_predict_html(el_show_predict, el_show_money, arr_predict_next, 0);
-                localStorage.setItem(buoc_truoc_key,'');
-                localStorage.setItem(is_doi_key,false);
-                localStorage.setItem(du_doan_lech_key,0);
-                localStorage.setItem(day_du_doan_truoc_key,JSON.stringify(arr_predict_next));
+                show_total_series_predict_html(frame_container.hien_thi_du_doan_key,frame_container.tien_du_doan_key, arr_predict_next, 0);
+                localStorage.setItem(frame_container.luot_truoc_key,'');
+                localStorage.setItem(frame_container.is_doi_key,false);
+                localStorage.setItem(frame_container.du_doan_lech,0);
+                localStorage.setItem(frame_container.de_xuat_truoc,JSON.stringify(arr_predict_next));
             }
         }
         else if (buoc_truoc == 'TTN') {
             if (arr_du_doan[lgth_du_doan - 1] == false) {
                 var arr_predict_next = general_lib.get_array_from_local_storage('total-predict-t-t-f-f');
-                show_total_series_predict_html(el_show_predict, el_show_money, arr_predict_next, 0);
-                localStorage.setItem(buoc_truoc_key,'');
-                localStorage.setItem(is_doi_key,false);
-                localStorage.setItem(du_doan_lech_key,0);
-                localStorage.setItem(day_du_doan_truoc_key,JSON.stringify(arr_predict_next));
+                show_total_series_predict_html(frame_container.hien_thi_du_doan_key,frame_container.tien_du_doan_key, arr_predict_next, 0);
+                localStorage.setItem(frame_container.luot_truoc_key,'');
+                localStorage.setItem(frame_container.is_doi_key,false);
+                localStorage.setItem(frame_container.du_doan_lech,0);
+                localStorage.setItem(frame_container.de_xuat_truoc,JSON.stringify(arr_predict_next));
             }
             else {
                  if(arr_du_doan[lgth_du_doan -1] == true){
-                    show_total_series_predict_html(el_show_predict,el_show_money,[],0);
-                    localStorage.setItem(buoc_truoc_key,'TTNT');  
-                    localStorage.setItem(is_doi_key,true);
-                    localStorage.setItem(du_doan_lech_key,0);
-                    localStorage.setItem(day_du_doan_truoc_key,JSON.stringify([]));
+                    show_total_series_predict_html(frame_container.hien_thi_du_doan_key,frame_container.tien_du_doan_key,[],0);
+                    localStorage.setItem(frame_container.luot_truoc_key,'TTNT');  
+                    localStorage.setItem(frame_container.is_doi_key,true);
+                    localStorage.setItem(frame_container.du_doan_lech,0);
+                    localStorage.setItem(frame_container.de_xuat_truoc,JSON.stringify([]));
                  }   
                  else{
-                    show_total_series_predict_html(el_show_predict,el_show_money,[],0);
-                    localStorage.setItem(buoc_truoc_key,'TTNN');    
-                    localStorage.setItem(is_doi_key,true);
-                    localStorage.setItem(du_doan_lech_key,0);
-                    localStorage.setItem(day_du_doan_truoc_key,JSON.stringify([]));
+                    show_total_series_predict_html(frame_container.hien_thi_du_doan_key,frame_container.tien_du_doan_key,[],0);
+                    localStorage.setItem(frame_container.luot_truoc_key,'TTNN');    
+                    localStorage.setItem(frame_container.is_doi_key,true);
+                    localStorage.setItem(frame_container.du_doan_lech,0);
+                    localStorage.setItem(frame_container.de_xuat_truoc,JSON.stringify([]));
                  }
             }
         }
         else if (buoc_truoc == 'NNT') {
             if (arr_du_doan[lgth_du_doan - 1] == true) {
                 var arr_predict_next = general_lib.get_array_from_local_storage('total-predict-f-f-t-t');
-                show_total_series_predict_html(el_show_predict, el_show_money, arr_predict_next, 0);
-                localStorage.setItem(buoc_truoc_key,'');    
-                localStorage.setItem(is_doi_key,false);
-                localStorage.setItem(du_doan_lech_key,0);
-                localStorage.setItem(day_du_doan_truoc_key,JSON.stringify(arr_predict_next));
+                show_total_series_predict_html(frame_container.hien_thi_du_doan_key,frame_container.tien_du_doan_key, arr_predict_next, 0);
+                localStorage.setItem(frame_container.luot_truoc_key,'');    
+                localStorage.setItem(frame_container.is_doi_key,false);
+                localStorage.setItem(frame_container.du_doan_lech,0);
+                localStorage.setItem(frame_container.de_xuat_truoc,JSON.stringify(arr_predict_next));
             }
             else {
                 if(arr_du_doan[lgth_du_doan -1] == true){
-                    show_total_series_predict_html(el_show_predict,el_show_money,[],0);
-                    localStorage.setItem(buoc_truoc_key,'NNTT');  
-                    localStorage.setItem(is_doi_key,true);
-                    localStorage.setItem(du_doan_lech_key,0);
-                    localStorage.setItem(day_du_doan_truoc_key,JSON.stringify([]));
+                    show_total_series_predict_html(frame_container.hien_thi_du_doan_key,frame_container.tien_du_doan_key,[],0);
+                    localStorage.setItem(frame_container.luot_truoc_key,'NNTT');  
+                    localStorage.setItem(frame_container.is_doi_key,true);
+                    localStorage.setItem(frame_container.du_doan_lech,0);
+                    localStorage.setItem(frame_container.de_xuat_truoc,JSON.stringify([]));
                }   
                else{
-                    show_total_series_predict_html(el_show_predict,el_show_money,[],0);
-                    localStorage.setItem(buoc_truoc_key,'NNTN');    
-                    localStorage.setItem(is_doi_key,true);
-                    localStorage.setItem(du_doan_lech_key,0);
-                    localStorage.setItem(day_du_doan_truoc_key,JSON.stringify([]));
+                    show_total_series_predict_html(frame_container.hien_thi_du_doan_key,frame_container.tien_du_doan_key,[],0);
+                    localStorage.setItem(frame_container.luot_truoc_key,'NNTN');    
+                    localStorage.setItem(frame_container.is_doi_key,true);
+                    localStorage.setItem(frame_container.du_doan_lech,0);
+                    localStorage.setItem(frame_container.de_xuat_truoc,JSON.stringify([]));
                }
             }
         }
     }
     else{
         if(three_combine == 'TNT' || three_combine == 'NTN' || three_combine == 'TTN' || three_combine =='NNT'){
-            show_total_series_predict_html(el_show_predict,el_show_money,[],0);
-            localStorage.setItem(buoc_truoc_key,three_combine);
-            localStorage.setItem(is_doi_key,true);
-            localStorage.setItem(du_doan_lech_key,0);
-            localStorage.setItem(day_du_doan_truoc_key,JSON.stringify([]));
+            show_total_series_predict_html(frame_container.hien_thi_du_doan_key,frame_container.tien_du_doan_key,[],0);
+            localStorage.setItem(frame_container.luot_truoc_key,three_combine);
+            localStorage.setItem(frame_container.is_doi_key,true);
+            localStorage.setItem(frame_container.du_doan_lech,0);
+            localStorage.setItem(frame_container.de_xuat_truoc,JSON.stringify([]));
         }
         else{
             var arr_predict_next = general_lib.get_array_from_local_storage('total-predict-'+ predict_combine);
-            show_total_series_predict_html(el_show_predict, el_show_money, arr_predict_next, 0);
-            localStorage.setItem(buoc_truoc_key,'');
-            localStorage.setItem(is_doi_key,false);
-            localStorage.setItem(du_doan_lech_key,0);
-            localStorage.setItem(day_du_doan_truoc_key,JSON.stringify(arr_predict_next));
+            show_total_series_predict_html(frame_container.hien_thi_du_doan_key,frame_container.tien_du_doan_key, arr_predict_next, 0);
+            localStorage.setItem(frame_container.luot_truoc_key,'');
+            localStorage.setItem(frame_container.is_doi_key,false);
+            localStorage.setItem(frame_container.du_doan_lech,0);
+            localStorage.setItem(frame_container.de_xuat_truoc,JSON.stringify(arr_predict_next));
         }
     }
 }
