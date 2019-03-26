@@ -1086,7 +1086,13 @@ function show_total_predict_next(frame_container){
 
     var arr_day_du_doan_truoc = general_lib.get_array_from_local_storage(frame_container.de_xuat_truoc);
     if(arr_day_du_doan_truoc.length != 0){
-        if(du_doan_lech != (arr_day_du_doan_truoc.length-1) && (arr_day_du_doan_truoc[du_doan_lech] != arr_danh_sach_danh[lgt_danh_sach_danh -1]) ){
+        var t_kq = $('label[name='+frame_container.tien_du_doan_key + ']').data('typemoney');
+        var m_kq = $('label[name=ket_qua_gan_nhat_hien_thi_tien_html]').data('moneyamount');
+        var parse_m = isNaN(parseFloat(m_kq)) ? 0 : parseFloat(m_kq);
+        parse_m = t_kq == 'T' ? parse_m : (-1) * parse_m;
+        var isT = parse_m > 0 ? true : false;
+
+        if(parse_m != 0 && du_doan_lech != (arr_day_du_doan_truoc.length-1) && (isT != arr_danh_sach_danh[lgt_danh_sach_danh -1]) ){
             du_doan_lech = du_doan_lech +1;
             show_total_series_predict_html(frame_container,arr_day_du_doan_truoc,du_doan_lech);
 
