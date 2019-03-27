@@ -39,14 +39,14 @@ var global_key = {
         gen_du_doan_key:'generate_chan_cap_doi_mot_dd'
     },
     le_cong_cap_lien_tiep: {
-        du_doan_key: 'chan_cap_lien_tiep_dd',
-        is_doi_key: 'chan_cap_lien_tiep_doi',
-        luot_truoc_key: 'chan_cap_lien_tiep_luot_truoc',
+        du_doan_key: 'le_cap_lien_tiep_dd',
+        is_doi_key: 'le_cap_lien_tiep_doi',
+        luot_truoc_key: 'le_cap_lien_tiep_luot_truoc',
         hien_thi_du_doan_key: 'le_cap_lien_tiep_hien_thi_html',
         tien_du_doan_key: 'le_cap_lien_tiep_hien_thi_tien_html',
-        du_doan_lech: 'chan_cap_lien_tiep_du_doan_lech',
-        de_xuat_truoc:'chan_cap_lien_tiep_de_xuat_truoc',
-        gen_du_doan_key:'generate_chan_cap_lien_tiep_dd'
+        du_doan_lech: 'le_cap_lien_tiep_du_doan_lech',
+        de_xuat_truoc:'le_cap_lien_tiep_de_xuat_truoc',
+        gen_du_doan_key:'generate_le_cap_lien_tiep_dd'
     },
     chung_chan_cap_doi_mot:{
         du_doan_key: 'chung_chan_cap_doi_mot_dd',
@@ -1070,8 +1070,12 @@ function show_total_predict_next(frame_container){
         return;
     }
 
+
     var arr_danh_sach_danh = general_lib.get_array_from_local_storage(global_key.key_du_doan);
     var lgt_danh_sach_danh = arr_danh_sach_danh.length;
+
+    var arr_dd = general_lib.get_array_from_local_storage(frame_container.du_doan_key);
+    var lgt_arr_dd = arr_dd.length;
 
     var lgth_du_doan = arr_du_doan.length;
     var three_combine = arr_du_doan[lgth_du_doan - 3] == true ? 'T' :'N';
@@ -1092,7 +1096,11 @@ function show_total_predict_next(frame_container){
         parse_m = t_kq == 'T' ? parse_m : (-1) * parse_m;
         var isT = parse_m > 0 ? true : false;
 
-        if(parse_m != 0 && du_doan_lech != (arr_day_du_doan_truoc.length-1) && (isT != arr_danh_sach_danh[lgt_danh_sach_danh -1]) ){
+        if(arr_dd[lgt_arr_dd - 1] == null || (arr_dd[lgt_arr_dd - 1] != null && parse_m ==0)){
+            show_total_series_predict_html(frame_container,arr_day_du_doan_truoc,du_doan_lech);
+            return;
+        }
+        else if(parse_m != 0 && du_doan_lech != (arr_day_du_doan_truoc.length-1) && (isT != arr_danh_sach_danh[lgt_danh_sach_danh -1]) ){
             du_doan_lech = du_doan_lech +1;
             show_total_series_predict_html(frame_container,arr_day_du_doan_truoc,du_doan_lech);
 
