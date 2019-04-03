@@ -141,116 +141,151 @@
                         <div class="row">
                             <div class="col-xs-2 col-md-2">
                                 <label>Tổng:</label>
+                                <br/>
+                                <div class="row"><label>KQ:     </label> <label id="modifiedResult" ></label></div>
+                                
+                                
                             </div>
-                            <div class="col-xs-10 col-md-10">
+                            <div class="col-xs-3 col-md-3">
                                 <label id="totalCompareTDD">0</label>
                             </div>
+                            <div class="col-xs-3 col-md-3">
+                                <label >Chia :</label>
+                                <input type="number" id="modified" />
+                            </div>
                         </div>
                     </div>
 
                     <div class="clear-top"></div>
-                    <div class="row" id="ket_qua_gan_nhat" style="margin-top: 20px;" ></div>
-                    <div class="row" style="margin-top:10px;" >
-                        <div class="col-md-5">
-                            <label>Khung theo 3 kết quả gần nhất</label>
-                            <div class="row">
-                                <div class="col-md-12" id="ket_qua_gan_nhat_hien_thi_html"></div>
+                    <div class="frame-container-predict" style="margin: 0;width:100%;">
+                        <div class="row frame-container-predict-child1" id="ket_qua_gan_nhat" style="margin-top: 20px;" ></div>
+                        <div class="row" style="margin-top:10px;" >
+                            <div class="col-md-5">
+                                <label>Khung theo 3 kết quả gần nhất</label>
+                                <div class="row frame-container-predict-child2">
+                                    <div class="col-md-12" id="ket_qua_gan_nhat_hien_thi_html"></div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-7">
-                            <label name="ket_qua_gan_nhat_hien_thi_tien_html">Số tiền :</label>
-                        </div>
-                    </div>
-                    <div class="clear-top"></div>
-                    <div class="row">
-                        <div class="col-md-5 col-xs-5" id="khung_tong_4_khung" style="margin-top: 20px;" ></div>
-                        <div class="col-md-5 col-xs-5" id="khung_tong_4_khung_generate" style="margin-top: 20px;" ></div>
-                    </div>
-                    
-                    <div class="row" style="margin-top:10px;" >
-                        <div class="col-md-5">
-                            <label>Khung tổng từ bộ 4 khung</label>
-                            <div class="row">
-                                <div class="col-md-12" id="khung_tong_4_khung_hien_thi_html"></div>
+                            <div class="col-md-7">
+                                <label name="ket_qua_gan_nhat_hien_thi_tien_html">Số tiền :</label>
+                                <button class="btn mini btn-danger" id="btn_dung_ket_qua_gan_nhat" style="padding: 2px 12px;" >Dừng</button>
+                                <button name="btn_an" class="btn mini btn-warning" id="btn_an_ket_qua_gan_nhat" style="padding: 2px 12px;" >Ẩn</button>
+                                <button name="btn_hien" class="btn mini btn-default hide"  style="padding: 2px 12px;" >Hiện</button>
                             </div>
-                        </div>
-                        <div class="col-md-7">
-                            <label name="khung_tong_4_khung_hien_thi_tien_html">Số tiền :</label>
-                            <button class="btn mini btn-danger" id="btn_dung_khung_tong_4_khung" style="padding: 2px 12px;" >Dừng</button>
                         </div>
                     </div>
 
-                    <div class="clear-top"></div>
-                    <div class="row">
-                        <div class="col-md-5 col-xs-5" id="chan_cong_cap_doi_mot" style="margin-top: 20px;" ></div>
-                        <div class="col-md-5 col-xs-5" id="chan_cong_cap_doi_mot_generate" style="margin-top: 20px;" ></div>
-                    </div>
                     
-                    <div class="row" style="margin-top:10px;" >
-                        <div class="col-md-5">
-                            <label>Khung chẵn + cặp từng đôi một</label>
-                            <div class="row">
-                                <div class="col-md-12" id="chan_cap_doi_mot_hien_thi_html"></div>
-                            </div>
+                    <div class="clear-top"></div>
+                    <div class="frame-container-predict" style="margin: 0;width:100%;">
+                        <div class="row  frame-container-predict-child1">
+                            <div class="col-md-5 col-xs-5" id="khung_tong_4_khung" style="margin-top: 20px;" ></div>
+                            <div class="col-md-5 col-xs-5" id="khung_tong_4_khung_generate" style="margin-top: 20px;" ></div>
                         </div>
-                        <div class="col-md-7">
-                            <label name="chan_cap_doi_hien_thi_tien_html">Số tiền :</label>
-                            <button class="btn mini btn-danger" id="btn_dung_chan_cap_doi" style="padding: 2px 12px;" >Dừng</button>
+                        
+                        <div class="row" style="margin-top:10px;" >
+                            <div class="col-md-5">
+                                <label>Khung tổng từ bộ 4 khung</label>
+                                <div class="row  frame-container-predict-child2">
+                                    <div class="col-md-12" id="khung_tong_4_khung_hien_thi_html"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <label name="khung_tong_4_khung_hien_thi_tien_html">Số tiền :</label>
+                                <button class="btn mini btn-danger" id="btn_dung_khung_tong_4_khung" style="padding: 2px 12px;" >Dừng</button>
+                                <button name="btn_an" class="btn mini btn-warning" id="btn_an_khung_tong_4_khung" style="padding: 2px 12px;" >Ẩn</button>
+                                <button name="btn_hien" class="btn mini btn-default hide"  style="padding: 2px 12px;" >Hiện</button>
+                            </div>
                         </div>
                     </div>
                     <div class="clear-top"></div>
-                    <div class="row">
-                        <div class="col-md-5 col-xs-5" id="le_cong_cap_lien_tiep" style="margin-top: 20px;" ></div>
-                        <div class="col-md-5 col-xs-5" id="le_cong_cap_lien_tiep_generate" style="margin-top: 20px;" ></div>
-                    </div>
-                    <div class="row" style="margin-top: 10px;">
-                        <div class="col-md-5">
-                            <label>Khung lẻ + cặp liên tiếp</label>
-                            <div class="row">
-                                <div class="col-md-12" id="le_cap_lien_tiep_hien_thi_html"></div>
+                    <div class="frame-container-predict" style="margin: 0;width:100%;">
+                        <div class="row  frame-container-predict-child1">
+                            <div class="col-md-5 col-xs-5" id="chan_cong_cap_doi_mot" style="margin-top: 20px;" ></div>
+                            <div class="col-md-5 col-xs-5" id="chan_cong_cap_doi_mot_generate" style="margin-top: 20px;" ></div>
+                        </div>
+                        
+                        <div class="row" style="margin-top:10px;" >
+                            <div class="col-md-5">
+                                <label>Khung chẵn + cặp từng đôi một</label>
+                                <div class="row  frame-container-predict-child2">
+                                    <div class="col-md-12" id="chan_cap_doi_mot_hien_thi_html"></div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-7">
-                            <label name="le_cap_lien_tiep_hien_thi_tien_html">Số tiền :</label>
-                            <button class="btn mini btn-danger" id="btn_dung_le_cap_lien_tiep" style="padding: 2px 12px;" >Dừng</button>
-                        </div>
-                    </div>    
-                    <div class="clear-top"></div>
-                    <div class="row">
-                        <div class="col-md-5 col-xs-5" id="chung_chan_cong_cap_doi_mot" style="margin-top: 20px;" ></div>
-                        <div class="col-md-5 col-xs-5" id="chung_chan_cong_cap_doi_mot_generate" style="margin-top: 20px;" ></div>
-                    </div>
-                    <div class="row" style="margin-top:10px;">
-                        <div class="col-md-5">
-                            <label>Khung 3 cặp liên tiếp + khung chẵn + cặp từng đôi một</label>
-                            <div class="row">
-                                <div class="col-md-12" id="chung_chan_cap_doi_hien_thi_html"></div>
+                            <div class="col-md-7">
+                                <label name="chan_cap_doi_hien_thi_tien_html">Số tiền :</label>
+                                <button class="btn mini btn-danger" id="btn_dung_chan_cap_doi" style="padding: 2px 12px;" >Dừng</button>
+                                <button name="btn_an" class="btn mini btn-warning" id="btn_an_chan_cap_doi" style="padding: 2px 12px;" >Ẩn</button>
+                                <button name="btn_hien" class="btn mini btn-default hide"  style="padding: 2px 12px;" >Hiện</button>
                             </div>
-                        </div>
-                        <div class="col-md-7">
-                            <label name="chung_chan_cap_doi_tien_html">Số tiền :</label>
-                            <button class="btn mini btn-danger" id="btn_dung_chung_chan_cap_doi" style="padding: 2px 12px;" >Dừng</button>
                         </div>
                     </div>
                     
                     <div class="clear-top"></div>
-                    <div class="row">
-                        <div class="col-md-5 col-xs-5" id="chung_le_cong_cap_lien_tiep" style="margin-top: 20px;" ></div>
-                        <div class="col-md-5 col-xs-5" id="chung_le_cong_cap_lien_tiep_generate" style="margin-top: 20px;" ></div>
-                    </div>
-                    <div class="row" style="margin-top: 10px">
-                        <div class="col-md-5">
-                            <label>Khung 3 cặp liên tiếp + khung lẻ + cặp liên tiếp</label>
-                            <div class="row">
-                                <div class="col-md-12" id="chung_le_lien_tiep_hien_thi_html"></div>
+                    <div class="frame-container-predict" style="margin: 0;width:100%;">
+                        <div class="row  frame-container-predict-child1">
+                            <div class="col-md-5 col-xs-5" id="le_cong_cap_lien_tiep" style="margin-top: 20px;" ></div>
+                            <div class="col-md-5 col-xs-5" id="le_cong_cap_lien_tiep_generate" style="margin-top: 20px;" ></div>
+                        </div>
+                        <div class="row" style="margin-top: 10px;">
+                            <div class="col-md-5">
+                                <label>Khung lẻ + cặp liên tiếp</label>
+                                <div class="row frame-container-predict-child2">
+                                    <div class="col-md-12" id="le_cap_lien_tiep_hien_thi_html"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <label name="le_cap_lien_tiep_hien_thi_tien_html">Số tiền :</label>
+                                <button class="btn mini btn-danger" id="btn_dung_le_cap_lien_tiep" style="padding: 2px 12px;" >Dừng</button>
+                                <button name="btn_an" class="btn mini btn-warning" id="btn_an_le_cap_lien_tiep" style="padding: 2px 12px;" >Ẩn</button>
+                                <button name="btn_hien" class="btn mini btn-default hide"  style="padding: 2px 12px;" >Hiện</button>
                             </div>
                         </div>
-                        <div class="col-md-7">
-                            <label name="chung_le_lien_tiep_tien_html">Số tiền :</label>
-                            <button class="btn mini btn-danger" id="btn_dung_chung_le_lien_tiep" style="padding: 2px 12px;" >Dừng</button>
+                    </div>
+                        
+                    <div class="clear-top"></div>
+                    <div class="frame-container-predict" style="margin: 0;width:100%;">
+                        <div class="row frame-container-predict-child1">
+                            <div class="col-md-5 col-xs-5" id="chung_chan_cong_cap_doi_mot" style="margin-top: 20px;" ></div>
+                            <div class="col-md-5 col-xs-5" id="chung_chan_cong_cap_doi_mot_generate" style="margin-top: 20px;" ></div>
+                        </div>
+                        <div class="row" style="margin-top:10px;">
+                            <div class="col-md-5">
+                                <label>Khung 3 cặp liên tiếp + khung chẵn + cặp từng đôi một</label>
+                                <div class="row frame-container-predict-child2">
+                                    <div class="col-md-12" id="chung_chan_cap_doi_hien_thi_html"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <label name="chung_chan_cap_doi_tien_html">Số tiền :</label>
+                                <button class="btn mini btn-danger" id="btn_dung_chung_chan_cap_doi" style="padding: 2px 12px;" >Dừng</button>
+                                <button name="btn_an" class="btn mini btn-warning" id="btn_an_chung_chan_cap_doi" style="padding: 2px 12px;" >Ẩn</button>
+                                <button name="btn_hien" class="btn mini btn-default hide"  style="padding: 2px 12px;" >Hiện</button>
+                            </div>
                         </div>
                     </div>
                     
+                    <div class="clear-top"></div>
+                    <div class="frame-container-predict" style="margin: 0;width:100%;">
+                        <div class="row frame-container-predict-child1">
+                            <div class="col-md-5 col-xs-5" id="chung_le_cong_cap_lien_tiep" style="margin-top: 20px;" ></div>
+                            <div class="col-md-5 col-xs-5" id="chung_le_cong_cap_lien_tiep_generate" style="margin-top: 20px;" ></div>
+                        </div>
+                        <div class="row" style="margin-top: 10px">
+                            <div class="col-md-5">
+                                <label>Khung 3 cặp liên tiếp + khung lẻ + cặp liên tiếp</label>
+                                <div class="row  frame-container-predict-child2">
+                                    <div class="col-md-12" id="chung_le_lien_tiep_hien_thi_html"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <label name="chung_le_lien_tiep_tien_html">Số tiền :</label>
+                                <button class="btn mini btn-danger" id="btn_dung_chung_le_lien_tiep" style="padding: 2px 12px;" >Dừng</button>
+                                <button name="btn_an" class="btn mini btn-warning" id="btn_an_chung_le_lien_tiep" style="padding: 2px 12px;" >Ẩn</button>
+                                <button name="btn_hien" class="btn mini btn-default hide"  style="padding: 2px 12px;" >Hiện</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>                
             </div>
         </div>
