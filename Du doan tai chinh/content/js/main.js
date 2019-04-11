@@ -1171,7 +1171,7 @@ function show_total_predict_next(frame_container){
     var lgt_arr_dd = arr_dd.length;
 
     var du_doan_lech = localStorage.getItem(frame_container.du_doan_lech) == null ? 0 : parseInt(localStorage.getItem(frame_container.du_doan_lech)) ;
-
+    var arr_du_doan = general_lib.get_array_from_local_storage(frame_container.gen_du_doan_key);
     var arr_day_du_doan_truoc = general_lib.get_array_from_local_storage(frame_container.de_xuat_truoc);
     if(arr_day_du_doan_truoc.length != 0){
         var t_kq = $('label[name='+frame_container.tien_du_doan_key + ']').data('typemoney');
@@ -1190,6 +1190,11 @@ function show_total_predict_next(frame_container){
                 localStorage.setItem(frame_container.is_doi_key,false);
                 localStorage.setItem(frame_container.du_doan_lech,du_doan_lech);
                 localStorage.setItem(frame_container.de_xuat_truoc,JSON.stringify(arr_day_du_doan_truoc));
+
+                if(arr_du_doan[arr_du_doan.length -1] == null){
+                    arr_du_doan.splice(arr_du_doan.length-1,1);
+                    localStorage.setItem(frame_container.gen_du_doan_key,JSON.stringify(arr_du_doan));
+                }
                 return;
             }
             else {
@@ -1202,6 +1207,11 @@ function show_total_predict_next(frame_container){
         }
         else if(parse_m ==0 ){
             show_total_series_predict_html(frame_container,arr_day_du_doan_truoc,du_doan_lech);
+
+            if(arr_du_doan[arr_du_doan.length -1] == null){
+                arr_du_doan.splice(arr_du_doan.length-1,1);
+                localStorage.setItem(frame_container.gen_du_doan_key,JSON.stringify(arr_du_doan));
+            }
             return;
         }
         else{
@@ -1209,10 +1219,9 @@ function show_total_predict_next(frame_container){
         }
     }
 
-    var arr_du_doan = general_lib.get_array_from_local_storage(frame_container.gen_du_doan_key);
+    
     
     if(arr_du_doan[arr_du_doan.length -1] == null){
-        //show_total_series_predict_html(frame_container,[],0);
         arr_du_doan.splice(arr_du_doan.length-1,1);
         localStorage.setItem(frame_container.gen_du_doan_key,JSON.stringify(arr_du_doan));
         return;
@@ -1358,6 +1367,7 @@ function show_total_predict_next_khung_le_caplt(frame_container){
     var lgt_arr_dd = arr_dd.length;
 
     var du_doan_lech = localStorage.getItem(frame_container.du_doan_lech) == null ? 0 : parseInt(localStorage.getItem(frame_container.du_doan_lech)) ;
+    var arr_du_doan = general_lib.get_array_from_local_storage(frame_container.gen_du_doan_key);
 
     var arr_day_du_doan_truoc = general_lib.get_array_from_local_storage(frame_container.de_xuat_truoc);
     if(arr_day_du_doan_truoc.length != 0){
@@ -1377,6 +1387,11 @@ function show_total_predict_next_khung_le_caplt(frame_container){
                 localStorage.setItem(frame_container.is_doi_key,false);
                 localStorage.setItem(frame_container.du_doan_lech,du_doan_lech);
                 localStorage.setItem(frame_container.de_xuat_truoc,JSON.stringify(arr_day_du_doan_truoc));
+
+                if(arr_du_doan[arr_du_doan.length -1] == null){
+                    arr_du_doan.splice(arr_du_doan.length-1,1);
+                    localStorage.setItem(frame_container.gen_du_doan_key,JSON.stringify(arr_du_doan));
+                }
                 return;
             }
             else {
@@ -1389,6 +1404,11 @@ function show_total_predict_next_khung_le_caplt(frame_container){
         }
         else if(parse_m ==0 ){
             show_total_series_predict_html(frame_container,arr_day_du_doan_truoc,du_doan_lech);
+            
+            if(arr_du_doan[arr_du_doan.length -1] == null){
+                arr_du_doan.splice(arr_du_doan.length-1,1);
+                localStorage.setItem(frame_container.gen_du_doan_key,JSON.stringify(arr_du_doan));
+            }
             return;
         }
         else{
@@ -1396,7 +1416,7 @@ function show_total_predict_next_khung_le_caplt(frame_container){
         }
     }
 
-    var arr_du_doan = general_lib.get_array_from_local_storage(frame_container.gen_du_doan_key);
+    
     
     if(arr_du_doan[arr_du_doan.length -1] == null){
         arr_du_doan.splice(arr_du_doan.length-1,1);
