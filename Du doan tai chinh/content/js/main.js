@@ -4,7 +4,7 @@ var global_key = {
     key_du_doan_le: 'le_all_du_doan',
     key_du_doan_chan_le_lien_tiep: 'lien_tiep_all_du_doan',
     key_du_doan_chan_le_tach_biet :'tach_biet_all_du_doan',
-    money :[1.05,3.21,7.64,16.74,35.41,74,153,315,640],
+    money :[1.05,3.21,7.64,16.74,35.41,74,153,315,640,1308.35,2682.12],
     curr_predict_continous:'curr_predict_continous',
     curr_index_continous : 'curr_index_continous',
     curr_3_before_continous: 'curr_3_before_continous',
@@ -122,7 +122,6 @@ $(document).ready(function(){
                 }
             }
         }
-        
     });
 
     $('#btnShowTotal').off('click').on('click',function(){
@@ -243,20 +242,30 @@ function init_data(){
     localStorage.setItem('ext-predict-f-t-f', JSON.stringify([false, true, false, true, false, true, false, true]));
     localStorage.setItem('ext-predict-f-f-t', JSON.stringify([true, false, true, false, true, false, true, false]));
 
-    localStorage.setItem('total-predict-t-t-t',JSON.stringify([false,false,false,false,false,false,false,false,false]));
-    localStorage.setItem('total-predict-f-f-f',JSON.stringify([true,true,true,true,true,true,true,true,true]));
+    localStorage.setItem('total-predict-t-t-t',JSON.stringify([false,false,false,false,false,false,false,false,false,false,false]));
+    localStorage.setItem('total-predict-f-f-f',JSON.stringify([true,true,true,true,true,true,true,true,true,true,true]));
     localStorage.setItem('total-predict-t-f-f',JSON.stringify([false,false,true,true,false,false,true,true,false]));
     localStorage.setItem('total-predict-f-t-t',JSON.stringify([true,true,false,false,true,true,false,false,true]));
-    localStorage.setItem('total-predict-t-f-t-f',JSON.stringify([false,true,false,true,false,true,false,true,false]));
+    localStorage.setItem('total-predict-t-f-t-f',JSON.stringify([false,true,false,true,false,true,false,true,false,true,false]));
     localStorage.setItem('total-predict-t-f-t-t',JSON.stringify([true,true,false,false,true,true,false,false,true]));
-    localStorage.setItem('total-predict-f-t-f-t',JSON.stringify([true,false,true,false,true,false,true,false,true]));
+    localStorage.setItem('total-predict-f-t-f-t',JSON.stringify([true,false,true,false,true,false,true,false,true,false,true]));
     localStorage.setItem('total-predict-f-t-f-f',JSON.stringify([false,false,true,true,false,false,true,true,false]));
     localStorage.setItem('total-predict-t-t-f-f',JSON.stringify([false,false,true,true,false,false,true,true,false]));
-    localStorage.setItem('total-predict-t-t-f-t-f',JSON.stringify([false,true,false,true,false,true,false,true,false]));
+    localStorage.setItem('total-predict-t-t-f-t-f',JSON.stringify([false,true,false,true,false,true,false,true,false,true,false]));
     localStorage.setItem('total-predict-t-t-f-t-t',JSON.stringify([true,true,false,false,true,true,false,false,true]));
     localStorage.setItem('total-predict-f-f-t-t',JSON.stringify([true,true,false,false,true,true,false,false,true]));
-    localStorage.setItem('total-predict-f-f-t-f-t',JSON.stringify([true,false,true,false,true,false,true,false,true]));
+    localStorage.setItem('total-predict-f-f-t-f-t',JSON.stringify([true,false,true,false,true,false,true,false,true,false,true]));
     localStorage.setItem('total-predict-f-f-t-f-f',JSON.stringify([false,false,true,true,false,false,true,true,false]));
+    
+    localStorage.setItem('set-money-zero',JSON.stringify(
+        ['total-predict-t-f-f',
+         'total-predict-f-t-t',
+         'total-predict-t-f-t-t',
+         'total-predict-f-t-f-f',
+         'total-predict-t-t-f-f',
+         'total-predict-t-t-f-t-t',
+         'total-predict-f-f-t-t',
+         'total-predict-f-f-t-f-f']));
 
     localStorage.setItem('total_N',0);
     localStorage.setItem('total_T',0);
@@ -1415,9 +1424,6 @@ function show_total_predict_next_khung_le_caplt(frame_container){
             du_doan_lech = 0;
         }
     }
-
-    
-    
     if(arr_du_doan[arr_du_doan.length -1] == null){
         arr_du_doan.splice(arr_du_doan.length-1,1);
         localStorage.setItem(frame_container.gen_du_doan_key,JSON.stringify(arr_du_doan));
@@ -1574,8 +1580,8 @@ function show_total_series_predict_html(frame_container, arr_predict,curr_predic
     else{
         var arr_dd = general_lib.get_array_from_local_storage(frame_container.du_doan_key);
         if(arr_dd[arr_dd.length -1] == null){
-            type_money = '';
-            so_tien = 0;
+                type_money = '';
+                so_tien = 0;
         }
         else{
             if(arr_predict[curr_predict_index] == arr_dd[arr_dd.length -1]){
@@ -1587,10 +1593,17 @@ function show_total_series_predict_html(frame_container, arr_predict,curr_predic
                 so_tien = global_key.money[curr_predict_index];
             }
         }
-
+        if( arr_predict.length >= 4 
+                &&  arr_predict[0]=== arr_predict[1] 
+                && arr_predict[2] === arr_predict[3]
+                && (   (arr_predict[0] === true && arr_predict[2] === false)
+                || (arr_predict[0] === false && arr_predict[2] === true))) {  
+                so_tien = so_tien * 0.0000001;
+        }
         $('label[name=' + frame_container.tien_du_doan_key +']').html('Số tiền : '+ type_money +' '+ so_tien  );
         $('label[name=' + frame_container.tien_du_doan_key +']').data('typemoney',type_money);
         $('label[name=' + frame_container.tien_du_doan_key +']').data('moneyamount',so_tien);
+
         for(var index =0;index < arr_predict.length;index++){
             if(arr_predict[index]){
                 if(index == curr_predict_index){
@@ -1795,6 +1808,14 @@ function show_total_series_predict_html_kq_lien_tiep(frame_container, arr_predic
         else{
             type_money = 'N';
             so_tien = global_key.money[curr_predict_index];
+        }
+
+        if( arr_predict.length >= 4 
+            &&  arr_predict[0]=== arr_predict[1] 
+            && arr_predict[2] === arr_predict[3]
+            && (   (arr_predict[0] === true && arr_predict[2] === false)
+            || (arr_predict[0] === false && arr_predict[2] === true))) {  
+            so_tien = so_tien * 0.0000001;
         }
         
 
